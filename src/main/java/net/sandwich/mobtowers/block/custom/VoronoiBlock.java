@@ -23,6 +23,7 @@ public class VoronoiBlock extends Block{
 	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 		if (level instanceof ServerLevel serverLevel) {
 			CellCenter center = Voronoi.getVoronoiCellCenter(pos);
+			System.out.println(pos);
 			Component message = Component.literal("My Cell Center Is: " + center.x + " " + center.z);
 			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
 		}
