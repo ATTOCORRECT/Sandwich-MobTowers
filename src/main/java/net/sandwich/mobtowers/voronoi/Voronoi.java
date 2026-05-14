@@ -72,7 +72,7 @@ public class Voronoi {
 				int currentGridZ = gridZ + nz;
 
 				// Generate a stable seed for this specific grid cell
-				long seed = ((long)currentGridX * 31234567L ^ (long)currentGridZ * 11234567L) + 4; // use MC seed?
+				long seed = ((long)currentGridX * 31234567L ^ (long)currentGridZ * 11234567L) + ClientSeedCache.getSeed(); // use MC seed?
 				RandomSource rng = RandomSource.create(seed);
 
 				// Get the random feature point inside this grid cell
