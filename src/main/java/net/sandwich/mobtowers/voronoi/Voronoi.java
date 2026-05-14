@@ -11,7 +11,7 @@ public class Voronoi {
 		return isVoronoiCellCenter (pos.x, pos.z);
 	}
 
-	private static boolean isVoronoiCellCenter(int x, int z) {
+	public static boolean isVoronoiCellCenter(int x, int z) {
 		CellCenter center = getVoronoiCellCenter(x, z);
 		return (center.x == x && center.z == z);
 	}
