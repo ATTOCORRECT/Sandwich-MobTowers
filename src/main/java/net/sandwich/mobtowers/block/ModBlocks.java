@@ -11,6 +11,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.sandwich.mobtowers.MobTowersMod;
+import net.sandwich.mobtowers.block.custom.MonsterFlame;
 import net.sandwich.mobtowers.block.custom.VoronoiBlock;
 import net.sandwich.mobtowers.item.ModItems;
 
@@ -23,6 +24,12 @@ public class ModBlocks {
 		() -> new VoronoiBlock(BlockBehaviour.Properties.of()
 		.strength(1)
 		.sound(SoundType.AMETHYST)
+	));
+
+	public static final DeferredBlock<Block> MONSTER_FLAME = registerBlock("monster_flame",
+		() -> new MonsterFlame(BlockBehaviour.Properties.of()
+		.strength(1)
+		.sound(SoundType.VAULT)
 	));
 
 

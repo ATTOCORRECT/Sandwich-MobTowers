@@ -63,6 +63,7 @@ public class MobTowersMod {
 
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
 		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		MobTowerStructurePlacement.DEFERRED_REGISTRY_STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
@@ -86,6 +87,9 @@ public class MobTowersMod {
 
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(ModBlocks.VORONOI_BLOCK);
+		}
+		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+			event.accept(ModBlocks.MONSTER_FLAME);
 		}
 	}
 

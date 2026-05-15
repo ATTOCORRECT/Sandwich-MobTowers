@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"lit=true": {
+			"model": "sandwich_mobtowers:block/monster_flame_lit"
+		},
+		"lit=false": {
+			"model": "sandwich_mobtowers:block/monster_flame_unlit"
+		}
+	}
+}
