@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.sandwich.mobtowers.voronoi.CellCenter;
+import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -51,7 +53,11 @@ public class MonsterFlame extends Block{
 	public void toggle(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
 		if (level instanceof ServerLevel serverLevel) {
 
-			Component message = Component.literal("Yup! I flipped");
+			int x = pos.getX();
+			int z = pos.getZ();
+			CellCenter center = Voronoi.getVoronoiCellCenter(pos);
+			long cellID = Voronoi.getVoronoiCellID(center);
+			Component message = Component.literal("Yup! I flipped at pos " + x + ", " + z + ". My Cell ID is " + cellID + ", in case you were wondering");
 			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
 		}
 		state = (BlockState)state.cycle(LIT);
