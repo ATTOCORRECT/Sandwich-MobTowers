@@ -36,6 +36,10 @@ public class Voronoi {
 		return rng.nextInt(0xFFFFFF);
 	}
 
+	public static long getVoronoiCellID(BlockPos pos) {
+		return getVoronoiCellID(new ChunkPos(pos));
+	}
+
 	public static long getVoronoiCellID(ChunkPos pos) {
 		return getVoronoiCellID(pos.x, pos.z);
 	}
