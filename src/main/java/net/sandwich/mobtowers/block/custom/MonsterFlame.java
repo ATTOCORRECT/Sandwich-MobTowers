@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
 import net.sandwich.mobtowers.voronoi.CellCenter;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.minecraft.world.level.block.state.BlockState;
@@ -55,10 +57,14 @@ public class MonsterFlame extends Block{
 
 			int x = pos.getX();
 			int z = pos.getZ();
-			CellCenter center = Voronoi.getVoronoiCellCenter(pos);
-			long cellID = Voronoi.getVoronoiCellID(center);
-			Component message = Component.literal("Yup! I flipped at pos " + x + ", " + z + ". My Cell ID is " + cellID + ", in case you were wondering");
+
+			boolean isLit = (Boolean)state.getValue(LIT);
+			
+			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
+
+			Component message = Component.literal("Yup! I am lit: " + isLit + " at pos " + x + ", " + z);
 			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
+
 		}
 		state = (BlockState)state.cycle(LIT);
 		level.setBlock(pos, state, 3);

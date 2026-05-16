@@ -28,6 +28,17 @@ public class MobRegionSavedData extends SavedData {
 		}
 	}
 
+	public void removeCellID(long cellID) {
+		if (this.disabledRegionCellIDs.contains(cellID)) {
+			this.disabledRegionCellIDs.remove(cellID);
+			this.setDirty();
+		}
+	}
+
+	public boolean containsCellID(long cellID) {
+		return this.disabledRegionCellIDs.contains(cellID);
+	}
+
 
 	// Create new instance of saved data
 	public static MobRegionSavedData create() {
