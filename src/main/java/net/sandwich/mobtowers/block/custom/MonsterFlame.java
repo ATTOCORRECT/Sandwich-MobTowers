@@ -53,6 +53,11 @@ public class MonsterFlame extends Block{
 	}
 
 	public void toggle(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
+
+		state = (BlockState)state.cycle(LIT);
+		level.setBlock(pos, state, 3);
+		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
+		
 		if (level instanceof ServerLevel serverLevel) {
 
 			int x = pos.getX();
@@ -66,9 +71,6 @@ public class MonsterFlame extends Block{
 			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
 
 		}
-		state = (BlockState)state.cycle(LIT);
-		level.setBlock(pos, state, 3);
-		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 	}
 
 
