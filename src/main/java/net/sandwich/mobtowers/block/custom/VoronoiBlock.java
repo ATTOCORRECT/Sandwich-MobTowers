@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
+import net.sandwich.mobtowers.voronoi.CellCenter;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 
 public class VoronoiBlock extends Block{
@@ -24,10 +25,11 @@ public class VoronoiBlock extends Block{
 		if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
 			MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
 			
+			CellCenter c = Voronoi.getVoronoiCellCenter(pos);
 			long cellID = Voronoi.getVoronoiCellID(pos);
 			data.addCellID(cellID);
 
-			System.out.println("My Cell Center Is: " + cellID);
+			System.out.println("My Cell Center Is: " + cellID + ", which is at " + c.x + ", " + c.z);
 		}
 	}
 }
