@@ -1,8 +1,11 @@
 package net.sandwich.mobtowers.event;
 
+import org.checkerframework.checker.units.qual.t;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.MobSpawnType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -25,10 +28,14 @@ public class ModEvents {
 	@SubscribeEvent
 	public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
+
+			MobSpawnType type = event.getSpawnType();
+			if (type != MobSpawnType.NATURAL) return; // exit early if its not a natural spawn
+			
 			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
 			boolean canSpawn = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
 
-			if (!canSpawn) { // if cant spawn
+			if (!canSpawn) {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
 			}
 		}
