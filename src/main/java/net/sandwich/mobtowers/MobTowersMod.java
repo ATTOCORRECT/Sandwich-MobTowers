@@ -24,6 +24,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
@@ -34,6 +35,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.item.ModItems;
+import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MobTowersMod.MOD_ID)
@@ -57,6 +60,7 @@ public class MobTowersMod {
 
 		ModItems.register(modEventBus);
 		ModBlocks.register(modEventBus);
+		ModParticles.register(modEventBus);
 
 		// Register the item to a creative tab
 		modEventBus.addListener(this::addCreative);
