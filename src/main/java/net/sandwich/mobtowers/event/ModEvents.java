@@ -29,9 +29,10 @@ public class ModEvents {
 	public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
 
-			MobSpawnType type = event.getSpawnType();
-			if (type != MobSpawnType.NATURAL) return; // exit early if its not a natural spawn
+			if (event.getSpawnType() != MobSpawnType.NATURAL) return; // exit early if its not a natural spawn
 			
+			if (!event.getEntity().getTags().contains("tag_name")) return; // exit early if its not a tower spawn mob
+
 			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
 			boolean canSpawn = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
 
