@@ -23,6 +23,11 @@ public class Voronoi {
 		return isVoronoiCellCenter (pos.x, pos.z);
 	}
 
+	public static boolean isVoronoiCellCenter(int x, int z, long seed) {
+		CellCenter center = getVoronoiCellCenter(x, z, seed);
+		return (center.x == x && center.z == z);
+	}
+
 	public static boolean isVoronoiCellCenter(int x, int z) {
 		CellCenter center = getVoronoiCellCenter(x, z);
 		return (center.x == x && center.z == z);
@@ -74,6 +79,10 @@ public class Voronoi {
 	}
 
 	private static CellCenter getVoronoiCellCenter(int x, int z) {
+		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed());
+	}
+
+	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
 		int cellSize = 16; // Adjust to change size of cells
 		int gridX = Math.floorDiv(x, cellSize);
 		int gridZ = Math.floorDiv(z, cellSize);
@@ -90,7 +99,7 @@ public class Voronoi {
 				int currentGridZ = gridZ + nz;
 
 				// Generate a stable seed for this specific grid cell
-				long seed = ((long)currentGridX * 31234567L ^ (long)currentGridZ * 11234567L) + ClientSeedCache.getSeed(); // use MC seed?
+				long seed = ((long)currentGridX * 31234567L ^ (long)currentGridZ * 11234567L) + levelSeed; // use MC seed?
 				RandomSource rng = RandomSource.create(seed);
 
 				// Get the random feature point inside this grid cell

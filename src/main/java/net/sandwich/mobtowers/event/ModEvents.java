@@ -21,6 +21,7 @@ import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID)
 public class ModEvents {
 
+	
 	@SubscribeEvent
 	public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
