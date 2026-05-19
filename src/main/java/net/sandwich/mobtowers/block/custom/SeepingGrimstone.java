@@ -22,6 +22,21 @@ public class SeepingGrimstone extends Block {
 
 	public static final EnumProperty<SeepingActivation> ACTIVATION = EnumProperty.create("activation", SeepingActivation.class);
 
+	public static SeepingActivation getActivation(BlockState state) {
+		return (SeepingActivation)state.getValue(ACTIVATION);
+	}
+
+	public static int getLight(BlockState state) {
+		SeepingActivation activation = (SeepingActivation)state.getValue(ACTIVATION);
+		if (activation == SeepingActivation.ACTIVE) {
+			return 6;
+		}
+		if (activation == SeepingActivation.MID) {
+			return 3;
+		}
+		return 0;
+	}
+
 	public SeepingGrimstone(Properties properties) {
 		super(properties);
 		this.registerDefaultState((BlockState)this.defaultBlockState().setValue(ACTIVATION, SeepingActivation.ACTIVE));
@@ -42,6 +57,7 @@ public class SeepingGrimstone extends Block {
 		updateActivation(state, level, pos);
 		level.scheduleTick(pos, this, 60 + level.getRandom().nextInt(40));
 	}
+
 
 	private void updateActivation(BlockState state, ServerLevel level, BlockPos pos){
 		boolean mobRegionEnabled = MobRegion.isMobRegionEnabled(pos, level);
