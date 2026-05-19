@@ -42,7 +42,7 @@ import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
 @Mod(MobTowersMod.MOD_ID)
 public class MobTowersMod {
 	// Define mod id in a common place for everything to reference
-	public static final String MOD_ID = "sandwich_mobtowers";
+	public static final String MOD_ID = "mobtowers";
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
 	
@@ -85,15 +85,15 @@ public class MobTowersMod {
 
 	// Add the example block item to the building blocks tab
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-			event.accept(ModItems.BEANS);
-		}
 
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(ModBlocks.VORONOI_BLOCK);
 		}
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			event.accept(ModBlocks.MONSTER_FLAME);
+		}
+		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+			event.accept(ModBlocks.GRIMSTONE);
 		}
 	}
 

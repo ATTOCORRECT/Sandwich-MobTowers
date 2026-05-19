@@ -1,7 +1,7 @@
 {
 	"parent": "minecraft:block/cube_all",
 	"textures": {
-		"all": "sandwich_mobtowers:block/voronoi_block"
+		"all": "mobtowers:block/voronoi_block"
 	},
 	"elements": [
 		{

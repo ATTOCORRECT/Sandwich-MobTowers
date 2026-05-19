@@ -25,13 +25,19 @@ public class ModBlocks {
 		.strength(1)
 		.sound(SoundType.AMETHYST)
 	));
+	
+	public static final DeferredBlock<Block> GRIMSTONE = registerBlock("grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
 
 	public static final DeferredBlock<Block> MONSTER_FLAME = registerBlock("monster_flame",
 		() -> new MonsterFlame(BlockBehaviour.Properties.of()
 		.strength(1)
 		.sound(SoundType.VAULT)
 	));
-
 
 	private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
 		DeferredBlock<T> toReturn = BLOCKS.register(name, block);

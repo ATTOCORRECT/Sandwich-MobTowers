@@ -8,7 +8,7 @@
   "start_height": {
     "absolute": 0
   },
-  "start_pool": "sandwich_mobtowers:mob_tower",
+  "start_pool": "mobtowers:mob_tower",
   "step": "surface_structures",
   "terrain_adaptation": "beard_thin",
   "use_expansion_hack": true
