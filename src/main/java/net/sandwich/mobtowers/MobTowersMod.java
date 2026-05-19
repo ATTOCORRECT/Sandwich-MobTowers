@@ -94,6 +94,14 @@ public class MobTowersMod {
 		}
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 			event.accept(ModBlocks.GRIMSTONE);
+			event.accept(ModBlocks.COBBLED_GRIMSTONE);
+			event.accept(ModBlocks.PALE_GRIMSTONE);
+			event.accept(ModBlocks.COBBLED_PALE_GRIMSTONE);
+			event.accept(ModBlocks.TEMPERED_GRIMSTONE);
+			event.accept(ModBlocks.COBBLED_TEMPERED_GRIMSTONE);
+			event.accept(ModBlocks.SEEPING_GRIMSTONE);
+			event.accept(ModBlocks.SEEPING_TEMPERED_GRIMSTONE);
+			
 		}
 	}
 

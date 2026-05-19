@@ -33,6 +33,55 @@ public class ModBlocks {
 		.sound(SoundType.DEEPSLATE)
 	));
 
+	public static final DeferredBlock<Block> COBBLED_GRIMSTONE = registerBlock("cobbled_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> PALE_GRIMSTONE = registerBlock("pale_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> COBBLED_PALE_GRIMSTONE = registerBlock("cobbled_pale_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> TEMPERED_GRIMSTONE = registerBlock("tempered_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> COBBLED_TEMPERED_GRIMSTONE = registerBlock("cobbled_tempered_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> SEEPING_GRIMSTONE = registerBlock("seeping_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
+	public static final DeferredBlock<Block> SEEPING_TEMPERED_GRIMSTONE = registerBlock("seeping_tempered_grimstone",
+		() -> new Block(BlockBehaviour.Properties.of()
+		.strength(3, 6)
+		.requiresCorrectToolForDrops()
+		.sound(SoundType.DEEPSLATE)
+	));
+
 	public static final DeferredBlock<Block> MONSTER_FLAME = registerBlock("monster_flame",
 		() -> new MonsterFlame(BlockBehaviour.Properties.of()
 		.strength(1)

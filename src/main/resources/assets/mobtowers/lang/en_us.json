@@ -1,5 +1,14 @@
 {
 	"item.mobtowers.beans": "Beans",
 	"block.mobtowers.voronoi_block": "Voronoi Block",
-	"block.mobtowers.monster_flame": "Monster Flame"
+	"block.mobtowers.monster_flame": "Monster Flame",
+	"block.mobtowers.grimstone": "Grimstone",
+	"block.mobtowers.cobbled_grimstone": "Cobbled Grimstone",
+	"block.mobtowers.pale_grimstone": "Pale Grimstone",
+	"block.mobtowers.cobbled_pale_grimstone": "Cobbled Pale Grimstone",
+	"block.mobtowers.tempered_grimstone": "Tempered Grimstone",
+	"block.mobtowers.cobbled_tempered_grimstone": "Cobbled Tempered Grimstone",
+	"block.mobtowers.seeping_grimstone": "Seeping Grimstone",
+	"block.mobtowers.seeping_tempered_grimstone": "Seeping Arid Grimstone"
+
 }
