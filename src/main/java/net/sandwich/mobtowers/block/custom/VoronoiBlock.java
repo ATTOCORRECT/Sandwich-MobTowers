@@ -3,15 +3,15 @@ package net.sandwich.mobtowers.block.custom;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
-import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.voronoi.Voronoi;
 
 public class VoronoiBlock extends Block{
 
@@ -21,14 +21,16 @@ public class VoronoiBlock extends Block{
 
 	@Override
 	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-		if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
-			MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
-			
-			CellCenter c = Voronoi.getVoronoiCellCenter(pos);
-			long cellID = Voronoi.getVoronoiCellID(pos);
-			data.addCellID(cellID);
+		// if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+		// 	MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
 
-			System.out.println("My Cell Center Is: " + cellID + ", which is at " + c.x + ", " + c.z);
-		}
+		// 	Component message = Component.literal("hi" + data.getCellIDs());
+		// 	serverLevel.players().forEach(p -> p.sendSystemMessage(message));
+
+		// 	for (long cellID : data.getCellIDs()) {
+		// 		Component message2 = Component.literal("" + cellID);
+		// 		serverLevel.players().forEach(p -> p.sendSystemMessage(message));
+		// 	}
+		// }
 	}
 }

@@ -10,11 +10,12 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 public class MobRegionSavedData extends SavedData {
 	public static final String ID = "mob_region_data";
-
+	private static final String KEY = "SavedCellIDs";
+	
 	private final List<Long> disabledRegionCellIDs = new ArrayList<>();
 
 	public static MobRegionSavedData getData(ServerLevel serverLevel) {
-		return serverLevel.getDataStorage().computeIfAbsent(MobRegionSavedData.FACTORY, MobRegionSavedData.ID);
+		return serverLevel.getServer().overworld().getDataStorage().computeIfAbsent(new Factory<>(MobRegionSavedData::create, MobRegionSavedData::load), ID);
 	}
 
 	public List<Long> getCellIDs() {
@@ -39,24 +40,17 @@ public class MobRegionSavedData extends SavedData {
 		return this.disabledRegionCellIDs.contains(cellID);
 	}
 
-
 	// Create new instance of saved data
 	public static MobRegionSavedData create() {
 		return new MobRegionSavedData();
 	}
 
-	public static final SavedData.Factory<MobRegionSavedData> FACTORY = new SavedData.Factory<>(
-			MobRegionSavedData::new,
-			MobRegionSavedData::load,
-			null
-	);
-
 	// Load existing instance of saved data
-	public static MobRegionSavedData load(CompoundTag tag, HolderLookup.Provider registries) {
+	public static MobRegionSavedData load(CompoundTag tag, HolderLookup.Provider lookupProvider) {
 		MobRegionSavedData data = MobRegionSavedData.create();
 
-		if (tag.contains("SavedCellIDs", 12)) { // 12 is the official NBT ID for Long Arrays
-			long[] array = tag.getLongArray("SavedCellIDs");
+		if (tag.contains(KEY, 12)) { // 12 is the official NBT ID for Long Arrays
+			long[] array = tag.getLongArray(KEY);
 			for (long cellID : array) {
 				data.disabledRegionCellIDs.add(cellID);
 			}
@@ -70,7 +64,7 @@ public class MobRegionSavedData extends SavedData {
 		for (int i = 0; i < this.disabledRegionCellIDs.size(); i++) {
 			array[i] = this.disabledRegionCellIDs.get(i);
 		}
-		tag.putLongArray("SavedIds", array);
+		tag.putLongArray(KEY, array);
 		return tag;
 	}
 }
