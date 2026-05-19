@@ -2,8 +2,6 @@ package net.sandwich.mobtowers.block.custom;
 
 import javax.annotation.Nullable;
 
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,6 +14,7 @@ import net.sandwich.mobtowers.voronoi.CellCenter;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 
 public class VoronoiBlock extends Block{
+
 	public VoronoiBlock(Properties properties) {
 		super(properties);
 	}

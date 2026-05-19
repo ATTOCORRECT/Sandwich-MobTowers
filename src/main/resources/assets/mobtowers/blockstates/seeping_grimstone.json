@@ -1,12 +1,12 @@
 {
 	"variants": {
-		"active=full": {
+		"activation=active": {
 			"model": "mobtowers:block/seeping_grimstone_active"
 		},
-		"active=mid": {
+		"activation=mid": {
 			"model": "mobtowers:block/seeping_grimstone_mid"
 		},
-		"active=off": {
+		"activation=dormant": {
 			"model": "mobtowers:block/seeping_grimstone_dormant"
 		}
 	}

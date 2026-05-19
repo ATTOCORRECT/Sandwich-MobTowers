@@ -100,8 +100,6 @@ public class MobTowersMod {
 			event.accept(ModBlocks.TEMPERED_GRIMSTONE);
 			event.accept(ModBlocks.COBBLED_TEMPERED_GRIMSTONE);
 			event.accept(ModBlocks.SEEPING_GRIMSTONE);
-			event.accept(ModBlocks.SEEPING_TEMPERED_GRIMSTONE);
-			
 		}
 	}
 

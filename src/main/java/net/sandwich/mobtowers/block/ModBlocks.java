@@ -12,6 +12,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.custom.MonsterFlame;
+import net.sandwich.mobtowers.block.custom.SeepingGrimstone;
 import net.sandwich.mobtowers.block.custom.VoronoiBlock;
 import net.sandwich.mobtowers.item.ModItems;
 
@@ -69,14 +70,7 @@ public class ModBlocks {
 	));
 
 	public static final DeferredBlock<Block> SEEPING_GRIMSTONE = registerBlock("seeping_grimstone",
-		() -> new Block(BlockBehaviour.Properties.of()
-		.strength(3, 6)
-		.requiresCorrectToolForDrops()
-		.sound(SoundType.DEEPSLATE)
-	));
-
-	public static final DeferredBlock<Block> SEEPING_TEMPERED_GRIMSTONE = registerBlock("seeping_tempered_grimstone",
-		() -> new Block(BlockBehaviour.Properties.of()
+		() -> new SeepingGrimstone(BlockBehaviour.Properties.of()
 		.strength(3, 6)
 		.requiresCorrectToolForDrops()
 		.sound(SoundType.DEEPSLATE)
