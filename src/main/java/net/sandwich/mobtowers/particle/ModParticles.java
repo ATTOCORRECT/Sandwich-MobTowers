@@ -20,6 +20,6 @@ public class ModParticles {
 
 	public static final Supplier<SimpleParticleType> TOWER_FLAME = PARTICLE_TYPES.register(
 		"tower_flame", 
-		() -> new SimpleParticleType(false)
+		() -> new SimpleParticleType(true)
 	);
 }

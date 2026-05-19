@@ -3,6 +3,7 @@ package net.sandwich.mobtowers.event;
 import org.checkerframework.checker.units.qual.t;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.MobSpawnType;
@@ -17,6 +18,8 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
@@ -31,13 +34,18 @@ public class ModEvents {
 
 			if (event.getSpawnType() != MobSpawnType.NATURAL) return; // exit early if its not a natural spawn
 			
-			if (!event.getEntity().getTags().contains("tag_name")) return; // exit early if its not a tower spawn mob
+			if (!event.getEntity().getType().is(ModTags.Entities.SPAWN_BLOCKED)) return; // exit early if its not a tower spawn mob
 
 			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
 			boolean canSpawn = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
 
 			if (!canSpawn) {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
+			} else {
+				System.out.println(event.getEntity().getType() + " has spawned particles at " + blockPos.getX() + ", " + blockPos.getY() + ", " + blockPos.getZ() + "");
+				for (int i = 0; i < 10; i++) {
+					serverLevel.players().forEach(p -> p.level().addParticle(ParticleTypes.FLAME, true, blockPos.getX(), blockPos.getY() + 1.0, blockPos.getZ(), 0.0, 1.0, 0.0));
+				}
 			}
 		}
 	}

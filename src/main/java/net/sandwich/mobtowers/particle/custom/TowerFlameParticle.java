@@ -15,14 +15,18 @@ public class TowerFlameParticle extends TextureSheetParticle {
 	protected TowerFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z);
 
-		this.friction = 0.8f;
-		this.lifetime = 80;
+		this.xd = xSpeed;
+		this.yd = ySpeed;
+		this.zd = zSpeed;
+
+		this.friction = 0.0f;
+		this.lifetime = 25;
 		this.setSpriteFromAge(spriteSet);
 	}
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 
