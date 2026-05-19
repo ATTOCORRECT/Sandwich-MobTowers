@@ -4,8 +4,11 @@ import javax.annotation.Nullable;
 
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -45,6 +48,13 @@ public class MonsterFlame extends Block{
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (level.isClientSide) {
+			for (int i = 0; i < 10; i++) {
+				RandomSource randomsource = level.getRandom();
+				double d0 = (double)pos.getX() + randomsource.nextDouble();
+				double d1 = (double)pos.getY() + randomsource.nextDouble();
+				double d2 = (double)pos.getZ() + randomsource.nextDouble();
+				level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+			}
 			return InteractionResult.SUCCESS;
 		} else {
 			this.toggle(state, level, pos, (Player)null);
@@ -71,6 +81,16 @@ public class MonsterFlame extends Block{
 			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
 
 		}
+		//if(level.isClientSide) {
+
+		//	for (int i = 0; i < 10; i++) {
+		//		RandomSource randomsource = level.getRandom();
+		//		double d0 = (double)pos.getX() + randomsource.nextDouble();
+		//		double d1 = (double)pos.getY() + randomsource.nextDouble();
+		//		double d2 = (double)pos.getZ() + randomsource.nextDouble();
+		//		level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+		//	}
+		//}
 	}
 
 
