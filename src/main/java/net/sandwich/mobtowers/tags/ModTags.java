@@ -19,6 +19,7 @@ public class ModTags {
 		}
 
 		public static TagKey<EntityType<?>> SPAWN_BLOCKED = createTag("tower_blocked");
+		public static TagKey<EntityType<?>> TOWER_SUMMONED = createTag("tower_summoned");
 
 	}
 }

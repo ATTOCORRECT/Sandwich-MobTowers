@@ -5,10 +5,13 @@ import org.checkerframework.checker.units.qual.t;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -21,6 +24,7 @@ import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
 import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
@@ -41,20 +45,17 @@ public class ModEvents {
 			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
 			boolean canSpawn = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
 
+
+			
 			if (!canSpawn) {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
-			}
-		}
-		if (event.getLevel().isClientSide()) {
-
-			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
-
-			if (!event.getEntity().getType().is(ModTags.Entities.SPAWN_BLOCKED)) return; // exit early if its not a tower spawn mob
-
-			System.out.println(event.getEntity().getType() + " has spawned particles at " + blockPos.getX() + ", " + blockPos.getY() + ", " + blockPos.getZ() + "");
-
-			for (int i = 0; i < 10; i++) {
-				event.getLevel().addParticle(ParticleTypes.FLAME, blockPos.getX(), blockPos.getY() + 1.0, blockPos.getZ(), 0.0, 0.1, 0.0);
+			} else {
+				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED)) {
+					for (int p=0; p < serverLevel.players().size(); p++) 
+					{
+						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, blockPos.getX(), blockPos.getY()+1, blockPos.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
+					}
+				}
 			}
 		}
 	}
