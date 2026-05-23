@@ -1,27 +1,10 @@
 package net.sandwich.mobtowers.voronoi;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.ChunkPos;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 
+
 public class Voronoi {
-
-	private static int[] cellColors = {
-		0xFF00FA7B,
-		0xFF00C140,
-		0xFF10A300,
-		0xFF7DD700,
-		0xFFA0DD7C,
-		0xFF32BFA8,
-		0xFF00D769,
-		0xFF3AFA00,
-		0xFF38FF00
-	};
-
-	public static boolean isVoronoiCellCenter(ChunkPos pos) {
-		return isVoronoiCellCenter (pos.x, pos.z);
-	}
 
 	public static boolean isVoronoiCellCenter(int x, int z, long seed) {
 		CellCenter center = getVoronoiCellCenter(x, z, seed);
@@ -33,35 +16,7 @@ public class Voronoi {
 		return (center.x == x && center.z == z);
 	}
 
-	public static int getVoronoiColor(BlockPos pos) {
-		return getVoronoiColor(new ChunkPos(pos));
-	}
-
-	public static int getVoronoiColor(ChunkPos pos) {
-		return getVoronoiColor(pos.x, pos.z);
-	}
-
-	private static int getVoronoiColor(int x, int z) {
-		CellCenter center = getVoronoiCellCenter(x, z);
-
-		if (center.x == x && center.z == z) { // for marking centers
-			return 0x000000;
-		}
-
-		int colorIndex = Math.floorMod(center.gridX, 3) + Math.floorMod(center.gridZ, 3) * 3;
-		colorIndex = Math.min(colorIndex, cellColors.length - 1); // make sure we dont go over
-		return cellColors[colorIndex];
-	}
-
-	public static long getVoronoiCellID(BlockPos pos) {
-		return getVoronoiCellID(new ChunkPos(pos));
-	}
-
-	public static long getVoronoiCellID(ChunkPos pos) {
-		return getVoronoiCellID(pos.x, pos.z);
-	}
-
-	private static long getVoronoiCellID(int x, int z) {
+	public static long getVoronoiCellID(int x, int z) {
 		CellCenter center = getVoronoiCellCenter(x, z);
 		return getVoronoiCellID(center);
 	}
@@ -70,27 +25,21 @@ public class Voronoi {
 		return (long)center.x * 31234567L ^ (long)center.z * 11234567L;
 	}
 
-	public static CellCenter getVoronoiCellCenter(BlockPos pos) {
-		return getVoronoiCellCenter(new ChunkPos(pos));
-	}
-
-	public static CellCenter getVoronoiCellCenter(ChunkPos pos) {
-		return getVoronoiCellCenter(pos.x, pos.z);
-	}
-
-	private static CellCenter getVoronoiCellCenter(int x, int z) {
+	public static CellCenter getVoronoiCellCenter(int x, int z) {
 		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed());
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
+		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed(), true);
+	}
+
+	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, boolean isManhattan) {
 		int cellSize = 16; // Adjust to change size of cells
 		int gridX = Math.floorDiv(x, cellSize);
 		int gridZ = Math.floorDiv(z, cellSize);
 
-		double minDistanceSq = Double.MAX_VALUE;
+		double minDistance = Double.MAX_VALUE;
 		CellCenter center = new CellCenter();
-
-
 
 		// Check the 3x3 grid neighborhood
 		for (int nx = -1; nx <= 1; nx++) {
@@ -109,10 +58,10 @@ public class Voronoi {
 				// Calculate distance squared
 				double dx = x - pointX;
 				double dz = z - pointZ;
-				double distSq = dx * dx + dz * dz;
+				double dist = isManhattan ? Math.abs(dx) + Math.abs(dz) : dx * dx + dz * dz;
 
-				if (distSq < minDistanceSq) {
-					minDistanceSq = distSq;
+				if (dist < minDistance) {
+					minDistance = dist;
 					// Generate a stable color for this specific point
 					center.x = (long)pointX;
 					center.z = (long)pointZ;

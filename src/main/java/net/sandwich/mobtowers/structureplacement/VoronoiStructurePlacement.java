@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.sandwich.mobtowers.MobTowerStructurePlacement;
+import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.voronoi.Voronoi;
+import net.sandwich.mobtowers.mobregion.MobRegion;
 
 import java.util.Optional;
 
@@ -73,8 +74,8 @@ public class VoronoiStructurePlacement extends RandomSpreadStructurePlacement {
 
 		
 		long seed = chunkGeneratorStructureState.getLevelSeed();
-		CellCenter c = Voronoi.getVoronoiCellCenter(x, z, seed);
-		boolean isChunk = Voronoi.isVoronoiCellCenter(x, z, seed);
+		CellCenter c = MobRegion.getMobRegionCell(new ChunkPos(x,z), seed);
+		boolean isChunk = c.x == x && c.z == z;
 		if (isChunk) {
 			System.out.println("Center is " + c.x + ", " + c.z);
 		}

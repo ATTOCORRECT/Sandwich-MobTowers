@@ -17,7 +17,6 @@ import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.tags.ModTags;
-import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
 
@@ -52,15 +51,15 @@ public class ModEvents {
 
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-		// Register the handler for your specific block
-		event.register((state, level, pos, tintIndex) -> {
-			if (pos != null) {
-				// Calculate color based on position (X, Y, Z)
-				return Voronoi.getVoronoiColor(pos);
-			}
-			// Default color (White) if pos is null
-			return 0xFFFFFFFF;
-		}, ModBlocks.VORONOI_BLOCK.get());
+		event.register(
+			(state, level, pos, tintIndex) -> {
+				if (pos != null) {
+					return MobRegion.getMobRegionColor(pos);
+				}
+				return 0xFFFFFFFF;
+			}, 
+			ModBlocks.VORONOI_BLOCK.get()
+		);
 	}
 
 	@SubscribeEvent
