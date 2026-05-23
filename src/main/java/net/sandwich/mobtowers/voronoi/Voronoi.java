@@ -6,6 +6,18 @@ import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 
 public class Voronoi {
 
+	public static double worleyNoise(int x, int z, int scale) {
+		return worleyNoise(x, z, scale, ClientSeedCache.getSeed());
+	}
+
+	public static double worleyNoise(int x, int z, int scale, long seed) {
+		CellCenter center = getVoronoiCellCenter(x, z, seed, scale, false);
+
+		double normalizedDist = Math.clamp(Math.sqrt(center.distance) / scale, 0, 1);
+
+		return normalizedDist;
+	}
+
 	public static boolean isVoronoiCellCenter(int x, int z, long seed) {
 		CellCenter center = getVoronoiCellCenter(x, z, seed);
 		return (center.x == x && center.z == z);
@@ -30,11 +42,10 @@ public class Voronoi {
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
-		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed(), true);
+		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed(), 16, true);
 	}
 
-	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, boolean isManhattan) {
-		int cellSize = 16; // Adjust to change size of cells
+	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, int cellSize, boolean isManhattan) {
 		int gridX = Math.floorDiv(x, cellSize);
 		int gridZ = Math.floorDiv(z, cellSize);
 
@@ -62,7 +73,9 @@ public class Voronoi {
 
 				if (dist < minDistance) {
 					minDistance = dist;
-					// Generate a stable color for this specific point
+
+					center.distance = minDistance;
+
 					center.x = (long)pointX;
 					center.z = (long)pointZ;
 

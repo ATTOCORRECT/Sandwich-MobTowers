@@ -6,15 +6,12 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SoulParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.voronoi.Voronoi;
+import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.minecraft.util.Mth;
 
 public class TowerFlameParticle extends TextureSheetParticle {
@@ -37,7 +34,7 @@ public class TowerFlameParticle extends TextureSheetParticle {
 		this.zStart = this.z;
 	
 
-		c = Voronoi.getVoronoiCellCenter(new BlockPos((int)x, (int)y, (int)z));
+		c = MobRegion.getMobRegionCell(new BlockPos((int)x, (int)y, (int)z));
 
 		this.quadSize *= (Mth.lerp(Math.random(), 0.6, 1.7));
 		this.friction = 0.0f;

@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.client.model.data.ModelProperty;
+import net.sandwich.mobtowers.voronoi.Voronoi;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -31,18 +32,22 @@ public class NoiseVaryingModel extends BakedModelWrapper<BakedModel> {
 		if (extraData.has(VARIANT)) {
 			int variant = (Integer)extraData.get(VARIANT);
 			return this.variants[variant].getQuads(state, side, rand, extraData, renderType);
-		} else {
-			return super.getQuads(state, side, rand, extraData, renderType);
-		}
+		} 
+		return super.getQuads(state, side, rand, extraData, renderType);
 	}
 
 	@Override
 	public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData modelData) {
-		return modelData.has(VARIANT) ? modelData : modelData.derive().with(VARIANT, calculateNoise(pos, this.variants.length)).build();
+		if (modelData.has(VARIANT)) {
+			return modelData;
+		} 
+		int variantIndex = noise(pos, this.variants.length);
+		return modelData.derive().with(VARIANT, variantIndex).build();
 	}
 
-	private int calculateNoise(BlockPos pos, int maxVariants) {
-		int val = Math.abs(pos.getX() + pos.getY() + pos.getZ());
-		return val % maxVariants; 
+	private int noise(BlockPos pos, int maxVariants) {
+		double worley = Voronoi.worleyNoise(pos.getX(), pos.getZ(), 16);
+		int noise = Math.clamp((int)(worley * maxVariants), 0, maxVariants - 1);
+		return noise; 
 	}
 }

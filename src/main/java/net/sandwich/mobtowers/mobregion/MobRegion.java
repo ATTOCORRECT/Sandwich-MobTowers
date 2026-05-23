@@ -10,15 +10,15 @@ import net.sandwich.mobtowers.voronoi.CellCenter;
 public class MobRegion {
 
 	private static int[] cellColors = {
-		0xFF00FA7B,
-		0xFF00C140,
-		0xFF10A300,
-		0xFF7DD700,
-		0xFFA0DD7C,
-		0xFF32BFA8,
-		0xFF00D769,
-		0xFF3AFA00,
-		0xFF38FF00
+		0xFFA4D04F,
+		0xFF83FDD9,
+		0xFFBBFD3D,
+		0xFFC7FDBE,
+		0xFFFDF33D,
+		0xFF01F3C6,
+		0xFF3FE593,
+		0xFFFDBE3D,
+		0xFF73ED4D
 	};
 
 	public static int getMobRegionColor(BlockPos blockPos) {
@@ -82,6 +82,10 @@ public class MobRegion {
 	public static boolean isMobRegionEnabled(long cellID, ServerLevel serverLevel) {
 		MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
 		return !data.containsCellID(cellID);
+	}
+
+		public static CellCenter getMobRegionCell(BlockPos blockPos) {
+		return getMobRegionCell(new ChunkPos(blockPos));
 	}
 
 	public static CellCenter getMobRegionCell(ChunkPos chunkPos) {

@@ -14,7 +14,6 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.mobregion.MobRegion;
 
 import java.util.Optional;
 

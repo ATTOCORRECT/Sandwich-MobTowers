@@ -5,4 +5,5 @@ public class CellCenter {
 	public long z;
 	public long gridX;
 	public long gridZ;
+	public double distance;
 }
