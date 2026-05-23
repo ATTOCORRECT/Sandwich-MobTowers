@@ -10,6 +10,7 @@ import net.sandwich.mobtowers.voronoi.CellCenter;
 public class MobRegion {
 
 	private static int[] cellColors = {
+	//  XXAARRGGBB
 		0xFFA4D04F,
 		0xFF83FDD9,
 		0xFFBBFD3D,

@@ -46,7 +46,7 @@ public class NoiseVaryingModel extends BakedModelWrapper<BakedModel> {
 	}
 
 	private int noise(BlockPos pos, int maxVariants) {
-		double worley = Voronoi.worleyNoise(pos.getX(), pos.getZ(), 16);
+		double worley = 1 - (0.75 * Voronoi.worleyNoise(pos.getX(), pos.getZ(), 16) + 0.25 * Voronoi.worleyNoise(pos.getX(), pos.getZ(), 8));
 		int noise = Math.clamp((int)(worley * maxVariants), 0, maxVariants - 1);
 		return noise; 
 	}
