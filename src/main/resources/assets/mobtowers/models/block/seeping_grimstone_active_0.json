@@ -1,8 +1,0 @@
-{   "parent": "mobtowers:block/seeping_grimstone",
-
-  "textures": {
-    "particle":"mobtowers:block/cobbled_grimstone",
-    "all": "mobtowers:block/seeping_grimstone_active_0",
-    "overlay": "mobtowers:block/seeping_grimstone_active_overlay_0"
-  }
-}
