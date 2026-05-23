@@ -1,7 +1,8 @@
 
 import os
+import sys
 
-userinput = input("how many frames? (starts at zero; 16 frames will end at 15)\n>")
+userinput = sys.argv[1]
 if userinput == "quit":
 	quit()
 
