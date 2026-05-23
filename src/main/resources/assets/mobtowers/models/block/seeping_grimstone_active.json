@@ -1,6 +1,21 @@
 {
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-        "all": "mobtowers:block/seeping_grimstone_active"
-    }
+	"loader": "mobtowers:noise_varying",
+	"variants": [
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_0",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_1",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_2",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_3",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_4",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_5",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_6",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_7",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_8",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_9",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_10",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_11",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_12",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_13",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_14",
+		"mobtowers:block/seeping_grimstone/seeping_grimstone_active_15"
+	]
 }
