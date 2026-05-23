@@ -30,6 +30,12 @@ public class ModBlocks {
 			.strength(1)
 			.sound(SoundType.AMETHYST)
 	));
+
+	public static final DeferredBlock<Block> NOISE_VARYING_BLOCK = registerBlock("noise_varying_block",
+		() -> new Block(BlockBehaviour.Properties.of()
+			.strength(1)
+			.sound(SoundType.AMETHYST)
+	));
 	
 	public static final DeferredBlock<Block> GRIMSTONE = registerBlock("grimstone",
 		() -> new Block(BlockBehaviour.Properties.of()

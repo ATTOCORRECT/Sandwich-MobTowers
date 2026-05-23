@@ -86,8 +86,9 @@ public class MobTowersMod {
 	// Add the example block item to the building blocks tab
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
-		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+		if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
 			event.accept(ModBlocks.VORONOI_BLOCK);
+			event.accept(ModBlocks.NOISE_VARYING_BLOCK);
 		}
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			event.accept(ModBlocks.MONSTER_FLAME);

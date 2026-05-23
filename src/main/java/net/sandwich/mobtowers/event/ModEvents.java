@@ -1,17 +1,9 @@
 package net.sandwich.mobtowers.event;
 
-import org.checkerframework.checker.units.qual.t;
-
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -24,7 +16,6 @@ import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
-import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
 import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
@@ -33,7 +24,6 @@ import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID)
 public class ModEvents {
 
-	
 	@SubscribeEvent
 	public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {

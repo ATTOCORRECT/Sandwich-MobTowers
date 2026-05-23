@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "mobtowers:block/noise_varying_block_0"
+  }
+}
