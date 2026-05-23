@@ -51,14 +51,17 @@ public class ModEvents {
 
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-		event.register((state, level, pos, tintIndex) -> {
-			if (pos != null) {
-				// Calculate color based on position (X, Y, Z)
-				return Voronoi.getVoronoiColor(pos);
-			}
-			// Default color (White) if pos is null
-			return 0xFFFFFFFF;
-		}, ModBlocks.SEEPING_GRIMSTONE.get());
+		event.register(
+			(state, level, pos, tintIndex) -> {
+				if (pos != null) {
+					// Calculate color based on position (X, Y, Z)
+					return MobRegion.getMobRegionColor(pos);
+				}
+				// Default color (White) if pos is null
+				return 0xFFFFFFFF;
+			}, 
+			ModBlocks.SEEPING_GRIMSTONE.get()
+		);
 
 		event.register(
 			(state, level, pos, tintIndex) -> {
