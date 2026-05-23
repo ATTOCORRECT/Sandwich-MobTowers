@@ -1,11 +1,11 @@
 import os
 from PIL import Image
-
+import sys
 
 
 texturesfolder = "../textures/block/"
 
-texture_filename = input("enter texture filename (press ctrl+c to quit)\n").split(".")[0]
+texture_filename = sys.argv[1].split(".")[0]
 
 path = texturesfolder + texture_filename + ".png"
 
