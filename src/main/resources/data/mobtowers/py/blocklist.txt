@@ -1,0 +1,7 @@
+grimstone
+cobbled_grimstone
+pale_grimstone
+cobbled_pale_grimstone
+tempered_grimstone
+cobbled_tempered_grimstone
+seeping_grimstone

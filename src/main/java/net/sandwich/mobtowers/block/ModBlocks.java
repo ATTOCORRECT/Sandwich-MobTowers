@@ -21,6 +21,7 @@ import net.sandwich.mobtowers.block.custom.SeepingGrimstone;
 import net.sandwich.mobtowers.block.custom.VoronoiBlock;
 import net.sandwich.mobtowers.block.custom.states.SeepingActivation;
 import net.sandwich.mobtowers.item.ModItems;
+import net.sandwich.mobtowers.sound.ModSounds;
 
 public class ModBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MobTowersMod.MOD_ID);
@@ -41,8 +42,9 @@ public class ModBlocks {
 		() -> new Block(BlockBehaviour.Properties.of()
 			.strength(3, 6)
 			.requiresCorrectToolForDrops()
-			.sound(SoundType.DEEPSLATE)
+			.sound(ModSounds.GRIMSTONE_SOUNDS)
 	));
+
 
 	public static final DeferredBlock<Block> COBBLED_GRIMSTONE = registerBlock("cobbled_grimstone",
 		() -> new Block(BlockBehaviour.Properties
@@ -71,7 +73,9 @@ public class ModBlocks {
 
 	public static final DeferredBlock<Block> SEEPING_GRIMSTONE = registerBlock("seeping_grimstone",
 		() -> new SeepingGrimstone(BlockBehaviour.Properties.of()
-			.ofFullCopy(GRIMSTONE.get())
+			.strength(3, 6)
+			.requiresCorrectToolForDrops()
+			.sound(ModSounds.SEEPING_GRIMSTONE_SOUNDS)
 			.lightLevel(state -> SeepingGrimstone.getLight(state))
 			//.hasPostProcess(ModBlocks::always)
 			.emissiveRendering((state, p_187413_, p_187414_) -> SeepingGrimstone.getActivation(state) != SeepingActivation.DORMANT)

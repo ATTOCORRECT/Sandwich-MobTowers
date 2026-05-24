@@ -1,0 +1,122 @@
+{
+	"block.grimstone.place": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/grimstone/grimstone_set_1",
+			"mobtowers:block/grimstone/grimstone_set_2",
+			"mobtowers:block/grimstone/grimstone_set_3",
+			"mobtowers:block/grimstone/grimstone_set_4",
+			"mobtowers:block/grimstone/grimstone_set_5",
+			"mobtowers:block/grimstone/grimstone_set_6"
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.grimstone.break": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/grimstone/grimstone_set_1",
+			"mobtowers:block/grimstone/grimstone_set_2",
+			"mobtowers:block/grimstone/grimstone_set_3",
+			"mobtowers:block/grimstone/grimstone_set_4",
+			"mobtowers:block/grimstone/grimstone_set_5",
+			"mobtowers:block/grimstone/grimstone_set_6"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.grimstone.hit": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/grimstone/grimstone_step_1",
+			"mobtowers:block/grimstone/grimstone_step_2",
+			"mobtowers:block/grimstone/grimstone_step_3",
+			"mobtowers:block/grimstone/grimstone_step_4",
+			"mobtowers:block/grimstone/grimstone_step_5",
+			"mobtowers:block/grimstone/grimstone_step_6"
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.grimstone.step": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/grimstone/grimstone_step_1",
+			"mobtowers:block/grimstone/grimstone_step_2",
+			"mobtowers:block/grimstone/grimstone_step_3",
+			"mobtowers:block/grimstone/grimstone_step_4",
+			"mobtowers:block/grimstone/grimstone_step_5",
+			"mobtowers:block/grimstone/grimstone_step_6"
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.grimstone.fall": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/grimstone/grimstone_step_1",
+			"mobtowers:block/grimstone/grimstone_step_2",
+			"mobtowers:block/grimstone/grimstone_step_3",
+			"mobtowers:block/grimstone/grimstone_step_4",
+			"mobtowers:block/grimstone/grimstone_step_5",
+			"mobtowers:block/grimstone/grimstone_step_6"
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.seeping_grimstone.place": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/seeping_grimstone/seeping_place_1",
+			"mobtowers:block/seeping_grimstone/seeping_place_2",
+			"mobtowers:block/seeping_grimstone/seeping_place_3",
+			"mobtowers:block/seeping_grimstone/seeping_place_4",
+			"mobtowers:block/seeping_grimstone/seeping_place_5",
+			"mobtowers:block/seeping_grimstone/seeping_place_6"
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.seeping_grimstone.break": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/seeping_grimstone/seeping_break_1",
+			"mobtowers:block/seeping_grimstone/seeping_break_2",
+			"mobtowers:block/seeping_grimstone/seeping_break_3",
+			"mobtowers:block/seeping_grimstone/seeping_break_4",
+			"mobtowers:block/seeping_grimstone/seeping_break_5",
+			"mobtowers:block/seeping_grimstone/seeping_break_6"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.seeping_grimstone.step": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/seeping_grimstone/seeping_step_1",
+			"mobtowers:block/seeping_grimstone/seeping_step_2",
+			"mobtowers:block/seeping_grimstone/seeping_step_3",
+			"mobtowers:block/seeping_grimstone/seeping_step_4",
+			"mobtowers:block/seeping_grimstone/seeping_step_5",
+			"mobtowers:block/seeping_grimstone/seeping_step_6"
+		],
+		"subtitle": "subtitles.block.generic.step"
+	},
+	"block.seeping_grimstone.hit": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/seeping_grimstone/seeping_step_1",
+			"mobtowers:block/seeping_grimstone/seeping_step_2",
+			"mobtowers:block/seeping_grimstone/seeping_step_3",
+			"mobtowers:block/seeping_grimstone/seeping_step_4",
+			"mobtowers:block/seeping_grimstone/seeping_step_5",
+			"mobtowers:block/seeping_grimstone/seeping_step_6"
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.seeping_grimstone.fall": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/seeping_grimstone/seeping_step_1",
+			"mobtowers:block/seeping_grimstone/seeping_step_2",
+			"mobtowers:block/seeping_grimstone/seeping_step_3",
+			"mobtowers:block/seeping_grimstone/seeping_step_4",
+			"mobtowers:block/seeping_grimstone/seeping_step_5",
+			"mobtowers:block/seeping_grimstone/seeping_step_6"
+		],
+		"subtitle": "subtitles.block.generic.fall"
+	}
+}

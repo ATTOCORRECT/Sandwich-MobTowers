@@ -37,6 +37,7 @@ import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.item.ModItems;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
+import net.sandwich.mobtowers.sound.ModSounds;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MobTowersMod.MOD_ID)
@@ -61,6 +62,7 @@ public class MobTowersMod {
 		ModItems.register(modEventBus);
 		ModBlocks.register(modEventBus);
 		ModParticles.register(modEventBus);
+		ModSounds.register(modEventBus);
 
 		// Register the item to a creative tab
 		modEventBus.addListener(this::addCreative);
