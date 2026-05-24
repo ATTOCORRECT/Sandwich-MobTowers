@@ -1,3 +1,2 @@
 python3 grimstone_filegen.py 16
-python3 grimstone_texturegen.py seeping_grimstone_active 
-python3 grimstone_texturegen.py seeping_grimstone_active_overlay
+python3 grimstone_texturegen.py seeping_grimstone_active
