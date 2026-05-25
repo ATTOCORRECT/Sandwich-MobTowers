@@ -2,6 +2,7 @@ package net.sandwich.mobtowers.block.custom;
 
 import javax.annotation.Nullable;
 
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -14,7 +15,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
@@ -28,7 +32,23 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class MonsterFlame extends Block{
+public class MonsterFlame extends BaseEntityBlock {
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return null;
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return null;
+	}
+
+	@Override
+	protected RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
+	}
 
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
