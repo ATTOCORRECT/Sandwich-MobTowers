@@ -8,10 +8,13 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.sandwich.mobtowers.block.entity.ModBlockEntities;
+import net.sandwich.mobtowers.block.entity.renderer.MonsterFlameEntityRenderer;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
 
@@ -37,5 +40,10 @@ public class MobTowersModClient {
 	@SubscribeEvent
 	public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(ModParticles.TOWER_FLAME.get(), TowerFlameParticle.Provider::new);
+	}
+
+	@SubscribeEvent
+	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+		event.registerBlockEntityRenderer(ModBlockEntities.MONSTER_FLAME_BE.get(), MonsterFlameEntityRenderer::new);
 	}
 }

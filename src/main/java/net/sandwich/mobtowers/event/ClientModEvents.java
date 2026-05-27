@@ -4,8 +4,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.sandwich.mobtowers.MobTowersMod;
+import net.sandwich.mobtowers.block.entity.ModBlockEntities;
+import net.sandwich.mobtowers.block.entity.renderer.MonsterFlameEntityRenderer;
 import net.sandwich.mobtowers.client.block.noiseVarying.NoiseVaryingModelLoader;
 
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID, value = Dist.CLIENT)
@@ -18,5 +21,10 @@ public class ClientModEvents {
 			ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "noise_varying"), 
 			NoiseVaryingModelLoader.INSTANCE
 		);
+	}
+
+	@SubscribeEvent
+	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+		event.registerBlockEntityRenderer(ModBlockEntities.MONSTER_FLAME_BE.get(), MonsterFlameEntityRenderer::new);
 	}
 }
