@@ -34,6 +34,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.sandwich.mobtowers.block.ModBlocks;
+import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.item.ModItems;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
@@ -63,6 +64,7 @@ public class MobTowersMod {
 		ModBlocks.register(modEventBus);
 		ModParticles.register(modEventBus);
 		ModSounds.register(modEventBus);
+		ModBlockEntities.register(modEventBus);
 
 		// Register the item to a creative tab
 		modEventBus.addListener(this::addCreative);

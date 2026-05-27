@@ -83,7 +83,7 @@ public class ModBlocks {
 
 	public static final DeferredBlock<Block> MONSTER_FLAME = registerBlock("monster_flame",
 		() -> new MonsterFlame(BlockBehaviour.Properties.of()
-			.noCollission()
+			.noOcclusion()
 			.strength(1)
 			.sound(SoundType.VAULT)
 	));

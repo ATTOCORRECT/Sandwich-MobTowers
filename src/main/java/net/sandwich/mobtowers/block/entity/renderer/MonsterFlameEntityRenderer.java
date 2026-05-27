@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -31,18 +32,15 @@ import net.sandwich.mobtowers.block.entity.MonsterFlameEntity;
 public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFlameEntity> {
 
 
-	public static final ResourceLocation LIGHT = ResourceLocation.fromNamespaceAndPath("MobTowersMod.MOD_ID", "block/grimstone");
-
-	public MonsterFlameEntityRenderer(BlockEntityRendererProvider.Context context) {
-		
-	}
+	public static final ResourceLocation LIGHT = ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "block/grimstone");
 
 	@Override
 	public void render(MonsterFlameEntity monsterFlameEntity, float pPartialTick, PoseStack poseStack, MultiBufferSource bufferSource, int pPackedLight, int pPackedOverlay) {
 		poseStack.pushPose();
 		poseStack.scale(1.0f, 1.0f, 1.0f);
-		poseStack.translate(0f, 0f, 0f);
-		renderBillboardQuadBright(poseStack, bufferSource.getBuffer(RenderType.solid()), 0.5f, LIGHT);
+		poseStack.translate(0f, 0.5f, 0f);
+		renderBillboardQuadBright(poseStack, bufferSource.getBuffer(RenderType.solid()), 2.0f, LIGHT);
+		System.out.println("Yep, I rendered");
 		poseStack.popPose();
 	}
 
@@ -55,7 +53,7 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 	private static void renderBillboardQuadBright(PoseStack matrixStack, VertexConsumer builder, float scale, ResourceLocation texture) {
 		int b1 = LightTexture.FULL_BRIGHT >> 16 & 65535;
 		int b2 = LightTexture.FULL_BRIGHT & 65535;
-		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(texture);
+		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(texture);
 		matrixStack.pushPose();
 		matrixStack.translate(0.5, 0.95, 0.5);
 		Quaternionf rotation = Minecraft.getInstance().gameRenderer.getMainCamera().rotation();

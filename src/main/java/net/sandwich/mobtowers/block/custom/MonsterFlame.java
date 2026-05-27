@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.sandwich.mobtowers.block.entity.MonsterFlameEntity;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
 import net.sandwich.mobtowers.voronoi.CellCenter;
@@ -53,7 +54,7 @@ public class MonsterFlame extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-		return null;
+		return new MonsterFlameEntity(blockPos, blockState);
 	}
 
 	@Override
