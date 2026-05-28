@@ -42,7 +42,7 @@ public class Voronoi {
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
-		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed(), 16, true);
+		return getVoronoiCellCenter(x, z, levelSeed, 16, true);
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, int cellSize, boolean isManhattan) {
