@@ -69,8 +69,8 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 		poseStack.pushPose();
 		poseStack.scale(1.0f, 1.0f, 1.0f);
 		poseStack.translate(0f, 0.5f, 0f);
-		VertexConsumer lowerjawconsumer = JAW_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
-		this.jaw.render(poseStack, lowerjawconsumer, pPackedLight, pPackedOverlay);
+		VertexConsumer jawconsumer = JAW_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
+		this.jaw.render(poseStack, jawconsumer, pPackedLight, pPackedOverlay);
 		VertexConsumer flameconsumer = FLAME_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
 		this.flame.render(poseStack, flameconsumer, pPackedLight, pPackedOverlay);
 		poseStack.popPose();
