@@ -1,6 +1,8 @@
 package net.sandwich.mobtowers;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,7 +15,9 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.sandwich.mobtowers.block.custom.MonsterFlame;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
+import net.sandwich.mobtowers.block.entity.MonsterFlameEntity;
 import net.sandwich.mobtowers.block.entity.renderer.MonsterFlameEntityRenderer;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
@@ -46,4 +50,24 @@ public class MobTowersModClient {
 	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModBlockEntities.MONSTER_FLAME_BE.get(), MonsterFlameEntityRenderer::new);
 	}
+
+	public static final ModelLayerLocation MF_FLAME = new ModelLayerLocation(
+		ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "monster_flame_fire"),
+		"main"
+	);
+
+	public static final ModelLayerLocation MF_JAW = new ModelLayerLocation(
+		ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "monster_flame_jaw"),
+		"main"
+	);
+
+
+	@SubscribeEvent // on the mod event bus only on the physical client
+	public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+		// Add our layer here.
+		event.registerLayerDefinition(MF_FLAME, MonsterFlameEntityRenderer::createFlameLayer);
+		event.registerLayerDefinition(MF_JAW, MonsterFlameEntityRenderer::createLowerJawLayer);
+	}
+
+
 }
