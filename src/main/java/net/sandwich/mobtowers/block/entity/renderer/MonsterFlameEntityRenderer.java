@@ -66,9 +66,10 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 
 	@Override
 	public void render(MonsterFlameEntity monsterFlameEntity, float pPartialTick, PoseStack poseStack, MultiBufferSource bufferSource, int pPackedLight, int pPackedOverlay) {
+		float animTime = monsterFlameEntity.animationTime + pPartialTick;
 		poseStack.pushPose();
 		poseStack.scale(1.0f, 1.0f, 1.0f);
-		poseStack.translate(0f, 0.5f, 0f);
+		poseStack.translate(0f, 0.5f + (animTime / 10), 0f);
 		VertexConsumer jawconsumer = JAW_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
 		this.jaw.render(poseStack, jawconsumer, pPackedLight, pPackedOverlay);
 		VertexConsumer flameconsumer = FLAME_TEXTURE.buffer(bufferSource, RenderType::entitySolid);

@@ -19,8 +19,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BellBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.block.entity.MonsterFlameEntity;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
@@ -75,26 +79,51 @@ public class MonsterFlame extends BaseEntityBlock {
         builder.add(LIT);
     }
 
-
+	// https://docs.neoforged.net/docs/blockentities/
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, ModBlockEntities.MONSTER_FLAME_BE.get(), level.isClientSide ? MonsterFlameEntity::clientTick : MonsterFlameEntity::serverTick);
+	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (level.isClientSide) {
-			for (int i = 0; i < 10; i++) {
-				RandomSource randomsource = level.getRandom();
-				double d0 = (double)pos.getX() + randomsource.nextDouble();
-				double d1 = (double)pos.getY() + randomsource.nextDouble();
-				double d2 = (double)pos.getZ() + randomsource.nextDouble();
-				level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+			if (level.getBlockEntity(pos) instanceof MonsterFlameEntity mfEntity) {
+				if (mfEntity.animationTime > MonsterFlameEntity.animationLength) {
+					MonsterFlameEntity.resetAnimationTime(mfEntity);
+					for (int i = 0; i < 10; i++) {
+						RandomSource randomsource = level.getRandom();
+						double d0 = (double)pos.getX() + randomsource.nextDouble();
+						double d1 = (double)pos.getY() + randomsource.nextDouble();
+						double d2 = (double)pos.getZ() + randomsource.nextDouble();
+						level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+					}
+					return InteractionResult.SUCCESS;
+				} else {
+					return InteractionResult.FAIL;
+				}
 			}
-			return InteractionResult.SUCCESS;
-		} else {
-			this.toggle(state, level, pos, (Player)null);
-			return InteractionResult.CONSUME;
+			else {
+				return InteractionResult.FAIL;
+			}
+		} else 
+		{
+			if (level.getBlockEntity(pos) instanceof MonsterFlameEntity mfEntity) {
+				if (mfEntity.animationTime > MonsterFlameEntity.animationLength) {
+					MonsterFlameEntity.resetAnimationTime(mfEntity);
+					this.toggle(state, level, pos, (Player)null);
+					return InteractionResult.CONSUME;
+				} else {
+					return InteractionResult.FAIL;
+				}
+			} else {
+				return InteractionResult.FAIL;
+			}
 		}
 	}
 
 	public void toggle(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
+
 
 		state = (BlockState)state.cycle(LIT);
 		level.setBlock(pos, state, 3);
