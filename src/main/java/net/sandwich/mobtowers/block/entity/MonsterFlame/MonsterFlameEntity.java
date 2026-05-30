@@ -22,7 +22,7 @@ public class MonsterFlameEntity extends BlockEntity {
 	private static final float openDistance = 0.5f;
 	private static final float spinSpeed = 0.1f;
 	private static final float spinDecay = 0.2f;
-	private static final float shakeDistance = 2.5f;
+	private static final float shakeDistance = 0.5f;
 	public int tintColor = 0;
 	public int animationTime = 0;
 	public MonsterFlameAnimationState animationState = MonsterFlameAnimationState.PLAYING;
@@ -52,6 +52,14 @@ public class MonsterFlameEntity extends BlockEntity {
 	}
 
 	private void updateAnimation(Level level, BlockPos pos, BlockState state) {
+		if ((Boolean)state.getValue(MonsterFlame.LIT) && animationState == MonsterFlameAnimationState.STOPPED) {
+			playStartAnimation();
+		}
+
+		if (!(Boolean)state.getValue(MonsterFlame.LIT) && animationState == MonsterFlameAnimationState.PLAYING) {
+			playStopAnimation();
+		}
+
 		if (!hasLoaded) {
 			tintColor = MobRegion.getMobRegionColor(pos);
 			if (!(Boolean)state.getValue(MonsterFlame.LIT)) {

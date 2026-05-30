@@ -86,7 +86,7 @@ public class MonsterFlame extends BaseEntityBlock {
 		if (level.getBlockEntity(pos) instanceof MonsterFlameEntity monsterFlameEntity) {
 			if (monsterFlameEntity.animationState != MonsterFlameAnimationState.PLAYING && monsterFlameEntity.animationState != MonsterFlameAnimationState.STOPPED) return InteractionResult.FAIL;
 				
-			toggleAnimation(state, monsterFlameEntity);
+			//toggleAnimation(state, monsterFlameEntity);
 
 			if (level.isClientSide) {
 				renderFlameParticles(level, pos);
