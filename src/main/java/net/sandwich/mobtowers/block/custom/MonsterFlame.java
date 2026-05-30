@@ -102,6 +102,10 @@ public class MonsterFlame extends BaseEntityBlock {
 
 	private void toggleState(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
 
+
+		state = (BlockState)state.cycle(LIT);
+		level.setBlock(pos, state, 3);
+		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 		
 		boolean isActive = (Boolean)state.getValue(LIT);
 
@@ -116,10 +120,6 @@ public class MonsterFlame extends BaseEntityBlock {
 				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 5f, 1f);
 			}
 		}
-
-		state = (BlockState)state.cycle(LIT);
-		level.setBlock(pos, state, 3);
-		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 	}
 
 	private void renderFlameParticles(Level level, BlockPos pos) {
