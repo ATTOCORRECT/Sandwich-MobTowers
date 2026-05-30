@@ -1,10 +1,7 @@
 {
-	"variants": {
-		"lit=true": {
-			"model": "mobtowers:block/monster_flame_lit"
-		},
-		"lit=false": {
-			"model": "mobtowers:block/monster_flame_unlit"
-		}
-	}
+    "variants": {
+        "": {
+            "model": "mobtowers:block/monster_flame"
+        }
+    }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mobtowers:block/jaw_fullblock/jaw_top",
+    "side": "mobtowers:block/jaw_fullblock/jaw_side"
+  }
+}

@@ -1,4 +1,18 @@
 {
+	"block.monster_flame.disable": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/monster_flame/jaw_close_1",
+			"mobtowers:block/monster_flame/jaw_close_2"
+		]
+	},
+	"block.monster_flame.enable": {
+		"category": "player",
+		"sounds": [
+			"mobtowers:block/monster_flame/jaw_open_1",
+			"mobtowers:block/monster_flame/jaw_open_2"
+		]
+	},
 	"block.grimstone.place": {
 		"category": "player",
 		"sounds": [

@@ -52,8 +52,13 @@ public class MobTowersModClient {
 		"main"
 	);
 
-	public static final ModelLayerLocation MF_JAW = new ModelLayerLocation(
-		ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "monster_flame_jaw"),
+	public static final ModelLayerLocation MF_LOWER_JAW = new ModelLayerLocation(
+		ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "monster_flame_lower_jaw"),
+		"main"
+	);
+
+	public static final ModelLayerLocation MF_UPPER_JAW = new ModelLayerLocation(
+		ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, "monster_flame_upper_jaw"),
 		"main"
 	);
 
@@ -62,7 +67,8 @@ public class MobTowersModClient {
 	public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		// Add our layer here.
 		event.registerLayerDefinition(MF_FLAME, MonsterFlameEntityRenderer::createFlameLayer);
-		event.registerLayerDefinition(MF_JAW, MonsterFlameEntityRenderer::createLowerJawLayer);
+		event.registerLayerDefinition(MF_LOWER_JAW, MonsterFlameEntityRenderer::createLowerJawLayer);
+		event.registerLayerDefinition(MF_UPPER_JAW, MonsterFlameEntityRenderer::createUpperJawLayer);
 	}
 
 

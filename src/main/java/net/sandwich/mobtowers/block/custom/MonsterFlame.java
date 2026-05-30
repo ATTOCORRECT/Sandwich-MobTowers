@@ -7,6 +7,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,10 +19,12 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.vault.VaultBlockEntity.Server;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameAnimationState;
 import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameEntity;
 import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.sound.ModSounds;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -100,9 +103,18 @@ public class MonsterFlame extends BaseEntityBlock {
 		level.setBlock(pos, state, 3);
 		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 		
+		boolean isActive = (Boolean)state.getValue(LIT);
+
 		if (level instanceof ServerLevel serverLevel) {
+			ServerLevel sLevel = (ServerLevel)level;
 			boolean isLit = (Boolean)state.getValue(LIT);
 			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
+
+			if (isActive) {
+				level.playSound((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+			} else {
+				level.playSound((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+			}
 		}
 	}
 

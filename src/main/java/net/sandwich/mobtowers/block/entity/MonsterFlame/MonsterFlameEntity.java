@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.sandwich.mobtowers.block.custom.MonsterFlame;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
+import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.Utils;
 
 public class MonsterFlameEntity extends BlockEntity {
@@ -16,12 +17,13 @@ public class MonsterFlameEntity extends BlockEntity {
 	public static final int openingTime = 20;
 	public static final int shakingTime = 20;
 	public static final int closingTime = 10;
-	public static final int reverberateTime = 5;
+	public static final int reverberateTime = 10;
 	private static final float pitchAngle = (float)Math.PI / 2; // 90 deg
 	private static final float openDistance = 0.5f;
 	private static final float spinSpeed = 0.1f;
 	private static final float spinDecay = 0.2f;
-	private static final float shakeDistance = 0.5f;
+	private static final float shakeDistance = 2.5f;
+	public int tintColor = 0;
 	public int animationTime = 0;
 	public MonsterFlameAnimationState animationState = MonsterFlameAnimationState.PLAYING;
 	public float open = 1;
@@ -32,6 +34,8 @@ public class MonsterFlameEntity extends BlockEntity {
 	public float spinOld = 0;
 	public Vector3f shake = new Vector3f(0,0,0);
 	public Vector3f shakeOld = new Vector3f(0,0,0);
+	public float flameSize = 1;
+	public float flameSizeOld = 1;
 	private int timeChangedStates = 0;
 	private boolean hasLoaded = false;
 
@@ -40,15 +44,16 @@ public class MonsterFlameEntity extends BlockEntity {
 	}
 
 	public static void clientTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
-		blockEntity.updateAnimation(level, state);
+		blockEntity.updateAnimation(level, pos, state);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
-		blockEntity.updateAnimation(level, state);
+		blockEntity.updateAnimation(level, pos, state);
 	}
 
-	private void updateAnimation(Level level, BlockState state) {
+	private void updateAnimation(Level level, BlockPos pos, BlockState state) {
 		if (!hasLoaded) {
+			tintColor = MobRegion.getMobRegionColor(pos);
 			if (!(Boolean)state.getValue(MonsterFlame.LIT)) {
 				setAnimationState(MonsterFlameAnimationState.STOPPED);
 			}
@@ -68,6 +73,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				openOld = open;
 				open = Utils.easing(2, 1, t) * openDistance;
 
+				flameSizeOld = flameSize;
+				flameSize = Utils.easing(1, 1, t);
+
 				pitchOld = pitch;
 				pitch = Utils.easing(0, 1, t) * pitchAngle;
 				
@@ -86,6 +94,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				openOld = open;
 				open = openDistance;
 
+				flameSizeOld = flameSize;
+				flameSize = 1;
+
 				pitchOld = pitch;
 				pitch = pitchAngle;
 				
@@ -103,6 +114,9 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				openOld = open;
 				open = openDistance;
+
+				flameSizeOld = flameSize;
+				flameSize = 1;
 
 				pitchOld = pitch;
 				pitch = pitchAngle;
@@ -125,7 +139,10 @@ public class MonsterFlameEntity extends BlockEntity {
 				open = Utils.easing(3, 1, 1 - t) * openDistance;
 
 				pitchOld = pitch;
-				pitch = Utils.easing(0, 0, 1 - t) * pitchAngle;
+				pitch = Utils.easing(1, 1, 1 - t) * pitchAngle;
+
+				flameSizeOld = flameSize;
+				flameSize = Utils.easing(1, 1, 1 - t);
 				
 				shakeOld = shake;
 				shake = new Vector3f(0,0,0);
@@ -144,6 +161,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				openOld = open;
 				open = 0;
 
+				flameSizeOld = flameSize;
+				flameSize = 0;
+
 				pitchOld = pitch;
 				pitch = 0;
 				
@@ -159,6 +179,9 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				openOld = open;
 				open = 0;
+
+				flameSizeOld = flameSize;
+				flameSize = 0;
 
 				pitchOld = pitch;
 				pitch = 0;
@@ -188,10 +211,10 @@ public class MonsterFlameEntity extends BlockEntity {
 
 	private Vector3f getShake(RandomSource randomSource) {
 		return new Vector3f(
-			(randomSource.nextFloat() * 2 - 1) * shakeDistance,
-			(randomSource.nextFloat() * 2 - 1) * shakeDistance,
-			(randomSource.nextFloat() * 2 - 1) * shakeDistance
-		);
+			(randomSource.nextFloat() * 2 - 1),
+			(randomSource.nextFloat() * 2 - 1),
+			(randomSource.nextFloat() * 2 - 1)
+		).normalize().mul(shakeDistance);
 	}
 
 	private void setAnimationState(MonsterFlameAnimationState animationState) {

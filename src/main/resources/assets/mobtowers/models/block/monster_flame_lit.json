@@ -1,6 +1,0 @@
-{
-	"parent": "minecraft:block/cube_all",
-	"textures": {
-		"all": "mobtowers:block/monster_flame_lit"
-	}
-}

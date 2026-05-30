@@ -14,6 +14,7 @@ public class ModSounds {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS = 
 		DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MobTowersMod.MOD_ID);
 	
+
 	public static final Supplier<SoundEvent> GRIMSTONE_BREAK = registerSoundEvent("block.grimstone.break");
 	public static final Supplier<SoundEvent> GRIMSTONE_STEP = registerSoundEvent("block.grimstone.step");
 	public static final Supplier<SoundEvent> GRIMSTONE_PLACE = registerSoundEvent("block.grimstone.place");
@@ -29,6 +30,9 @@ public class ModSounds {
 	public static final Supplier<SoundEvent> SEEPING_GRIMSTONE_FALL = registerSoundEvent("block.seeping_grimstone.fall");
 
 	public static final DeferredSoundType SEEPING_GRIMSTONE_SOUNDS = new DeferredSoundType(1, 1, SEEPING_GRIMSTONE_BREAK, SEEPING_GRIMSTONE_STEP, SEEPING_GRIMSTONE_PLACE, SEEPING_GRIMSTONE_HIT, SEEPING_GRIMSTONE_FALL);
+
+	public static final Supplier<SoundEvent> MONSTER_FLAME_DISABLE = registerSoundEvent("block.monster_flame.disable");
+	public static final Supplier<SoundEvent> MONSTER_FLAME_ENABLE = registerSoundEvent("block.monster_flame.enable");
 
 	
 	private static Supplier<SoundEvent> registerSoundEvent(String name) {
