@@ -106,12 +106,11 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 		float open = Utils.lerp(monsterFlameEntity.openOld, monsterFlameEntity.open, pPartialTick);
 		float pitch = Utils.lerpAngle(monsterFlameEntity.pitchOld, monsterFlameEntity.pitch, pPartialTick);
 		float spin = Utils.lerpAngle(monsterFlameEntity.spinOld, monsterFlameEntity.spin, pPartialTick);
-		Vector3f shake = Utils.lerp(monsterFlameEntity.shakeOld, monsterFlameEntity.shake, pPartialTick);
 		float shakeAmount = Utils.lerp(monsterFlameEntity.shakeAmountOld, monsterFlameEntity.shakeAmount, pPartialTick);
 
 		poseStack.pushPose(); // push cage
 
-		shake = getShake(tickTime).mul(shakeAmount);
+		Vector3f shake = getShake(tickTime).mul(shakeAmount);
 		poseStack.translate(shake.x, shake.y, shake.z);
 
 		// cage rotation

@@ -22,7 +22,7 @@ public class MonsterFlameEntity extends BlockEntity {
 	private static final float openDistance = 0.5f;
 	private static final float spinSpeed = 0.1f;
 	private static final float spinDecay = 0.2f;
-	private static final float shakeDistance = 0.3f;
+	private static final float shakeDistance = 0.15f;
 	public int tintColor = 0;
 	public int animationTime = 0;
 	public MonsterFlameAnimationState animationState = MonsterFlameAnimationState.PLAYING;
@@ -34,8 +34,6 @@ public class MonsterFlameEntity extends BlockEntity {
 	public float spinOld = 0;
 	public float shakeAmountOld;
 	public float shakeAmount;
-	public Vector3f shake = new Vector3f(0,0,0);
-	public Vector3f shakeOld = new Vector3f(0,0,0);
 	public float flameSize = 1;
 	public float flameSizeOld = 1;
 	private int timeChangedStates = 0;
@@ -88,9 +86,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				pitchOld = pitch;
 				pitch = Utils.easing(0, 1, t) * pitchAngle;
-				
-				shakeOld = shake;
-				shake = new Vector3f(0,0,0);
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = 0;
@@ -112,9 +107,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				pitchOld = pitch;
 				pitch = pitchAngle;
-				
-				shakeOld = shake;
-				shake = new Vector3f(0,0,0);
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = 0;
@@ -137,9 +129,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				pitchOld = pitch;
 				pitch = pitchAngle;
-				
-				shakeOld = shake;
-				shake = getShake(level.getRandom()).mul(Utils.easing(0, 0, 1 - t));
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = Utils.easing(0, 0, 1 - t) * shakeDistance;
@@ -163,9 +152,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				flameSizeOld = flameSize;
 				flameSize = Utils.easing(1, 1, 1 - t);
-				
-				shakeOld = shake;
-				shake = new Vector3f(0,0,0);
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = 0;
@@ -189,9 +175,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				pitchOld = pitch;
 				pitch = 0;
-				
-				shakeOld = shake;
-				shake = getShake(level.getRandom()).mul(Utils.easing(0, 0, 1 - t));
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = Utils.easing(0, 0, 1 - t) * shakeDistance;
@@ -211,9 +194,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 				pitchOld = pitch;
 				pitch = 0;
-				
-				shakeOld = shake;
-				shake = new Vector3f(0,0,0);
 
 				shakeAmountOld = shakeAmount;
 				shakeAmount = 0;
@@ -236,14 +216,6 @@ public class MonsterFlameEntity extends BlockEntity {
 
 	private float getTargetAngle() {
 		return (animationTime * spinSpeed) % (2 * (float)Math.PI);
-	}
-
-	private Vector3f getShake(RandomSource randomSource) {
-		return new Vector3f(
-			(randomSource.nextFloat() * 2 - 1),
-			(randomSource.nextFloat() * 2 - 1),
-			(randomSource.nextFloat() * 2 - 1)
-		).normalize().mul(shakeDistance);
 	}
 
 	private void setAnimationState(MonsterFlameAnimationState animationState) {
