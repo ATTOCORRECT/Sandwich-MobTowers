@@ -1,5 +1,17 @@
 {
-	"textures": [
-		"mobtowers:tower_flame"
-	]
+  "textures": [
+    "mobtowers:tower_flame_1",
+    "mobtowers:tower_flame_2",
+    "mobtowers:tower_flame_3",
+    "mobtowers:tower_flame_4",
+    "mobtowers:tower_flame_5",
+    "mobtowers:tower_flame_6",
+    "mobtowers:tower_flame_7",
+    "mobtowers:tower_flame_8",
+    "mobtowers:tower_flame_9",
+    "mobtowers:tower_flame_10",
+    "mobtowers:tower_flame_11",
+    "mobtowers:tower_flame_12",
+    "mobtowers:tower_flame_13"
+  ]
 }
