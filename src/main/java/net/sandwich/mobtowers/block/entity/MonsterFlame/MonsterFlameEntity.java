@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.sandwich.mobtowers.block.custom.MonsterFlame;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.Utils;
 
@@ -32,20 +33,28 @@ public class MonsterFlameEntity extends BlockEntity {
 	public Vector3f shake = new Vector3f(0,0,0);
 	public Vector3f shakeOld = new Vector3f(0,0,0);
 	private int timeChangedStates = 0;
+	private boolean hasLoaded = false;
 
 	public MonsterFlameEntity(BlockPos pos, BlockState blockState) {
 		super(ModBlockEntities.MONSTER_FLAME_BE.get(), pos, blockState);
 	}
 
 	public static void clientTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
-		blockEntity.updateAnimation(level);
+		blockEntity.updateAnimation(level, state);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
-		blockEntity.updateAnimation(level);
+		blockEntity.updateAnimation(level, state);
 	}
 
-	private void updateAnimation(Level level) {
+	private void updateAnimation(Level level, BlockState state) {
+		if (!hasLoaded) {
+			if (!(Boolean)state.getValue(MonsterFlame.LIT)) {
+				setAnimationState(MonsterFlameAnimationState.STOPPED);
+			}
+			hasLoaded = true;
+		}
+		
 		float t;
 		switch (animationState) {
 			case MonsterFlameAnimationState.STARTING:
@@ -161,7 +170,6 @@ public class MonsterFlameEntity extends BlockEntity {
 	}
 
 	public void playStopAnimation() {
-		timeChangedStates = animationTime;
 		setAnimationState(MonsterFlameAnimationState.SHAKING);
 	}
 
