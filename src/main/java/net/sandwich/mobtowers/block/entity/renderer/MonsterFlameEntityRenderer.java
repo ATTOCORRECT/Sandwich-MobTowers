@@ -104,9 +104,12 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 
 		poseStack.popPose(); // pop cage
 
-		poseStack.pushPose(); // push flameflame
+		poseStack.pushPose(); // push flame
+
 		VertexConsumer flameconsumer = FLAME_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
 		this.flame.render(poseStack, flameconsumer, pPackedLight, pPackedOverlay);
+		
+		poseStack.popPose(); // push flame
 	}
 
 	private int getLightLevel(Level level, BlockPos pos) {
