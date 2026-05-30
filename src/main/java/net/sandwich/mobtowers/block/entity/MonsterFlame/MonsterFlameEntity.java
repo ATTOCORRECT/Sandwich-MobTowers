@@ -22,7 +22,7 @@ public class MonsterFlameEntity extends BlockEntity {
 	private static final float openDistance = 0.5f;
 	private static final float spinSpeed = 0.1f;
 	private static final float spinDecay = 0.2f;
-	private static final float shakeDistance = 0.5f;
+	private static final float shakeDistance = 0.3f;
 	public int tintColor = 0;
 	public int animationTime = 0;
 	public MonsterFlameAnimationState animationState = MonsterFlameAnimationState.PLAYING;
@@ -32,6 +32,8 @@ public class MonsterFlameEntity extends BlockEntity {
 	public float pitchOld = 1;
 	public float spin = 0;
 	public float spinOld = 0;
+	public float shakeAmountOld;
+	public float shakeAmount;
 	public Vector3f shake = new Vector3f(0,0,0);
 	public Vector3f shakeOld = new Vector3f(0,0,0);
 	public float flameSize = 1;
@@ -90,6 +92,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				shakeOld = shake;
 				shake = new Vector3f(0,0,0);
 
+				shakeAmountOld = shakeAmount;
+				shakeAmount = 0;
+
 				if (t >= 1) setAnimationState(MonsterFlameAnimationState.PLAYING);
 				break;
 
@@ -110,6 +115,10 @@ public class MonsterFlameEntity extends BlockEntity {
 				
 				shakeOld = shake;
 				shake = new Vector3f(0,0,0);
+
+				shakeAmountOld = shakeAmount;
+				shakeAmount = 0;
+
 				break;
 
 			case MonsterFlameAnimationState.SHAKING:
@@ -131,6 +140,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				
 				shakeOld = shake;
 				shake = getShake(level.getRandom()).mul(Utils.easing(0, 0, 1 - t));
+
+				shakeAmountOld = shakeAmount;
+				shakeAmount = Utils.easing(0, 0, 1 - t) * shakeDistance;
 
 				if (t >= 1) setAnimationState(MonsterFlameAnimationState.STOPPING);
 				break;
@@ -155,6 +167,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				shakeOld = shake;
 				shake = new Vector3f(0,0,0);
 
+				shakeAmountOld = shakeAmount;
+				shakeAmount = 0;
+
 				if (t >= 1) setAnimationState(MonsterFlameAnimationState.REVERBERATING);
 				break;
 
@@ -178,6 +193,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				shakeOld = shake;
 				shake = getShake(level.getRandom()).mul(Utils.easing(0, 0, 1 - t));
 
+				shakeAmountOld = shakeAmount;
+				shakeAmount = Utils.easing(0, 0, 1 - t) * shakeDistance;
+
 				if (t >= 1) setAnimationState(MonsterFlameAnimationState.STOPPED);
 				break;
 
@@ -196,6 +214,9 @@ public class MonsterFlameEntity extends BlockEntity {
 				
 				shakeOld = shake;
 				shake = new Vector3f(0,0,0);
+
+				shakeAmountOld = shakeAmount;
+				shakeAmount = 0;
 				break;
 		}
 	}

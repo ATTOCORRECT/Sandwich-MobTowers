@@ -84,9 +84,17 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	public Vector3f getShake(float time) {
+
+		float shakeSpeed = 4f;
+		return new Vector3f((float)Math.sin(time * shakeSpeed), (float)Math.sin(time * (shakeSpeed - 0.5f)), (float)Math.sin(time * (shakeSpeed + 0.5f)));
+	}
+
 	@Override
 	public void render(MonsterFlameEntity monsterFlameEntity, float pPartialTick, PoseStack poseStack, MultiBufferSource bufferSource, int pPackedLight, int pPackedOverlay) {
 		
+		float tickTime = (float)monsterFlameEntity.animationTime + pPartialTick;
+
 		boolean flameActive = (
 			monsterFlameEntity.animationState != MonsterFlameAnimationState.REVERBERATING && 
 			monsterFlameEntity.animationState != MonsterFlameAnimationState.STOPPED
@@ -99,9 +107,11 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 		float pitch = Utils.lerpAngle(monsterFlameEntity.pitchOld, monsterFlameEntity.pitch, pPartialTick);
 		float spin = Utils.lerpAngle(monsterFlameEntity.spinOld, monsterFlameEntity.spin, pPartialTick);
 		Vector3f shake = Utils.lerp(monsterFlameEntity.shakeOld, monsterFlameEntity.shake, pPartialTick);
+		float shakeAmount = Utils.lerp(monsterFlameEntity.shakeAmountOld, monsterFlameEntity.shakeAmount, pPartialTick);
 
 		poseStack.pushPose(); // push cage
 
+		shake = getShake(tickTime).mul(shakeAmount);
 		poseStack.translate(shake.x, shake.y, shake.z);
 
 		// cage rotation

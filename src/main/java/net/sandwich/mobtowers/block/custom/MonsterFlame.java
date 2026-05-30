@@ -115,9 +115,9 @@ public class MonsterFlame extends BaseEntityBlock {
 			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
 
 			if (isActive) {
-				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 2f, 1f);
 			} else {
-				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 2f, 1f);
 			}
 		}
 	}
