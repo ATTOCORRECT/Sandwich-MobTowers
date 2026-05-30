@@ -8,6 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
+import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameEntity;
 
 public class ModBlockEntities {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MobTowersMod.MOD_ID);

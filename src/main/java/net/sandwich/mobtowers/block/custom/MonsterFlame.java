@@ -4,37 +4,28 @@ import javax.annotation.Nullable;
 
 import com.mojang.serialization.MapCodec;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BellBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
-import net.sandwich.mobtowers.block.entity.MonsterFlameEntity;
+import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameAnimationState;
+import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameEntity;
 import net.sandwich.mobtowers.mobregion.MobRegion;
-import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
-import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -87,79 +78,50 @@ public class MonsterFlame extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		if (level.isClientSide) {
-			if (level.getBlockEntity(pos) instanceof MonsterFlameEntity mfEntity) {
-				if (mfEntity.animationTime > MonsterFlameEntity.animationLength) {
-					MonsterFlameEntity.resetAnimationTime(mfEntity);
-					for (int i = 0; i < 10; i++) {
-						RandomSource randomsource = level.getRandom();
-						double d0 = (double)pos.getX() + randomsource.nextDouble();
-						double d1 = (double)pos.getY() + randomsource.nextDouble();
-						double d2 = (double)pos.getZ() + randomsource.nextDouble();
-						level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
-					}
-					return InteractionResult.SUCCESS;
-				} else {
-					return InteractionResult.FAIL;
-				}
+		if (level.getBlockEntity(pos) instanceof MonsterFlameEntity monsterFlameEntity) {
+			if (monsterFlameEntity.animationState != MonsterFlameAnimationState.PLAYING && monsterFlameEntity.animationState != MonsterFlameAnimationState.STOPPED) return InteractionResult.FAIL;
+				
+			toggleAnimation(state, monsterFlameEntity);
+
+			if (level.isClientSide) {
+				renderFlameParticles(level, pos);
+				return InteractionResult.SUCCESS;
 			}
 			else {
-				return InteractionResult.FAIL;
-			}
-		} else 
-		{
-			if (level.getBlockEntity(pos) instanceof MonsterFlameEntity mfEntity) {
-				if (mfEntity.animationTime > MonsterFlameEntity.animationLength) {
-					MonsterFlameEntity.resetAnimationTime(mfEntity);
-					this.toggle(state, level, pos, (Player)null);
-					return InteractionResult.CONSUME;
-				} else {
-					return InteractionResult.FAIL;
-				}
-			} else {
-				return InteractionResult.FAIL;
+				toggleState(state, level, pos, (Player)null);
+				return InteractionResult.CONSUME;
 			}
 		}
+		return InteractionResult.FAIL;
 	}
 
-	public void toggle(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
-
-
+	private void toggleState(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
 		state = (BlockState)state.cycle(LIT);
 		level.setBlock(pos, state, 3);
 		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 		
 		if (level instanceof ServerLevel serverLevel) {
-
-			int x = pos.getX();
-			int z = pos.getZ();
-
 			boolean isLit = (Boolean)state.getValue(LIT);
-			
 			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
-
-			Component message = Component.literal("Yup! I am lit: " + isLit + " at pos " + x + ", " + z);
-			serverLevel.players().forEach(p -> p.sendSystemMessage(message));
-
 		}
-		//if(level.isClientSide) {
-
-		//	for (int i = 0; i < 10; i++) {
-		//		RandomSource randomsource = level.getRandom();
-		//		double d0 = (double)pos.getX() + randomsource.nextDouble();
-		//		double d1 = (double)pos.getY() + randomsource.nextDouble();
-		//		double d2 = (double)pos.getZ() + randomsource.nextDouble();
-		//		level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
-		//	}
-		//}
 	}
 
+	private void renderFlameParticles(Level level, BlockPos pos) {
+		for (int i = 0; i < 10; i++) {
+			RandomSource randomsource = level.getRandom();
+			double d0 = (double)pos.getX() + randomsource.nextDouble();
+			double d1 = (double)pos.getY() + randomsource.nextDouble();
+			double d2 = (double)pos.getZ() + randomsource.nextDouble();
+			level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+		}
+	}
 
-
-	@Override
-	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-		if (level instanceof ServerLevel serverLevel) {
-			
+	private void toggleAnimation(BlockState state, MonsterFlameEntity monsterFlameEntity) {
+		if ((Boolean)state.getValue(LIT)) {
+			monsterFlameEntity.playStopAnimation();
+		}
+		else{
+			monsterFlameEntity.playStartAnimation();
 		}
 	}
 }
