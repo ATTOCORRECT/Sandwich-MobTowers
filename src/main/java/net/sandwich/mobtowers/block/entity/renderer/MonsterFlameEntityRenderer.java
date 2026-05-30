@@ -145,8 +145,9 @@ public class MonsterFlameEntityRenderer implements BlockEntityRenderer<MonsterFl
 		poseStack.mulPose(new Quaternionf(new AxisAngle4f(-camera.getYRot() * ((float)Math.PI / 180F), 0f, 1f, 0f)));
 		// poseStack.mulPose(new Quaternionf(new AxisAngle4f((float)Math.PI, 0f, 0f, 1f)));
 		// poseStack.mulPose((new Quaternionf()).rotationYXZ(f3 * ((float)Math.PI / 180F), camera.getXRot() * ((float)Math.PI / 180F), (float)Math.PI));
-		poseStack.scale(flameSize, flameSize, flameSize);
-		poseStack.translate(-0.5F, -0.5F, 0F);
+		flameSize = (flameSize + 1) / 2;
+		poseStack.scale(flameSize*2, flameSize*2, flameSize*2);
+		poseStack.translate(-0.5F, -0.25F, 0F);
 		// poseStack.translate(-0.5f, -0.5f, -0.5f);
 
 		PoseStack.Pose posestack$pose = poseStack.last();

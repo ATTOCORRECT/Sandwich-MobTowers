@@ -10,7 +10,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -99,9 +101,7 @@ public class MonsterFlame extends BaseEntityBlock {
 	}
 
 	private void toggleState(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
-		state = (BlockState)state.cycle(LIT);
-		level.setBlock(pos, state, 3);
-		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
+
 		
 		boolean isActive = (Boolean)state.getValue(LIT);
 
@@ -111,11 +111,15 @@ public class MonsterFlame extends BaseEntityBlock {
 			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
 
 			if (isActive) {
-				level.playSound((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 5f, 1f);
 			} else {
-				level.playSound((Player)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 5f, 1f);
+				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 5f, 1f);
 			}
 		}
+
+		state = (BlockState)state.cycle(LIT);
+		level.setBlock(pos, state, 3);
+		level.gameEvent(player, (Boolean)state.getValue(LIT) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
 	}
 
 	private void renderFlameParticles(Level level, BlockPos pos) {
