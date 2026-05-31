@@ -3,6 +3,9 @@ package net.sandwich.mobtowers.block.entity.MonsterFlame;
 import org.joml.Vector3f;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -10,7 +13,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.sandwich.mobtowers.block.custom.MonsterFlame;
 import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.sound.ModSounds;
 import net.sandwich.mobtowers.Utils;
+import net.minecraft.world.entity.player.Player;
 
 public class MonsterFlameEntity extends BlockEntity {
 
@@ -45,10 +51,17 @@ public class MonsterFlameEntity extends BlockEntity {
 
 	public static void clientTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
 		blockEntity.updateAnimation(level, pos, state);
+
+		if (level.getGameTime() % 20L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) 
+			blockEntity.renderAmbientFlameParticle(level, pos);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
 		blockEntity.updateAnimation(level, pos, state);
+
+		RandomSource randomsource = level.getRandom();
+		if (level.getGameTime() % 80L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) 
+			level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_GROWL.get(), SoundSource.BLOCKS, 2f, (float)Mth.lerp(randomsource.nextFloat(), 0.8, 1.2));
 	}
 
 	private void updateAnimation(Level level, BlockPos pos, BlockState state) {
@@ -156,7 +169,10 @@ public class MonsterFlameEntity extends BlockEntity {
 				shakeAmountOld = shakeAmount;
 				shakeAmount = 0;
 
-				if (t >= 1) setAnimationState(MonsterFlameAnimationState.REVERBERATING);
+				if (t >= 1) {
+					setAnimationState(MonsterFlameAnimationState.REVERBERATING);
+					renderSmokeParticle(level, pos);
+				}
 				break;
 
 			case MonsterFlameAnimationState.REVERBERATING:
@@ -221,6 +237,29 @@ public class MonsterFlameEntity extends BlockEntity {
 	private void setAnimationState(MonsterFlameAnimationState animationState) {
 		timeChangedStates = animationTime;
 		this.animationState = animationState;
+	}
+
+	private void renderAmbientFlameParticle(Level level, BlockPos pos) {
+		for (int i = 0; i < 5; i++) {
+			RandomSource randomsource = level.getRandom();
+			double d0 = (double)pos.getX() + randomsource.nextDouble();
+			double d1 = (double)pos.getY() + randomsource.nextDouble();
+			double d2 = (double)pos.getZ() + randomsource.nextDouble();
+			level.addParticle(ModParticles.TOWER_FLAME.get(), true, d0, d1, d2, 0.0, 0.0, 0.0);
+		}
+	}
+
+	private void renderSmokeParticle(Level level, BlockPos pos) {
+		for (int i = 0; i < 20; i++) {
+			RandomSource randomsource = level.getRandom();
+			double d0 = (double)pos.getX() + randomsource.nextDouble();
+			double d1 = (double)pos.getY() + 0.5;
+			double d2 = (double)pos.getZ() + randomsource.nextDouble();
+
+			double sX = (randomsource.nextDouble()-0.5) * 0.5;
+			double sZ = (randomsource.nextDouble()-0.5) * 0.5;
+			level.addParticle(ParticleTypes.LARGE_SMOKE, true, d0, d1, d2, sX, 0, sZ);
+		}
 	}
 
 }

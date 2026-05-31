@@ -22,4 +22,9 @@ public class ModParticles {
 		"tower_flame", 
 		() -> new SimpleParticleType(true)
 	);
+
+	public static final Supplier<SimpleParticleType> MONSTER_SPAWN_FLAME = PARTICLE_TYPES.register(
+		"monster_spawn_flame", 
+		() -> new SimpleParticleType(true)
+	);
 }

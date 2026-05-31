@@ -1,20 +1,42 @@
 {
+	"event.distant_mob_spawn": {
+		"category": "block",
+		"sounds": [
+			"mobtowers:event/distant_mob_spawn_1",
+			"mobtowers:event/distant_mob_spawn_2",
+			"mobtowers:event/distant_mob_spawn_3",
+			"mobtowers:event/distant_mob_spawn_4",
+			"mobtowers:event/distant_mob_spawn_5",
+			"mobtowers:event/distant_mob_spawn_6",
+			"mobtowers:event/distant_mob_spawn_7",
+			"mobtowers:event/distant_mob_spawn_8"
+		]
+	},
 	"block.monster_flame.disable": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/monster_flame/jaw_close_1",
 			"mobtowers:block/monster_flame/jaw_close_2"
 		]
 	},
+	"block.monster_flame.growl": {
+		"category": "block",
+		"sounds": [
+			"mobtowers:block/monster_flame/jaw_growl_1",
+			"mobtowers:block/monster_flame/jaw_growl_2",
+			"mobtowers:block/monster_flame/jaw_growl_3",
+			"mobtowers:block/monster_flame/jaw_growl_4"
+		]
+	},
 	"block.monster_flame.enable": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/monster_flame/jaw_open_1",
 			"mobtowers:block/monster_flame/jaw_open_2"
 		]
 	},
 	"block.grimstone.place": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/grimstone/grimstone_set_1",
 			"mobtowers:block/grimstone/grimstone_set_2",
@@ -26,7 +48,7 @@
 		"subtitle": "subtitles.block.generic.place"
 	},
 	"block.grimstone.break": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/grimstone/grimstone_set_1",
 			"mobtowers:block/grimstone/grimstone_set_2",
@@ -38,7 +60,7 @@
 		"subtitle": "subtitles.block.generic.break"
 	},
 	"block.grimstone.hit": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/grimstone/grimstone_step_1",
 			"mobtowers:block/grimstone/grimstone_step_2",
@@ -50,7 +72,7 @@
 		"subtitle": "subtitles.block.generic.hit"
 	},
 	"block.grimstone.step": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/grimstone/grimstone_step_1",
 			"mobtowers:block/grimstone/grimstone_step_2",
@@ -62,7 +84,7 @@
 		"subtitle": "subtitles.block.generic.footsteps"
 	},
 	"block.grimstone.fall": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/grimstone/grimstone_step_1",
 			"mobtowers:block/grimstone/grimstone_step_2",
@@ -73,7 +95,7 @@
 		]
 	},
 	"block.seeping_grimstone.place": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/seeping_grimstone/seeping_place_1",
 			"mobtowers:block/seeping_grimstone/seeping_place_2",
@@ -84,7 +106,7 @@
 		"subtitle": "subtitles.block.generic.place"
 	},
 	"block.seeping_grimstone.break": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/seeping_grimstone/seeping_break_1",
 			"mobtowers:block/seeping_grimstone/seeping_break_2",
@@ -95,7 +117,7 @@
 		"subtitle": "subtitles.block.generic.break"
 	},
 	"block.seeping_grimstone.step": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/seeping_grimstone/seeping_step_1",
 			"mobtowers:block/seeping_grimstone/seeping_step_2",
@@ -107,7 +129,7 @@
 		"subtitle": "subtitles.block.generic.footsteps"
 	},
 	"block.seeping_grimstone.hit": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/seeping_grimstone/seeping_step_1",
 			"mobtowers:block/seeping_grimstone/seeping_step_2",
@@ -119,7 +141,7 @@
 		"subtitle": "subtitles.block.generic.hit"
 	},
 	"block.seeping_grimstone.fall": {
-		"category": "player",
+		"category": "block",
 		"sounds": [
 			"mobtowers:block/seeping_grimstone/seeping_step_1",
 			"mobtowers:block/seeping_grimstone/seeping_step_2",

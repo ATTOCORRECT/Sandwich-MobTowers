@@ -3,7 +3,11 @@ package net.sandwich.mobtowers.event;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -16,6 +20,7 @@ import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.sound.ModSounds;
 import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
@@ -40,9 +45,15 @@ public class ModEvents {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
 			} else {
 				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED)) {
+					
+					Level level = (Level)event.getLevel();
+					int skyLight = level.getBrightness(LightLayer.SKY, blockPos);
+					if (skyLight >= 12) 
+						level.playSound((Player)null, blockPos, ModSounds.DISTANT_MOB_SPAWN.get(), SoundSource.HOSTILE, 10f, 1f);
+
 					for (int p=0; p < serverLevel.players().size(); p++) 
 					{
-						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, blockPos.getX(), blockPos.getY()+1, blockPos.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
+						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.MONSTER_SPAWN_FLAME.get(), true, blockPos.getX(), blockPos.getY()+1, blockPos.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
 					}
 				}
 			}

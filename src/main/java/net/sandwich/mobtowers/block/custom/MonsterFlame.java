@@ -26,6 +26,7 @@ import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameAnimationState;
 import net.sandwich.mobtowers.block.entity.MonsterFlame.MonsterFlameEntity;
 import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.sound.ModSounds;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -115,6 +116,7 @@ public class MonsterFlame extends BaseEntityBlock {
 			MobRegion.setMobRegionEnabled(isLit, pos, serverLevel);
 
 			if (isActive) {
+				renderFlameParticles(serverLevel, pos);
 				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_ENABLE.get(), SoundSource.BLOCKS, 2f, 1f);
 			} else {
 				level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_DISABLE.get(), SoundSource.BLOCKS, 2f, 1f);
@@ -123,12 +125,13 @@ public class MonsterFlame extends BaseEntityBlock {
 	}
 
 	private void renderFlameParticles(Level level, BlockPos pos) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			RandomSource randomsource = level.getRandom();
 			double d0 = (double)pos.getX() + randomsource.nextDouble();
 			double d1 = (double)pos.getY() + randomsource.nextDouble();
 			double d2 = (double)pos.getZ() + randomsource.nextDouble();
-			level.addParticle(ParticleTypes.FLAME, true, d0, d1, d2, 0.0, 0.1, 0.0);
+			level.addParticle(ModParticles.TOWER_FLAME.get(), true, d0, d1, d2, 0.0, 0.0, 0.0);
+			level.addParticle(ParticleTypes.SMOKE, true, d0, d1, d2, 0.0, 0.1, 0.0);
 		}
 	}
 

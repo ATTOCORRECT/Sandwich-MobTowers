@@ -34,6 +34,9 @@ public class ModSounds {
 	public static final Supplier<SoundEvent> MONSTER_FLAME_DISABLE = registerSoundEvent("block.monster_flame.disable");
 	public static final Supplier<SoundEvent> MONSTER_FLAME_ENABLE = registerSoundEvent("block.monster_flame.enable");
 
+	public static final Supplier<SoundEvent> MONSTER_FLAME_GROWL = registerSoundEvent("block.monster_flame.growl");
+	public static final Supplier<SoundEvent> DISTANT_MOB_SPAWN = registerSoundEvent("event.distant_mob_spawn");
+
 	
 	private static Supplier<SoundEvent> registerSoundEvent(String name) {
 		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MobTowersMod.MOD_ID, name);

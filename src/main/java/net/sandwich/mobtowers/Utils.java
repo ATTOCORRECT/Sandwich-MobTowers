@@ -1,5 +1,7 @@
 package net.sandwich.mobtowers;
 
+import java.awt.Color;
+
 import org.joml.Vector3f;
 
 public class Utils {
@@ -27,6 +29,13 @@ public class Utils {
 
 	public static float easing(float p1, float p2, float t) {
 		return bezier(0, p1, p2, 1, t);
+	}
+
+	public static Color intToColor(int color) {
+		int red = (color >> 16) & 0xFF;
+		int green = (color >> 8) & 0xFF;
+		int blue = color & 0xFF;
+		return new Color(red, green, blue);
 	}
 
 

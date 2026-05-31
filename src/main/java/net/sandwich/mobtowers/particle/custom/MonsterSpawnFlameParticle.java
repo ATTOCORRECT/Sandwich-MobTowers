@@ -17,18 +17,15 @@ import net.sandwich.mobtowers.Utils;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.minecraft.util.Mth;
 
-public class TowerFlameParticle extends TextureSheetParticle {
+public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 
 	private final SpriteSet allSprites;
 	private final double xStart;
 	private final double yStart;
 	private final double zStart;
-	private final double xEnd;
-	private final double yEnd;
-	private final double zEnd;
 	private final CellCenter c;
 
-	protected TowerFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
+	protected MonsterSpawnFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z);
 
 		this.xd = xSpeed;
@@ -38,9 +35,6 @@ public class TowerFlameParticle extends TextureSheetParticle {
 		this.xStart = this.x;
 		this.yStart = this.y;
 		this.zStart = this.z;
-		this.xEnd = this.xStart + Mth.lerp(Math.random(), -1f, 1f);
-		this.yEnd = this.yStart + Mth.lerp(Math.random(), 0.5f, 2f);
-		this.zEnd = this.zStart + Mth.lerp(Math.random(), -1f, 1f);
 	
 		BlockPos originPos = new BlockPos((int)xStart, (int)yStart, (int)zStart);
 		c = MobRegion.getMobRegionCell(originPos);
@@ -58,7 +52,6 @@ public class TowerFlameParticle extends TextureSheetParticle {
 		this.lifetime = (int)(Mth.lerp(Math.random(), 15, 35));
 		this.allSprites = spriteSet;
 		this.setSpriteFromAge(this.allSprites);
-		this.tick();
 	}
 
 	public void tick() {
@@ -70,11 +63,15 @@ public class TowerFlameParticle extends TextureSheetParticle {
 			this.remove();
 		} else {
 			float f = (float)this.age / (float)this.lifetime;
-			f = (float)Math.pow(f, 0.6f);
+			f = (float)Math.pow(f, 3);
+			f = f * 0.05f;
 
-			this.x = Mth.lerp(f, this.xStart, this.xEnd);
-			this.y = Mth.lerp(f, this.yStart, this.yEnd);
-			this.z = Mth.lerp(f, this.zStart, this.zEnd);
+			double cx = c.x * 16;
+			double cy = this.yStart + 60;
+			double cz = c.z * 16;
+			this.x = Mth.lerp(f, this.xStart, cx);
+			this.y = Mth.lerp(f, this.yStart, cy);
+			this.z = Mth.lerp(f, this.zStart, cz);
 		}
 		this.setSpriteFromAge(this.allSprites);
 
@@ -103,7 +100,7 @@ public class TowerFlameParticle extends TextureSheetParticle {
 		@Nullable
 		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) 
 		{
-			return new TowerFlameParticle(clientLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
+			return new MonsterSpawnFlameParticle(clientLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
 		}
 	}
 
