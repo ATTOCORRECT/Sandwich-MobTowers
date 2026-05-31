@@ -29,9 +29,9 @@ public class MobRegion {
 	public static int getMobRegionColor(ChunkPos chunkPos) {
 		CellCenter center = Voronoi.getVoronoiCellCenter(chunkPos.x, chunkPos.z);
 
-		if (center.x == chunkPos.x && center.z == chunkPos.z) { // for marking centers
-			return 0x000000;
-		}
+		//if (center.x == chunkPos.x && center.z == chunkPos.z) { // for marking centers
+		//	return 0x000000;
+		//}
 
 		int colorIndex = Math.floorMod(center.gridX, 3) + Math.floorMod(center.gridZ, 3) * 3;
 		colorIndex = Math.min(colorIndex, cellColors.length - 1); // make sure we dont go over

@@ -18,6 +18,7 @@ import net.sandwich.mobtowers.block.entity.renderer.MonsterFlameEntityRenderer;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.particle.custom.MonsterSpawnFlameParticle;
 import net.sandwich.mobtowers.particle.custom.TowerFlameParticle;
+import net.sandwich.mobtowers.particle.custom.VanillaSpawnerFlameParticle;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = MobTowersMod.MOD_ID, dist = Dist.CLIENT)
@@ -42,6 +43,7 @@ public class MobTowersModClient {
 	public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(ModParticles.TOWER_FLAME.get(), TowerFlameParticle.Provider::new);
 		event.registerSpriteSet(ModParticles.MONSTER_SPAWN_FLAME.get(), MonsterSpawnFlameParticle.Provider::new);
+		event.registerSpriteSet(ModParticles.VANILLA_SPAWNER_FLAME.get(), VanillaSpawnerFlameParticle.Provider::new);
 	}
 
 	@SubscribeEvent

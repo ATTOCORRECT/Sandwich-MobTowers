@@ -18,6 +18,11 @@ public class ModParticles {
 		PARTICLE_TYPES.register(eventBus);
 	}
 
+	public static final Supplier<SimpleParticleType> VANILLA_SPAWNER_FLAME = PARTICLE_TYPES.register(
+		"vanilla_spawner_flame", 
+		() -> new SimpleParticleType(true)
+	);
+
 	public static final Supplier<SimpleParticleType> TOWER_FLAME = PARTICLE_TYPES.register(
 		"tower_flame", 
 		() -> new SimpleParticleType(true)

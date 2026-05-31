@@ -37,24 +37,26 @@ public class ModEvents {
 			if (!event.getEntity().getType().is(ModTags.Entities.SPAWN_BLOCKED)) return; // exit early if its not a tower spawn mob
 
 			BlockPos blockPos = new BlockPos((int)event.getX(), (int)event.getY(), (int)event.getZ());
-			boolean canSpawn = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
+
+			boolean mobRegionEnabled = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
+			boolean inDeepslateLayer = blockPos.getY() < 0;
+
+			boolean canSpawn = mobRegionEnabled || inDeepslateLayer;
 
 
 			
 			if (!canSpawn) {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
 			} else {
-				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED)) {
+				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED) && !inDeepslateLayer) {
 					
 					Level level = (Level)event.getLevel();
 					int skyLight = level.getBrightness(LightLayer.SKY, blockPos);
 					if (skyLight >= 12) 
 						level.playSound((Player)null, blockPos, ModSounds.DISTANT_MOB_SPAWN.get(), SoundSource.HOSTILE, 10f, 1f);
 
-					for (int p=0; p < serverLevel.players().size(); p++) 
-					{
+					for (int p=0; p < serverLevel.players().size(); p++)
 						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.MONSTER_SPAWN_FLAME.get(), true, blockPos.getX(), blockPos.getY()+1, blockPos.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
-					}
 				}
 			}
 		}

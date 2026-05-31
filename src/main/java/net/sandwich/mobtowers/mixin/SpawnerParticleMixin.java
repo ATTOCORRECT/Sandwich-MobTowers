@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
+import net.sandwich.mobtowers.particle.ModParticles;
 
 @Mixin(BaseSpawner.class)
 public class SpawnerParticleMixin {
@@ -41,7 +42,7 @@ public class SpawnerParticleMixin {
 				double d1 = (double)pos.getY() + randomsource.nextDouble();
 				double d2 = (double)pos.getZ() + randomsource.nextDouble();
 				level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
-				level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
+				level.addParticle(ModParticles.VANILLA_SPAWNER_FLAME.get(), d0, d1, d2, (double)0.0F, (double)0.0F, (double)0.0F);
 				if (this.spawnDelay > 0) {
 					--this.spawnDelay;
 				}
