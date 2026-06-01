@@ -1,0 +1,33 @@
+{
+	"name": "mobtowers:arctic/tower2",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arctic/tower2_1",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arctic/tower2_2",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arctic/tower2_3",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}

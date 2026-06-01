@@ -1,0 +1,33 @@
+{
+	"name": "mobtowers:arid/anchor",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/anchor_1",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/anchor_2",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/anchor_3",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}

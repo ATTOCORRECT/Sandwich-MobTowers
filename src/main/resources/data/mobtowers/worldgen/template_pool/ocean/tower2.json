@@ -1,0 +1,33 @@
+{
+	"name": "mobtowers:temperate/tower2",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:temperate/tower2_1",
+				"processors": "mobtowers:ocean_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:temperate/tower2_2",
+				"processors": "mobtowers:ocean_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:temperate/tower2_3",
+				"processors": "mobtowers:ocean_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}

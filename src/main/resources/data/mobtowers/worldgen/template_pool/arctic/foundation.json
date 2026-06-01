@@ -1,0 +1,15 @@
+{
+	"name": "mobtowers:arctic/foundation",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:temperate/foundation",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}

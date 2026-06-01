@@ -7,7 +7,15 @@
   },
   "structures": [
     {
-      "structure": "mobtowers:mob_tower",
+      "structure": "mobtowers:mob_tower_temperate",
+      "weight": 1
+    },
+    {
+      "structure": "mobtowers:mob_tower_arctic",
+      "weight": 1
+    },
+    {
+      "structure": "mobtowers:mob_tower_ocean",
       "weight": 1
     }
   ]
