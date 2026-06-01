@@ -1,6 +1,7 @@
 {
 	"values": [
-		"#minecraft:undead",
+		"#mobtowers:overworld_zombies",
+		"#mobtowers:overworld_skeletons",
 		"minecraft:creeper",
 		"minecraft:spider"
 	]

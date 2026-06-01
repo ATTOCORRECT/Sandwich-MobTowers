@@ -20,13 +20,7 @@ import net.minecraft.util.Mth;
 public class VanillaSpawnerFlameParticle extends TextureSheetParticle {
 
 	private final SpriteSet allSprites;
-	private final double xStart;
-	private final double yStart;
-	private final double zStart;
-	private final double xEnd;
-	private final double yEnd;
-	private final double zEnd;
-	private final CellCenter c;
+	private final float sizeStart;
 
 	protected VanillaSpawnerFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z);
@@ -35,29 +29,13 @@ public class VanillaSpawnerFlameParticle extends TextureSheetParticle {
 		this.yd = ySpeed;
 		this.zd = zSpeed;
 
-		this.xStart = this.x;
-		this.yStart = this.y;
-		this.zStart = this.z;
-		this.xEnd = this.xStart + Mth.lerp(Math.random(), -1f, 1f);
-		this.yEnd = this.yStart + Mth.lerp(Math.random(), 0.5f, 2f);
-		this.zEnd = this.zStart + Mth.lerp(Math.random(), -1f, 1f);
-	
-		BlockPos originPos = new BlockPos((int)xStart, (int)yStart, (int)zStart);
-		c = MobRegion.getMobRegionCell(originPos);
-
-		
-		
-		Color particleColor = Utils.intToColor(MobRegion.getMobRegionColor(originPos));
-
-		this.rCol = (float)particleColor.getRed() / 255f;
-		this.gCol = (float)particleColor.getGreen() / 255f;
-		this.bCol = (float)particleColor.getBlue() / 255f;
-
 		this.quadSize *= (Mth.lerp(Math.random(), 0.6, 1.7));
 		this.friction = 0.0f;
 		this.lifetime = (int)(Mth.lerp(Math.random(), 15, 35));
 		this.allSprites = spriteSet;
 		this.setSpriteFromAge(this.allSprites);
+		this.sizeStart = this.quadSize;
+
 		this.tick();
 	}
 
@@ -68,6 +46,12 @@ public class VanillaSpawnerFlameParticle extends TextureSheetParticle {
 
 		if (this.age++ >= this.lifetime)
 			this.remove();
+
+		float lifeAge = (float)this.age / (float)this.lifetime;
+		lifeAge = (float)Math.pow(lifeAge, 2);
+		this.quadSize = Mth.lerp(lifeAge, sizeStart, sizeStart * 0.1f);
+		
+
 
 		this.setSpriteFromAge(this.allSprites);
 

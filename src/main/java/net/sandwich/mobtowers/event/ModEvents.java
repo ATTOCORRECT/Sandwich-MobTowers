@@ -1,11 +1,13 @@
 package net.sandwich.mobtowers.event;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -27,6 +30,14 @@ import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
 
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID)
 public class ModEvents {
+
+	@SubscribeEvent
+	public static void serverLoad(ServerStartingEvent event) {
+		MinecraftServer gameServer = event.getServer();
+		GameRules rules = gameServer.getGameRules();
+		GameRules.IntegerValue sleepingRule = (GameRules.IntegerValue)rules.getRule(GameRules.RULE_PLAYERS_SLEEPING_PERCENTAGE);
+		sleepingRule.set(200, gameServer);
+	}
 
 	@SubscribeEvent
 	public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {

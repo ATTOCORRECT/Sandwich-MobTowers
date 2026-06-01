@@ -26,7 +26,6 @@ public class TowerFlameParticle extends TextureSheetParticle {
 	private final double xEnd;
 	private final double yEnd;
 	private final double zEnd;
-	private final CellCenter c;
 
 	protected TowerFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z);
@@ -43,7 +42,6 @@ public class TowerFlameParticle extends TextureSheetParticle {
 		this.zEnd = this.zStart + Mth.lerp(Math.random(), -1f, 1f);
 	
 		BlockPos originPos = new BlockPos((int)xStart, (int)yStart, (int)zStart);
-		c = MobRegion.getMobRegionCell(originPos);
 
 		
 		
