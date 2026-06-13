@@ -11,6 +11,14 @@
       "weight": 1
     },
     {
+      "structure": "mobtowers:mob_tower_arid",
+      "weight": 1
+    },
+    {
+      "structure": "mobtowers:mob_tower_desert",
+      "weight": 1
+    },
+    {
       "structure": "mobtowers:mob_tower_arctic",
       "weight": 1
     },

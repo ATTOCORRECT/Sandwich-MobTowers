@@ -10,6 +10,7 @@
     "minecraft:lukewarm_ocean",
     "minecraft:warm_ocean",
 	"minecraft:stony_shore",
-	"minecraft:river"
+	"minecraft:river",
+	"minecraft:frozen_river"
   ]
 }

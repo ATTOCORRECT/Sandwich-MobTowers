@@ -1,12 +1,12 @@
 {
-	"name": "mobtowers:ocean/crown",
+	"name": "mobtowers:desert/crown",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:ocean/crown_1",
-				"processors": "mobtowers:ocean_processing",
+				"location": "mobtowers:desert/crown_1",
+				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
@@ -14,8 +14,8 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:ocean/crown_2",
-				"processors": "mobtowers:ocean_processing",
+				"location": "mobtowers:desert/crown_2",
+				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}

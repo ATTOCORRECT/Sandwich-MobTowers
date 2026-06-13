@@ -1,12 +1,12 @@
 {
-	"name": "mobtowers:ocean/tower2",
+	"name": "mobtowers:desert/tower1",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:ocean/tower2_1",
-				"processors": "mobtowers:ocean_processing",
+				"location": "mobtowers:desert/tower1_1",
+				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
@@ -14,8 +14,8 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:ocean/tower2_2",
-				"processors": "mobtowers:ocean_processing",
+				"location": "mobtowers:desert/tower1_2",
+				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
@@ -23,8 +23,8 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:ocean/tower2_3",
-				"processors": "mobtowers:ocean_processing",
+				"location": "mobtowers:desert/tower1_3",
+				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
