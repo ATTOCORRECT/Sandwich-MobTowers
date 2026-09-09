@@ -1,0 +1,51 @@
+{
+	"name": "mobtowers:arid/rock",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/rock_1",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/rock_2",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/rock_3",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:arid/rock_4",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 25,
+			"element": {
+				"location": "mobtowers:arid/rock_empty",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}
