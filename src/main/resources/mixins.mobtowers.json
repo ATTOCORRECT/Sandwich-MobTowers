@@ -5,7 +5,11 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"SpawnerParticleMixin",
-		"SpawnerSpawnParticleMixin"
+		"SpawnerSpawnParticleMixin",
+		"BedMixin",
+		"EventHooksMixin",
+		"InBedMixin",
+		"PlayerMixin"
 	],
 	"client": [],
 	"injectors": {

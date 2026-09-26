@@ -1,12 +1,12 @@
 {
-	"name": "mobtowers:arid/anchor",
+	"name": "mobtowers:ocean/tower0",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/anchor_1",
-				"processors": "mobtowers:tower_processing",
+				"location": "mobtowers:ocean/tower0_1",
+				"processors": "mobtowers:ocean_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
@@ -14,8 +14,8 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/anchor_2",
-				"processors": "mobtowers:tower_processing",
+				"location": "mobtowers:ocean/tower0_2",
+				"processors": "mobtowers:ocean_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}
@@ -23,8 +23,8 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/anchor_3",
-				"processors": "mobtowers:tower_processing",
+				"location": "mobtowers:ocean/tower0_3",
+				"processors": "mobtowers:ocean_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
 			}

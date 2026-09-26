@@ -1,11 +1,11 @@
 {
-	"name": "mobtowers:temperate/anchor",
+	"name": "mobtowers:desert/tower0",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:temperate/anchor_1",
+				"location": "mobtowers:desert/tower0_1",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
@@ -14,7 +14,7 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:temperate/anchor_2",
+				"location": "mobtowers:desert/tower0_2",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
@@ -23,7 +23,7 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:temperate/anchor_3",
+				"location": "mobtowers:desert/tower0_3",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"

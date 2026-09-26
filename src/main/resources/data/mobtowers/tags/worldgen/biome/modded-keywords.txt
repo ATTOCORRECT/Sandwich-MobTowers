@@ -1,0 +1,7 @@
+ocean=ocean
+forest=temperate
+swamp=temperate
+jungle=temperate
+snow=arctic
+desert=desert
+hot_shrubland=arid

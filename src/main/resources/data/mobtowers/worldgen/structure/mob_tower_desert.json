@@ -8,8 +8,8 @@
   "start_height": {
     "absolute": -3
   },
-  "start_pool": "mobtowers:desert/anchor",
+  "start_pool": "mobtowers:desert/base",
   "step": "surface_structures",
-  "terrain_adaptation": "none",
+  "terrain_adaptation": "beard_box",
   "use_expansion_hack": true
 }

@@ -39,7 +39,7 @@
 			}
 		},
 		{
-			"weight": 25,
+			"weight": 5,
 			"element": {
 				"location": "mobtowers:desert/rock_empty",
 				"processors": "mobtowers:tower_processing",

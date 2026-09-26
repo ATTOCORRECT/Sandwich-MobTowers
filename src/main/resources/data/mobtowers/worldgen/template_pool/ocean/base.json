@@ -1,0 +1,15 @@
+{
+	"name": "mobtowers:ocean/base",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "mobtowers:ocean/base",
+				"processors": "mobtowers:tower_processing",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}
