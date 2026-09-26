@@ -17,11 +17,12 @@ for i in allbiomes:
 
 for i in allworldgenfiles:
 
-	file = open("biome/" + i).read()
+	if ".json" in i:
+		file = open("biome/" + i).read()
 
-	for b in allbiomes:
-		if b in file:
-			biomecount[b] += 1
+		for b in allbiomes:
+			if b in file:
+				biomecount[b] += 1
 
 errorcount = 0
 
