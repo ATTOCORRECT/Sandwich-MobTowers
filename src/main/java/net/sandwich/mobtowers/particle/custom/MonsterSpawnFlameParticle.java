@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.annotation.Nullable;
 
+import org.joml.Vector3d;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -23,6 +25,7 @@ public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 	private final double xStart;
 	private final double yStart;
 	private final double zStart;
+	private final double yAdd;
 	private final CellCenter c;
 
 	protected MonsterSpawnFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
@@ -38,6 +41,7 @@ public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 	
 		BlockPos originPos = new BlockPos((int)xStart, (int)yStart, (int)zStart);
 		c = MobRegion.getMobRegionCell(originPos);
+		yAdd = Mth.lerp(Math.random(), 15, 35);
 
 		
 		
@@ -54,6 +58,9 @@ public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 		this.setSpriteFromAge(this.allSprites);
 	}
 
+
+
+
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;
@@ -64,11 +71,28 @@ public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 		} else {
 			float f = (float)this.age / (float)this.lifetime;
 			f = (float)Math.pow(f, 3);
-			f = f * 0.05f;
+			f = f * 0.06f;
 
 			double cx = c.x * 16;
-			double cy = this.yStart + 60;
+			double cy = this.yStart + yAdd;
 			double cz = c.z * 16;
+
+			double maxSpeed = 256.0;
+
+			Vector3d direction = new Vector3d(cx - this.xStart, cy - this.yStart, cz - this.zStart);
+
+			Vector3d directionNormalized = new Vector3d();
+			direction.normalize(directionNormalized);
+			directionNormalized.mul(maxSpeed);
+
+			if (direction.lengthSquared() > directionNormalized.lengthSquared()) {
+				direction = directionNormalized;
+			}
+
+			cx = this.xStart + direction.x;
+			cy = this.yStart + direction.y;
+			cz = this.zStart + direction.z;
+
 			this.x = Mth.lerp(f, this.xStart, cx);
 			this.y = Mth.lerp(f, this.yStart, cy);
 			this.z = Mth.lerp(f, this.zStart, cz);

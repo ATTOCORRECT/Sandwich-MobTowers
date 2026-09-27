@@ -35,6 +35,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Player.BedSleepingProblem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 
 
 
@@ -95,6 +96,8 @@ public abstract class BedMixin extends HorizontalDirectionalBlock {
 
 					return InteractionResult.SUCCESS;
 				} else {
+					ServerPlayer serverplayer = (ServerPlayer)player;
+
 					// Either<BedSleepingProblem, Unit> result = player.startSleepInBed(pos);
 					// if (result.left().get() != null) {
 					// 	BedSleepingProblem problem = result.left().get();
@@ -106,6 +109,7 @@ public abstract class BedMixin extends HorizontalDirectionalBlock {
 					// 	}
 					// }
 					player.startSleeping(pos);
+					serverplayer.setRespawnPosition(level.dimension(), pos, 0.0F, false, true);
 
 					return InteractionResult.SUCCESS;
 				}
