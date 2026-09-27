@@ -1,9 +1,14 @@
 ocean=ocean
 
+bayou=temperate
 forest=temperate
 swamp=temperate
 jungle=temperate
 prairie=temperate
+grass=temperate
+savanna=temperate
+woods=temperate
+boreal=temperate
 
 snow=arctic
 frozen=arctic
@@ -13,3 +18,5 @@ desert=desert
 
 hot_shrubland=arid
 badlands=arid
+
+gravel_desert=ocean
