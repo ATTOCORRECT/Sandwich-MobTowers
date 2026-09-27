@@ -7,6 +7,7 @@
   },
   "structures": [
 
+{"structure": "mobtowers:compat/nomansland/mob_tower_arctic","weight": 1},
 {"structure": "mobtowers:compat/nomansland/mob_tower_desert","weight": 1},
 {"structure": "mobtowers:compat/nomansland/mob_tower_ocean","weight": 1},
 {"structure": "mobtowers:compat/nomansland/mob_tower_temperate","weight": 1}

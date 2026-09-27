@@ -95,17 +95,18 @@ public abstract class BedMixin extends HorizontalDirectionalBlock {
 
 					return InteractionResult.SUCCESS;
 				} else {
-					Either<BedSleepingProblem, Unit> result = player.startSleepInBed(pos);
-					if (result.left().get() != null) {
-						BedSleepingProblem problem = result.left().get();
-						if (problem == BedSleepingProblem.NOT_SAFE) {
-							player.displayClientMessage(Component.translatable("block.minecraft.bed.not_safe"), true);
-							return InteractionResult.FAIL;
-						} else {
-							player.startSleeping(pos);
-						}
-					}
-					
+					// Either<BedSleepingProblem, Unit> result = player.startSleepInBed(pos);
+					// if (result.left().get() != null) {
+					// 	BedSleepingProblem problem = result.left().get();
+					// 	if (problem == BedSleepingProblem.NOT_SAFE) {
+					// 		player.displayClientMessage(Component.translatable("block.minecraft.bed.not_safe"), true);
+					// 		return InteractionResult.FAIL;
+					// 	} else {
+					// 		player.startSleeping(pos);
+					// 	}
+					// }
+					player.startSleeping(pos);
+
 					return InteractionResult.SUCCESS;
 				}
 			}

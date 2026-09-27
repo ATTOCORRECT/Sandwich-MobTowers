@@ -1,4 +1,13 @@
 {
+	"event.phantom_spawn": {
+		"category": "block",
+		"sounds": [
+			"mobtowers:event/phantom_spawn_0",
+			"mobtowers:event/phantom_spawn_1",
+			"mobtowers:event/phantom_spawn_2",
+			"mobtowers:event/phantom_spawn_3"
+		]
+	},
 	"event.distant_mob_spawn": {
 		"category": "block",
 		"sounds": [

@@ -9,7 +9,8 @@
 		"BedMixin",
 		"EventHooksMixin",
 		"InBedMixin",
-		"PlayerMixin"
+		"PlayerMixin",
+		"PhantomMixin"
 	],
 	"client": [],
 	"injectors": {

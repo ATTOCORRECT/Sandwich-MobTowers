@@ -1,11 +1,11 @@
 {
-	"name": "mobtowers:arid/tower2",
+	"name": "mobtowers:desert/tower2",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/tower2_1",
+				"location": "mobtowers:desert/tower2_1",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
@@ -14,7 +14,7 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/tower2_2",
+				"location": "mobtowers:desert/tower2_2",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"
@@ -23,7 +23,7 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "mobtowers:arid/tower2_3",
+				"location": "mobtowers:desert/tower2_3",
 				"processors": "mobtowers:tower_processing",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"

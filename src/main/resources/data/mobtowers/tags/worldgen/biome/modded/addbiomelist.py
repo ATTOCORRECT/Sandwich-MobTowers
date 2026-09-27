@@ -1,7 +1,7 @@
 
 import os
 
-dir = input("enter directory\n>")
+dir = input("Enter biomes directory from mod or datapack (data/MOD/worldgen/biome)\n>")
 
 
 if len(dir) <= 1:
@@ -18,12 +18,13 @@ def updir(path, amount):
 
 modname = updir(dir, 2)
 modname = os.path.basename(modname).replace(".","_")
-if not os.path.exists(modname):
-	os.mkdir(modname)
 
 allbiomes = ""
 
+entries_recorded = 0
+
 def addtofile(path):
+	global entries_recorded
 	global allbiomes
 	if os.path.exists(path):
 		for i in os.listdir(path):
@@ -35,13 +36,14 @@ def addtofile(path):
 				filename = filename.replace(".json", "")
 
 				allbiomes += filename + "\n"
+				entries_recorded += 1
 
 
 
 addtofile(dir)
 
 
-with open(modname + "/list.txt", "w") as f:
+with open(".lists/" + modname + ".txt", "w") as f:
 	f.write(allbiomes)
 
-print(allbiomes)
+print("\nAdded " + str(entries_recorded) + " biomes to list " + modname)

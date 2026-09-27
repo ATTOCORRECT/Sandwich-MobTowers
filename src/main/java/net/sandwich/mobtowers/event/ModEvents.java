@@ -37,6 +37,8 @@ public class ModEvents {
 		GameRules rules = gameServer.getGameRules();
 		GameRules.IntegerValue sleepingRule = (GameRules.IntegerValue)rules.getRule(GameRules.RULE_PLAYERS_SLEEPING_PERCENTAGE);
 		sleepingRule.set(200, gameServer);
+		GameRules.BooleanValue insomniaRule = (GameRules.BooleanValue)rules.getRule(GameRules.RULE_DOINSOMNIA);
+		insomniaRule.set(false, gameServer);
 	}
 
 	@SubscribeEvent

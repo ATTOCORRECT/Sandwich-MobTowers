@@ -3,6 +3,7 @@ package net.sandwich.mobtowers.mobregion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
 import net.sandwich.mobtowers.voronoi.Voronoi;
 import net.sandwich.mobtowers.voronoi.CellCenter;
@@ -81,6 +82,7 @@ public class MobRegion {
 	}
 
 	public static boolean isMobRegionEnabled(long cellID, ServerLevel serverLevel) {
+		if (serverLevel.dimension() != Level.OVERWORLD) return true;
 		MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
 		return !data.containsCellID(cellID);
 	}

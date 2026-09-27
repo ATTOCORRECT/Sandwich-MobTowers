@@ -1,7 +1,15 @@
 ocean=ocean
+
 forest=temperate
 swamp=temperate
 jungle=temperate
+prairie=temperate
+
 snow=arctic
+frozen=arctic
+winter=arctic
+
 desert=desert
+
 hot_shrubland=arid
+badlands=arid
