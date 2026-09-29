@@ -21,10 +21,8 @@ public class SpawnerSpawnParticleMixin {
 	@Inject(method = "levelEvent", at = @At("HEAD"), cancellable = true)
 		
 		public void levelEvent (int type, BlockPos pos, int data, CallbackInfo ci) {
-			System.out.println("Event called of type " + type);
 			RandomSource randomsource = this.level.random;
 			if (type == 2004) {
-				System.out.println("2004 called!");
 				for(int l = 0; l < 20; ++l) {
 
 				double d6 = (double)pos.getX() + (double)0.5F + (randomsource.nextDouble() - (double)0.5F) * (double)2.0F;
