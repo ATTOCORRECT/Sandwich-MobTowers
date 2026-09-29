@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.vault.VaultBlockEntity.Server;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
@@ -20,6 +21,7 @@ import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.sound.ModSounds;
 import net.sandwich.mobtowers.Utils;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -77,11 +79,24 @@ public class MonsterFlameEntity extends BlockEntity {
 	public static void serverTick(Level level, BlockPos pos, BlockState state, MonsterFlameEntity blockEntity) {
 		blockEntity.updateAnimation(level, pos, state);
 
+		if (level.getGameTime() % 80L == 0L) {
+			boolean isRegionEnabled = MobRegion.isMobRegionEnabled(pos, (ServerLevel)level);
+			boolean isLit = (Boolean)state.getValue(MonsterFlame.LIT);
+			if (!isLit && isRegionEnabled) {
+				state = (BlockState)state.cycle(MonsterFlame.LIT);
+				level.setBlock(pos, state, 3);
+			}
+			if (isLit && !isRegionEnabled) {
+				state = (BlockState)state.cycle(MonsterFlame.LIT);
+				level.setBlock(pos, state, 3);
+			}
+		}
+		
 		RandomSource randomsource = level.getRandom();
 		if (level.getGameTime() % 80L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) {
 
 			if (blockEntity.isNearPlayer(level, pos)) spawnMob(level, pos, blockEntity);
-			level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_GROWL.get(), SoundSource.BLOCKS, 2f, (float)Mth.lerp(randomsource.nextFloat(), 0.8, 1.2));
+			level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_GROWL.get(), SoundSource.BLOCKS, 2f, (float)Mth.lerp(randomsource.nextFloat(), 2f, 1.2));
 		}
 			
 	}
@@ -95,6 +110,8 @@ public class MonsterFlameEntity extends BlockEntity {
 	public static void spawnMob(Level level, BlockPos pos, MonsterFlameEntity entity) {
 
 		ServerLevel serverLevel = (ServerLevel)level;
+
+		if (level.getDifficulty() == Difficulty.PEACEFUL) return;
 
 		Phantom phantom = (Phantom)EntityType.PHANTOM.create(level);
 
@@ -113,10 +130,13 @@ public class MonsterFlameEntity extends BlockEntity {
 			if (phantom != null) {
 
 				phantom.moveTo(randomPos, 0.0f, 0.0f);
+
+				
+
 				phantom.finalizeSpawn(serverLevel, level.getCurrentDifficultyAt(pos), MobSpawnType.SPAWNER, (SpawnGroupData)null);
 				serverLevel.addFreshEntityWithPassengers(phantom);
 
-				level.playSound((Player)null, randomPos, ModSounds.PHANTOM_SPAWN.get(), SoundSource.HOSTILE, 4f, 1f);
+				level.playSound((Player)null, randomPos, ModSounds.PHANTOM_SPAWN.get(), SoundSource.HOSTILE, 2f, 1f);
 
 				for (int p=0; p < serverLevel.players().size(); p++)
 					serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, randomPos.getX(), randomPos.getY(), randomPos.getZ(), 25, 0.5f, 0.5f, 0.5f, 0.0f);

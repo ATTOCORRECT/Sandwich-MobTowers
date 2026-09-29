@@ -46,12 +46,14 @@ public abstract class PhantomMixin extends FlyingMob implements Enemy {
 		}
 
 		checkTick++;
-		if (checkTick > 20) {
+		if (checkTick > 100) {
 			checkTick = 0;
 			if (!this.level().isClientSide()) {
 				ServerLevel serverLevel = (ServerLevel)this.level();
 				if (!MobRegion.isMobRegionEnabled(this.chunkPosition(), serverLevel)) {
 					this.hurt(damageSources().dryOut(), 2);
+
+					checkTick = 80;
 
 					for (int p=0; p < serverLevel.players().size(); p++)
 						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, this.getX(), this.getY(), this.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobbled_deepslate"
+    },
+    {
+      "item": "minecraft:cobbled_deepslate"
+    },
+    {
+      "item": "mobtowers:seeping_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:cobbled_pale_grimstone",
+    "count": 4
+  }
+}

@@ -30,9 +30,6 @@ public class SeepingGrimstone extends Block {
 		if (activation == SeepingActivation.ACTIVE) {
 			return 6;
 		}
-		if (activation == SeepingActivation.MID) {
-			return 3;
-		}
 		return 0;
 	}
 

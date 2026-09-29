@@ -13,6 +13,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -86,15 +87,16 @@ public class MobTowersMod {
 		Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
 	}
 
-	// Add the example block item to the building blocks tab
+	
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
+		
 		if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
 			event.accept(ModBlocks.VORONOI_BLOCK);
 			event.accept(ModBlocks.NOISE_VARYING_BLOCK);
 		}
-		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-			event.accept(ModBlocks.MONSTER_FLAME);
+		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+			event.insertAfter(Items.TRIAL_SPAWNER.getDefaultInstance(), ModBlocks.MONSTER_FLAME.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 			event.accept(ModBlocks.GRIMSTONE);
@@ -107,7 +109,7 @@ public class MobTowersMod {
 		}
 	}
 
-	// You can use SubscribeEvent and let the Event Bus discover methods to call
+
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 

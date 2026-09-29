@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:deepslate"
+    },
+    {
+      "item": "minecraft:deepslate"
+    },
+    {
+      "item": "minecraft:deepslate"
+    },
+    {
+      "item": "mobtowers:seeping_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:grimstone",
+    "count": 4
+  }
+}

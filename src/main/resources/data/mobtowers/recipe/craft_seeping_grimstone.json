@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "tag": "mobtowers:all_craftable_into_seeping"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:seeping_grimstone",
+    "count": 8
+  }
+}

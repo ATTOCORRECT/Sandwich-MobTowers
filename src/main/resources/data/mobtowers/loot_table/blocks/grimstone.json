@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mobtowers:grimstone"
+          "name": "mobtowers:cobbled_grimstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mobtowers:blocks/grimstone"
+  "random_sequence": "mobtowers:blocks/cobbled_grimstone"
 }
