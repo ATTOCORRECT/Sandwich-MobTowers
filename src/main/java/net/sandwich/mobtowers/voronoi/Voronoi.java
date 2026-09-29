@@ -11,7 +11,7 @@ public class Voronoi {
 	}
 
 	public static double worleyNoise(int x, int z, int scale, long seed) {
-		CellCenter center = getVoronoiCellCenter(x, z, seed, scale, false);
+		CellCenter center = getVoronoiCellCenter(x, z, seed, scale, false, 0);
 
 		double normalizedDist = Math.clamp(Math.sqrt(center.distance) / scale, 0, 1);
 
@@ -42,10 +42,10 @@ public class Voronoi {
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
-		return getVoronoiCellCenter(x, z, levelSeed, 64, true);
+		return getVoronoiCellCenter(x, z, levelSeed, 64, true, 0.1f);
 	}
 
-	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, int cellSize, boolean isManhattan) {
+	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, int cellSize, boolean isManhattan, float padding) {
 		int gridX = Math.floorDiv(x, cellSize);
 		int gridZ = Math.floorDiv(z, cellSize);
 
@@ -63,8 +63,11 @@ public class Voronoi {
 				RandomSource rng = RandomSource.create(seed);
 
 				// Get the random feature point inside this grid cell
-				double pointX = (currentGridX * cellSize) + rng.nextInt(cellSize);
-				double pointZ = (currentGridZ * cellSize) + rng.nextInt(cellSize);
+				int min = (int)(cellSize * padding * 0.5f);
+				int max = cellSize - min;
+
+				double pointX = (currentGridX * cellSize) + rng.nextIntBetweenInclusive(min, max);
+				double pointZ = (currentGridZ * cellSize) + rng.nextIntBetweenInclusive(min, max);
 
 				// Calculate distance squared
 				double dx = x - pointX;
