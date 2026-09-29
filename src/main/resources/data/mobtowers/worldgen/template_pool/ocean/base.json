@@ -7,7 +7,7 @@
 			"element": {
 				"location": "mobtowers:ocean/base",
 				"processors": "mobtowers:tower_processing",
-				"projection": "rigid",
+				"projection": "terrain_matching",
 				"element_type": "minecraft:single_pool_element"
 			}
 		}
