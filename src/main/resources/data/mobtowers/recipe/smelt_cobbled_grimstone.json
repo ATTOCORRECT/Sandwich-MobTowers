@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "category": "blocks",
+  "ingredient": {
+    "item": "mobtowers:cobbled_grimstone"
+  },
+  "result": {
+    "id": "mobtowers:grimstone"
+  }
+}
