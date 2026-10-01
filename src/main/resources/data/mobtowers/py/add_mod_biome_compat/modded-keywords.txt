@@ -15,6 +15,7 @@ frozen=arctic
 winter=arctic
 
 desert=desert
+dunes=desert
 
 hot_shrubland=arid
 badlands=arid

@@ -91,10 +91,10 @@ public class MobTowersMod {
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
 		
-		if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
-			event.accept(ModBlocks.VORONOI_BLOCK);
-			event.accept(ModBlocks.NOISE_VARYING_BLOCK);
-		}
+		// if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
+		// 	event.accept(ModBlocks.VORONOI_BLOCK);
+		// 	event.accept(ModBlocks.NOISE_VARYING_BLOCK);
+		// }
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			event.insertAfter(Items.TRIAL_SPAWNER.getDefaultInstance(), ModBlocks.MONSTER_FLAME.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}

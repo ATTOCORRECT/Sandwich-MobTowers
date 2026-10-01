@@ -1,0 +1,16 @@
+atmospheric:aspen_parkland
+atmospheric:dunes
+atmospheric:flourishing_dunes
+atmospheric:grimwoods
+atmospheric:hot_springs
+atmospheric:kousa_jungle
+atmospheric:laurel_forest
+atmospheric:petrified_dunes
+atmospheric:rainforest
+atmospheric:rainforest_basin
+atmospheric:rocky_dunes
+atmospheric:scrubland
+atmospheric:snowy_scrubland
+atmospheric:sparse_rainforest
+atmospheric:sparse_rainforest_basin
+atmospheric:spiny_thicket

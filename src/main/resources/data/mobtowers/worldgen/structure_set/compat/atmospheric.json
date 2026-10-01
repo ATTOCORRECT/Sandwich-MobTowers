@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "mobtowers:voronoi_structure_placement",
+    "salt": 14357618,
+    "separation": 8,
+    "spacing": 32
+  },
+  "structures": [
+
+{"structure": "mobtowers:compat/atmospheric/mob_tower_arctic","weight": 1},
+{"structure": "mobtowers:compat/atmospheric/mob_tower_desert","weight": 1},
+{"structure": "mobtowers:compat/atmospheric/mob_tower_ocean","weight": 1},
+{"structure": "mobtowers:compat/atmospheric/mob_tower_temperate","weight": 1}
+  ]
+}
