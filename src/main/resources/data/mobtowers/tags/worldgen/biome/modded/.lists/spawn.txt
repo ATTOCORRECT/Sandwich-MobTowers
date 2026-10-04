@@ -1,0 +1,10 @@
+spawn:ant_gardens
+spawn:cold_island
+spawn:deep_warm_ocean
+spawn:dodo_island
+spawn:rocky_shore
+spawn:sandy_island
+spawn:seagrass_meadow
+spawn:tide_pool
+spawn:tropical_island
+spawn:volcanic_island

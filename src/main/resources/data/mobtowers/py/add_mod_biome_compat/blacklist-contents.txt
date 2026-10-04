@@ -1,0 +1,4 @@
+piglin
+nether_cave
+"type": "minecraft:strider"
+"minecraft:end_gateway_return"
