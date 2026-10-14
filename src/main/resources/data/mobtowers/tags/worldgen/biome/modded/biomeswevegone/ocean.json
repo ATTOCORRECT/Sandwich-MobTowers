@@ -1,9 +1,7 @@
 {"values":[
-"biomeswevegone:allium_shrubland",
 "biomeswevegone:atacama_outback",
 "biomeswevegone:basalt_barrera",
 "biomeswevegone:canadian_shield",
-"biomeswevegone:coconino_meadow",
 "biomeswevegone:crag_gardens",
 "biomeswevegone:crimson_tundra",
 "biomeswevegone:cypress_wetlands",
@@ -11,14 +9,9 @@
 "biomeswevegone:dacite_shore",
 "biomeswevegone:dead_sea",
 "biomeswevegone:enchanted_tangle",
-"biomeswevegone:firecracker_chaparral",
-"biomeswevegone:frosted_taiga",
 "biomeswevegone:howling_peaks",
 "biomeswevegone:ironwood_gour",
 "biomeswevegone:lush_stacks",
-"biomeswevegone:maple_taiga",
-"biomeswevegone:orchard",
-"biomeswevegone:overgrowth_woodlands",
 "biomeswevegone:pale_bog",
 "biomeswevegone:pumpkin_valley",
 "biomeswevegone:rainbow_beach",
@@ -26,9 +19,6 @@
 "biomeswevegone:red_rock_peaks",
 "biomeswevegone:red_rock_valley",
 "biomeswevegone:rose_fields",
-"biomeswevegone:sakura_grove",
 "biomeswevegone:shattered_glacier",
-"biomeswevegone:skyris_vale",
-"biomeswevegone:temperate_grove",
-"biomeswevegone:white_mangrove_marshes"
+"biomeswevegone:skyris_vale"
 ]}

@@ -1,0 +1,8 @@
+windswept:chestnut_forest
+windswept:flowering_savanna
+windswept:lavender_fields
+windswept:lavender_hills
+windswept:pine_barrens
+windswept:snowy_chestnut_forest
+windswept:snowy_pine_barrens
+windswept:tundra

@@ -1,0 +1,7 @@
+mysticsbiomes:autumnal_grove
+mysticsbiomes:bamboo_blossom_forest
+mysticsbiomes:lagoon
+mysticsbiomes:lavender_meadow
+mysticsbiomes:lush_oasis
+mysticsbiomes:strawberry_fields
+mysticsbiomes:tropics

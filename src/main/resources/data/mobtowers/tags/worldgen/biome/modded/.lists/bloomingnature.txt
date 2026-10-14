@@ -1,0 +1,16 @@
+bloomingnature:aspen_forest
+bloomingnature:baobab_savanna
+bloomingnature:brushland
+bloomingnature:cold_grassland
+bloomingnature:cold_river
+bloomingnature:cypress_fields
+bloomingnature:desert_oasis
+bloomingnature:desert_river
+bloomingnature:fen
+bloomingnature:flower_glade
+bloomingnature:forest_edge
+bloomingnature:golden_glade
+bloomingnature:highland_woods
+bloomingnature:jungle_river
+bloomingnature:larch_forest
+bloomingnature:marshland
