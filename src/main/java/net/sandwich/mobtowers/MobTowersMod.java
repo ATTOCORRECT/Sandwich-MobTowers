@@ -70,7 +70,7 @@ public class MobTowersMod {
 		modEventBus.addListener(this::addCreative);
 
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
-		// modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 		MobTowerStructurePlacement.DEFERRED_REGISTRY_STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
 	}
 
@@ -87,6 +87,8 @@ public class MobTowersMod {
 		// Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
 	}
 
+
+	
 	
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 

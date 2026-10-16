@@ -9,6 +9,12 @@
 	"block.mobtowers.tempered_grimstone": "Tempered Grimstone",
 	"block.mobtowers.cobbled_tempered_grimstone": "Cobbled Tempered Grimstone",
 	"block.mobtowers.seeping_grimstone": "Seeping Grimstone",
-	"block.mobtowers.seeping_tempered_grimstone": "Seeping Arid Grimstone"
+	"block.mobtowers.seeping_tempered_grimstone": "Seeping Arid Grimstone",
+
+	"commands.mobtowers.located_tower": "Nearest Spire is at %s",
+	"commands.mobtowers.locate_failed_wrong_dimension": "Command was not run in Overworld, could not locate any Spire",
+
+
+	"mobtowers.configuration.applybedchanges": "Enable Bed Changes"
 
 }

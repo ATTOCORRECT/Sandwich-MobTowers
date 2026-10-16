@@ -31,11 +31,14 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.sandwich.mobtowers.Config;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Player.BedSleepingProblem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 
 
 
@@ -98,18 +101,34 @@ public abstract class BedMixin extends HorizontalDirectionalBlock {
 				} else {
 					ServerPlayer serverplayer = (ServerPlayer)player;
 
-					// Either<BedSleepingProblem, Unit> result = player.startSleepInBed(pos);
-					// if (result.left().get() != null) {
-					// 	BedSleepingProblem problem = result.left().get();
-					// 	if (problem == BedSleepingProblem.NOT_SAFE) {
-					// 		player.displayClientMessage(Component.translatable("block.minecraft.bed.not_safe"), true);
-					// 		return InteractionResult.FAIL;
-					// 	} else {
-					// 		player.startSleeping(pos);
-					// 	}
-					// }
-					player.startSleeping(pos);
-					serverplayer.setRespawnPosition(level.dimension(), pos, 0.0F, false, true);
+					if (Config.APPLY_BED_CHANGES.isTrue()) {
+
+
+						if (state.getValue(PART) != BedPart.HEAD) {
+							pos = pos.relative((Direction)state.getValue(FACING));
+						}
+
+						BlockState aboveBlockState = level.getBlockState(pos.above());
+						if (aboveBlockState != null) {
+							if (aboveBlockState.isAir() || aboveBlockState.is(BlockTags.FIRE) || aboveBlockState.canBeReplaced()) {
+								player.startSleeping(pos);
+								serverplayer.setRespawnPosition(level.dimension(), pos, 0.0F, false, true);
+							}
+						}
+
+
+
+					} else {
+						player.startSleepInBed(pos).ifLeft((p_49477_) -> {
+						if (p_49477_.getMessage() != null) {
+							player.displayClientMessage(p_49477_.getMessage(), true);
+						}
+
+						});
+					}
+
+					
+
 
 					return InteractionResult.SUCCESS;
 				}

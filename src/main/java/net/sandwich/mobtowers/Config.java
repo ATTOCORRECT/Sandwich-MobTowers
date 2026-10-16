@@ -17,9 +17,9 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-	// public static final ModConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
-	// 		.comment("Whether to log the dirt block on common setup")
-	// 		.define("logDirtBlock", true);
+	public static final ModConfigSpec.BooleanValue APPLY_BED_CHANGES = BUILDER
+			.comment("ON: Spawn Spires lets you enter a bed at any time for healing, but the night cannot be skipped.\n\nOFF: Default Minecraft bed behavior.\n\n\n(Aside from direct bed changes, this sets the PlayersSleepingPercentage gamerule on world load.)")
+			.define("applybedchanges", true);
 
 	// public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
 	// 		.comment("A magic number")

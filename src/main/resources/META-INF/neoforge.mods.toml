@@ -24,7 +24,7 @@ license="MIT"
 modId="mobtowers" #mandatory
 
 # The version number of the mod
-version="1.0.2" #mandatory
+version="1.0.4" #mandatory
 
 # A display name for the mod
 displayName="Spawn Spires" #mandatory
@@ -45,7 +45,7 @@ logoFile="spawnspires_icon.png" #optional
 #authors="Attocorrect, YakiYuki, Lezzlebit"
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''example description'''
+description='''Addressing Minecraft's nighttime and monster spawning'''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]

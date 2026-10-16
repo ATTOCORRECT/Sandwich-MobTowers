@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.player.CanContinueSleepingEvent;
+import net.sandwich.mobtowers.Config;
 
 
 
@@ -25,7 +26,13 @@ public abstract class EventHooksMixin {
 
 	@Overwrite 
 	public static boolean canEntityContinueSleeping(LivingEntity sleeper, Player.@Nullable BedSleepingProblem problem) {
-		return true;
+
+		if (Config.APPLY_BED_CHANGES.isTrue()) {
+			return true;
+		} else {
+			return ((CanContinueSleepingEvent)NeoForge.EVENT_BUS.post(new CanContinueSleepingEvent(sleeper, problem))).mayContinueSleeping();
+		}
+		
 	}
 
 }

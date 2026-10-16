@@ -11,6 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.sandwich.mobtowers.Config;
 
 
 
@@ -33,12 +34,11 @@ public abstract class PlayerMixin extends LivingEntity {
 
 	@Inject(method = "tick", at = @At("HEAD"), cancellable = true)
 	public void tick(CallbackInfo ci) {
-		if (this.isSleeping()) {
+		if (this.isSleeping() && Config.APPLY_BED_CHANGES.isTrue()) {
 			healthCounter++;
 			if (healthCounter > 50) {
 				healthCounter = 0;
 				this.heal(1.0f);
-				System.out.println("health reached 25");
 			}
 		}
 
