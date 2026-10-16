@@ -21,17 +21,32 @@ public class ModTags {
 		public static TagKey<EntityType<?>> SPAWN_BLOCKED = createTag("tower_blocked");
 		public static TagKey<EntityType<?>> TOWER_SUMMONED = createTag("tower_summoned");
 
-		public static TagKey<EntityType<?>> CAVERNS_AND_CHASMS_TOWER_BLOCKED = createTag("modded/caverns_and_chasms/tower_blocked");
+
 		public static TagKey<EntityType<?>> CAVERNS_AND_CHASMS_TOWER_SUMMONED = createTag("modded/caverns_and_chasms/tower_summoned");
+		public static TagKey<EntityType<?>> CAVERNS_AND_CHASMS_TOWER_BLOCKED = createTag("modded/caverns_and_chasms/tower_blocked");
+		public static TagKey<EntityType<?>> EXAMPLE_MOD_TOWER_SUMMONED = createTag("modded/example_mod/tower_summoned");
+		public static TagKey<EntityType<?>> EXAMPLE_MOD_TOWER_BLOCKED = createTag("modded/example_mod/tower_blocked");
 
 	}
 
 	public static boolean IsTowerBlocked(EntityType<?> entity) {
 
-		boolean isPartOfTag = false;
+		if (entity.is(ModTags.Entities.SPAWN_BLOCKED)) return true;
 
-		if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_BLOCKED)) isPartOfTag = true;
+		if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_BLOCKED)) return true;
+		if (entity.is(ModTags.Entities.EXAMPLE_MOD_TOWER_BLOCKED)) return true;
 
-		return true;
+		return false;
+	}
+
+	public static boolean IsTowerSummoned(EntityType<?> entity) {
+
+		if (entity.is(ModTags.Entities.TOWER_SUMMONED)) return true;
+
+		if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_SUMMONED)) return true;
+		if (entity.is(ModTags.Entities.EXAMPLE_MOD_TOWER_SUMMONED)) return true;
+		
+
+		return false;
 	}
 }

@@ -117,6 +117,8 @@ public class ModEvents {
 			if (!canSpawn) {
 				event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
 			} else {
+
+				
 				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED) && !inDeepslateLayer) {
 
 					int skyLight = level.getBrightness(LightLayer.SKY, blockPos);

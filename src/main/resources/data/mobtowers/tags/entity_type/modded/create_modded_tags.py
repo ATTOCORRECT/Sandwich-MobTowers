@@ -87,3 +87,11 @@ java_template = java_template.replace("// TAG BLOCKING LOGIC GOES HERE", java_bl
 java_template = java_template.replace("// TAG SUMMONING LOGIC GOES HERE", java_summoned_logic_list)
 
 print(java_template)
+
+
+confirm_overwrite = input("do you want to overwrite the ModTags.java logic? (type yes to confirm)\n>")
+
+if confirm_overwrite.lower() == "yes":
+	with open(java_tag_overwrite_path, "w") as f:
+		f.write(java_template)
+	print("modified " + java_tag_overwrite_path)
