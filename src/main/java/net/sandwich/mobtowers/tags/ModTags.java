@@ -9,6 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.ModList;
 import net.sandwich.mobtowers.MobTowersMod;
 
 public class ModTags {
@@ -24,17 +25,43 @@ public class ModTags {
 
 		public static TagKey<EntityType<?>> CAVERNS_AND_CHASMS_TOWER_SUMMONED = createTag("modded/caverns_and_chasms/tower_summoned");
 		public static TagKey<EntityType<?>> CAVERNS_AND_CHASMS_TOWER_BLOCKED = createTag("modded/caverns_and_chasms/tower_blocked");
-		public static TagKey<EntityType<?>> EXAMPLE_MOD_TOWER_SUMMONED = createTag("modded/example_mod/tower_summoned");
-		public static TagKey<EntityType<?>> EXAMPLE_MOD_TOWER_BLOCKED = createTag("modded/example_mod/tower_blocked");
+		public static TagKey<EntityType<?>> OPPOSING_FORCE_TOWER_BLOCKED = createTag("modded/opposing_force/tower_blocked");
+		public static TagKey<EntityType<?>> PEACELESS_TOWER_SUMMONED = createTag("modded/peaceless/tower_summoned");
+		public static TagKey<EntityType<?>> PEACELESS_TOWER_BLOCKED = createTag("modded/peaceless/tower_blocked");
 
 	}
 
+
+	static boolean checked_mods = false;
+
+	static boolean caverns_and_chasms_loaded = false;
+	static boolean opposing_force_loaded = false;
+	static boolean peaceless_loaded = false;
+
+	public static void GetLoadedMods() {
+		if (!checked_mods) {
+			ModList list = ModList.get();
+
+			caverns_and_chasms_loaded = list.isLoaded("caverns_and_chasms");
+			opposing_force_loaded = list.isLoaded("opposing_force");
+			peaceless_loaded = list.isLoaded("peaceless");
+
+			checked_mods = true;
+			System.out.println(list);
+		}
+		
+
+	}
+
+
 	public static boolean IsTowerBlocked(EntityType<?> entity) {
-
+		
 		if (entity.is(ModTags.Entities.SPAWN_BLOCKED)) return true;
+		GetLoadedMods();
 
-		if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_BLOCKED)) return true;
-		if (entity.is(ModTags.Entities.EXAMPLE_MOD_TOWER_BLOCKED)) return true;
+		if (caverns_and_chasms_loaded) if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_BLOCKED)) return true;
+		if (opposing_force_loaded) if (entity.is(ModTags.Entities.OPPOSING_FORCE_TOWER_BLOCKED)) return true;
+		if (peaceless_loaded) if (entity.is(ModTags.Entities.PEACELESS_TOWER_BLOCKED)) return true;
 
 		return false;
 	}
@@ -42,9 +69,10 @@ public class ModTags {
 	public static boolean IsTowerSummoned(EntityType<?> entity) {
 
 		if (entity.is(ModTags.Entities.TOWER_SUMMONED)) return true;
+		GetLoadedMods();
 
-		if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_SUMMONED)) return true;
-		if (entity.is(ModTags.Entities.EXAMPLE_MOD_TOWER_SUMMONED)) return true;
+		if (caverns_and_chasms_loaded) if (entity.is(ModTags.Entities.CAVERNS_AND_CHASMS_TOWER_SUMMONED)) return true;
+		if (peaceless_loaded) if (entity.is(ModTags.Entities.PEACELESS_TOWER_SUMMONED)) return true;
 		
 
 		return false;

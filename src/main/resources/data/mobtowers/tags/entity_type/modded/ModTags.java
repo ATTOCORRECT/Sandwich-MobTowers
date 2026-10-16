@@ -9,6 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.ModList;
 import net.sandwich.mobtowers.MobTowersMod;
 
 public class ModTags {
@@ -25,9 +26,27 @@ public class ModTags {
 
 	}
 
-	public static boolean IsTowerBlocked(EntityType<?> entity) {
 
+	static boolean checked_mods = false;
+// MOD LOADED BOOLEANS GO HERE
+
+	public static void GetLoadedMods() {
+		if (!checked_mods) {
+			ModList list = ModList.get();
+// MOD LOADED LOGIC GOES HERE
+
+			checked_mods = true;
+			System.out.println(list);
+		}
+		
+
+	}
+
+
+	public static boolean IsTowerBlocked(EntityType<?> entity) {
+		
 		if (entity.is(ModTags.Entities.SPAWN_BLOCKED)) return true;
+		GetLoadedMods();
 // TAG BLOCKING LOGIC GOES HERE
 
 		return false;
@@ -36,6 +55,7 @@ public class ModTags {
 	public static boolean IsTowerSummoned(EntityType<?> entity) {
 
 		if (entity.is(ModTags.Entities.TOWER_SUMMONED)) return true;
+		GetLoadedMods();
 // TAG SUMMONING LOGIC GOES HERE
 		
 

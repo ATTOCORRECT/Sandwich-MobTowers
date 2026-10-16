@@ -53,10 +53,11 @@ public class ModEvents {
 		GameRules rules = gameServer.getGameRules();
 		GameRules.IntegerValue sleepingRule = (GameRules.IntegerValue)rules.getRule(GameRules.RULE_PLAYERS_SLEEPING_PERCENTAGE);
 		GameRules.BooleanValue insomniaRule = (GameRules.BooleanValue)rules.getRule(GameRules.RULE_DOINSOMNIA);
+		insomniaRule.set(false, gameServer);
 
 		if (Config.APPLY_BED_CHANGES.isTrue()) {
 			sleepingRule.set(200, gameServer);
-			insomniaRule.set(false, gameServer);
+			
 		} else {
 			if (sleepingRule.get() > 100) sleepingRule.set(100, gameServer);
 		}
@@ -106,8 +107,8 @@ public class ModEvents {
 
 
 			if (event.getSpawnType() != MobSpawnType.NATURAL) return; // exit early if its not a natural spawn
-			if (!event.getEntity().getType().is(ModTags.Entities.SPAWN_BLOCKED)) return; // exit early if it's not a tower spawn mob
 			if (level.dimension() != Level.OVERWORLD) return; // exit early if not in overworld
+			if (!ModTags.IsTowerBlocked(event.getEntity().getType())) return; // exit early if it's not a tower spawn mob
 
 			boolean mobRegionEnabled = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
 			boolean inDeepslateLayer = blockPos.getY() < 0;
@@ -119,7 +120,7 @@ public class ModEvents {
 			} else {
 
 				
-				if (event.getEntity().getType().is(ModTags.Entities.TOWER_SUMMONED) && !inDeepslateLayer) {
+				if (ModTags.IsTowerSummoned(event.getEntity().getType()) && !inDeepslateLayer) {
 
 					int skyLight = level.getBrightness(LightLayer.SKY, blockPos);
 					if (skyLight >= 12) 
