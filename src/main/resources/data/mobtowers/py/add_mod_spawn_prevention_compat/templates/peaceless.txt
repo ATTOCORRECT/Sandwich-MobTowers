@@ -1,2 +1,7 @@
 harpy
 shade
+
+NO PARTICLES
+
+shrapin
+mimic

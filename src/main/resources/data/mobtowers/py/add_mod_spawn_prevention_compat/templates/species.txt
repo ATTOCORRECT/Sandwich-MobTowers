@@ -1,0 +1,10 @@
+quake
+wicked
+bewereager
+trooper
+ghoul
+
+NO PARTICLES
+
+cliff_hanger
+leaf_hanger

@@ -40,7 +40,9 @@ for mod in os.listdir(templates_path):
 
 
 	java_check_mod_boolean_list += "\n	static boolean " + mod.lower() + "_loaded = false;"
+	
 	java_check_mod_loaded_list += "\n			" + mod.lower() + '_loaded = list.isLoaded("' + mod + '");'
+	java_check_mod_loaded_list += '\n			System.out.println("Is ' + mod.lower().replace("_"," ").title() + ' loaded: " + Boolean.toString(' + mod + '_loaded).toUpperCase());'
 
 	for mob in read_file:
 		mob = mob.replace("\n", "")
@@ -119,7 +121,7 @@ java_template = java_template.replace("// TAG SUMMONING LOGIC GOES HERE", java_s
 
 
 
-confirm_overwrite = input("do you want to overwrite the ModTags.java logic? (type yes to confirm)\n>")
+confirm_overwrite = input("Do you want to overwrite the ModTags.java logic? You must do this any time you add a new mod. \n(Type yes to confirm)\n>")
 
 if confirm_overwrite.lower() == "yes":
 	with open(java_tag_overwrite_path, "w") as f:
