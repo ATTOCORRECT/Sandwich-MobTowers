@@ -20,6 +20,7 @@ import net.sandwich.mobtowers.block.entity.ModBlockEntities;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.sound.ModSounds;
+import net.sandwich.mobtowers.Config;
 import net.sandwich.mobtowers.Utils;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntitySelector;
@@ -93,12 +94,13 @@ public class MonsterFlameEntity extends BlockEntity {
 		}
 		
 		RandomSource randomsource = level.getRandom();
-		if (level.getGameTime() % 80L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) {
-
-			if (blockEntity.isNearPlayer(level, pos)) spawnMob(level, pos, blockEntity);
+		if (level.getGameTime() % 60L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) {
 			level.playSound((Player)null, (double)pos.getX()+.5, (double)pos.getY()+.5, (double)pos.getZ()+.5, ModSounds.MONSTER_FLAME_GROWL.get(), SoundSource.BLOCKS, 2f, (float)Mth.lerp(randomsource.nextFloat(), 2f, 1.2));
 		}
-			
+		if (level.getGameTime() % 320L == 0L && (Boolean)state.getValue(MonsterFlame.LIT)) {
+			if (blockEntity.isNearPlayer(level, pos)) spawnMob(level, pos, blockEntity);		
+		}
+		
 	}
 
 
@@ -116,7 +118,7 @@ public class MonsterFlameEntity extends BlockEntity {
 		Phantom phantom = (Phantom)EntityType.PHANTOM.create(level);
 
 		int checkRange = 100;
-		int maxNearbyEntities = 4;
+		int maxNearbyEntities = 3;
 
 		int k = serverLevel.getEntities(EntityTypeTest.forExactClass(phantom.getClass()), (new AABB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1))).inflate((double)checkRange), EntitySelector.NO_SPECTATORS).size();
 		
@@ -125,8 +127,8 @@ public class MonsterFlameEntity extends BlockEntity {
 		int range = 15;
 		BlockPos randomPos = new BlockPos(randomIntRange(pos.getX(), randomsource, range),randomIntRange(pos.getY(), randomsource, range),randomIntRange(pos.getZ(), randomsource, range));
 
-
-		if (k < maxNearbyEntities) {
+		
+		if (k < maxNearbyEntities && Config.SPIRE_SPAWNS_PHANTOMS.isTrue()) {
 			if (phantom != null) {
 
 				phantom.moveTo(randomPos, 0.0f, 0.0f);

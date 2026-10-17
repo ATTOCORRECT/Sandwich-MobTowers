@@ -21,6 +21,10 @@ public class Config {
 			.comment("§l§nON by default§r\n\nON: You can enter a bed at any time for healing, but the night cannot be skipped.\n\nOFF: Default Minecraft bed behavior.\n\n\n§7§o(§lPlease reload your world for full effect.)")
 			.define("applybedchanges", true);
 
+	public static final ModConfigSpec.BooleanValue SPIRE_SPAWNS_PHANTOMS = BUILDER
+			.comment("§l§nON by default§r\n\nON: The Spire Heart spawns phantoms around it when it's active.\n\nOFF: The Spire Heart does not spawn phantoms.")
+			.define("spirespawnsphantoms", true);
+
 	public static final ModConfigSpec.BooleanValue PHANTOMS_DIE_WITHOUT_HEART = BUILDER
 			.comment("§l§nOFF by default§r\n\nOFF: When you disable a Spire Heart, the phantoms around it will continue to live, but they will not keep spawning.\n\nON: When you disable a Spire Heart, the phantoms around it will take damage until they die.")
 			.define("phantomsdiewithoutheart", false);

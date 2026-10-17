@@ -70,6 +70,7 @@
 
 
 	"mobtowers.configuration.applybedchanges": "Enable bed changes",
+	"mobtowers.configuration.spirespawnsphantoms": "Spire Heart spawns phantoms",
 	"mobtowers.configuration.phantomsdiewithoutheart": "Phantoms die without Spire"
 
 }
