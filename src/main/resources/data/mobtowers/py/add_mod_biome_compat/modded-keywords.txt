@@ -45,6 +45,7 @@ dusty_slopes=desert
 
 hot_shrubland=arid
 badland=arid
+arid_grassland=arid
 
 gravel_desert=ocean
 alpha=ocean
