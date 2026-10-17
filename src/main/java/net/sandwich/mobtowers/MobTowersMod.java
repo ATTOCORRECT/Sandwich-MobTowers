@@ -109,6 +109,23 @@ public class MobTowersMod {
 			event.accept(ModBlocks.COBBLED_TEMPERED_GRIMSTONE);
 			event.accept(ModBlocks.SEEPING_GRIMSTONE);
 		}
+
+		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+			event.accept(ModBlocks.GRIMSTONE);
+			event.accept(ModBlocks.GRIMSTONE_STAIRS);
+			event.accept(ModBlocks.GRIMSTONE_SLAB);
+			event.accept(ModBlocks.COBBLED_GRIMSTONE);
+			event.accept(ModBlocks.COBBLED_GRIMSTONE_STAIRS);
+			event.accept(ModBlocks.COBBLED_GRIMSTONE_SLAB);
+			event.accept(ModBlocks.GRIMSTONE_BRICKS);
+			event.accept(ModBlocks.GRIMSTONE_BRICK_STAIRS);
+			event.accept(ModBlocks.GRIMSTONE_BRICK_SLAB);
+			event.accept(ModBlocks.INDENTED_POLISHED_GRIMSTONE);
+			event.accept(ModBlocks.CHISELED_GRIMSTONE);
+			event.accept(ModBlocks.POLISHED_GRIMSTONE);
+			event.accept(ModBlocks.POLISHED_GRIMSTONE_STAIRS);
+			event.accept(ModBlocks.POLISHED_GRIMSTONE_SLAB);
+		}
 	}
 
 

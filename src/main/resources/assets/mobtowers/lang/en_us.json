@@ -11,6 +11,53 @@
 	"block.mobtowers.seeping_grimstone": "Seeping Grimstone",
 	"block.mobtowers.seeping_tempered_grimstone": "Seeping Arid Grimstone",
 
+
+	"block.mobtowers.grimstone_bricks": "Grimstone Bricks",
+	"block.mobtowers.indented_polished_grimstone": "Indented Polished Grimstone",
+	"block.mobtowers.polished_grimstone": "Polished Grimstone",
+	"block.mobtowers.chiseled_grimstone": "Chiseled Grimstone",
+	"block.mobtowers.grimstone_brick_stairs": "Grimstone Brick Stairs",
+	"block.mobtowers.grimstone_stairs": "Grimstone Stairs",
+	"block.mobtowers.grimstone_slab": "Grimstone Slab",
+	"block.mobtowers.polished_grimstone_stairs": "Polished Grimstone Stairs",
+	"block.mobtowers.grimstone_brick_slab": "Grimstone Brick Slab",
+	"block.mobtowers.polished_grimstone_slab": "Polished Grimstone Slab",
+	"block.mobtowers.cobbled_grimstone_stairs": "Cobbled Grimstone Stairs",
+	"block.mobtowers.cobbled_grimstone_slab": "Cobbled Grimstone Slab",
+	"block.mobtowers.grimstone_pillar": "Grimstone Pillar",
+
+
+	"block.mobtowers.tempered_grimstone_bricks": "Tempered Grimstone Bricks",
+	"block.mobtowers.tempered_indented_polished_grimstone": "Tempered Indented Polished Grimstone",
+	"block.mobtowers.tempered_polished_grimstone": "Tempered Polished Grimstone",
+	"block.mobtowers.tempered_chiseled_grimstone": "Tempered Chiseled Grimstone",
+	"block.mobtowers.tempered_grimstone_brick_stairs": "Tempered Grimstone Brick Stairs",
+	"block.mobtowers.tempered_grimstone_stairs": "Tempered Grimstone Stairs",
+	"block.mobtowers.tempered_grimstone_slab": "Tempered Grimstone Slab",
+	"block.mobtowers.tempered_polished_grimstone_stairs": "Tempered Polished Grimstone Stairs",
+	"block.mobtowers.tempered_grimstone_brick_slab": "Tempered Grimstone Brick Slab",
+	"block.mobtowers.tempered_polished_grimstone_slab": "Tempered Polished Grimstone Slab",
+	"block.mobtowers.tempered_cobbled_grimstone_stairs": "Tempered Cobbled Grimstone Stairs",
+	"block.mobtowers.tempered_cobbled_grimstone_slab": "Tempered Cobbled Grimstone Slab",
+	"block.mobtowers.tempered_grimstone_pillar": "Tempered Grimstone Pillar",
+
+
+	"block.mobtowers.pale_grimstone_bricks": "Pale Grimstone Bricks",
+	"block.mobtowers.pale_indented_polished_grimstone": "Pale Indented Polished Grimstone",
+	"block.mobtowers.pale_polished_grimstone": "Pale Polished Grimstone",
+	"block.mobtowers.pale_chiseled_grimstone": "Pale Chiseled Grimstone",
+	"block.mobtowers.pale_grimstone_brick_stairs": "Pale Grimstone Brick Stairs",
+	"block.mobtowers.pale_grimstone_stairs": "Pale Grimstone Stairs",
+	"block.mobtowers.pale_grimstone_slab": "Pale Grimstone Slab",
+	"block.mobtowers.pale_polished_grimstone_stairs": "Pale Polished Grimstone Stairs",
+	"block.mobtowers.pale_grimstone_brick_slab": "Pale Grimstone Brick Slab",
+	"block.mobtowers.pale_polished_grimstone_slab": "Pale Polished Grimstone Slab",
+	"block.mobtowers.pale_cobbled_grimstone_stairs": "Pale Cobbled Grimstone Stairs",
+	"block.mobtowers.pale_cobbled_grimstone_slab": "Pale Cobbled Grimstone Slab",
+	"block.mobtowers.pale_grimstone_pillar": "Pale Grimstone Pillar",
+
+
+
 	"commands.mobtowers.located_tower": "Nearest Spire is at %s",
 	"commands.mobtowers.locate_failed_wrong_dimension": "Command was not run in Overworld, could not locate any Spire",
 

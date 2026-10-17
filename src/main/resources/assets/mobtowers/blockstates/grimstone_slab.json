@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mobtowers:block/grimstone_slab"
+    },
+    "type=double": {
+      "model": "mobtowers:block/grimstone"
+    },
+    "type=top": {
+      "model": "mobtowers:block/grimstone_slab_top"
+    }
+  }
+}
