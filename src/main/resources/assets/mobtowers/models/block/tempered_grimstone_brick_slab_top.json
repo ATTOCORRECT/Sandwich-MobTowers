@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "mobtowers:block/tempered_grimstone_bricks",
+    "side": "mobtowers:block/tempered_grimstone_bricks",
+    "top": "mobtowers:block/tempered_grimstone_bricks"
+  }
+}

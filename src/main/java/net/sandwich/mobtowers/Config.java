@@ -18,8 +18,12 @@ public class Config {
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
 	public static final ModConfigSpec.BooleanValue APPLY_BED_CHANGES = BUILDER
-			.comment("ON: Spawn Spires lets you enter a bed at any time for healing, but the night cannot be skipped.\n\nOFF: Default Minecraft bed behavior.\n\n\n(Aside from direct bed changes, this sets the PlayersSleepingPercentage gamerule on world load.)")
+			.comment("§l§nON by default§r\n\nON: You can enter a bed at any time for healing, but the night cannot be skipped.\n\nOFF: Default Minecraft bed behavior.\n\n\n§7§o(§lPlease reload your world for full effect.)")
 			.define("applybedchanges", true);
+
+	public static final ModConfigSpec.BooleanValue PHANTOMS_DIE_WITHOUT_HEART = BUILDER
+			.comment("§l§nOFF by default§r\n\nOFF: When you disable a Spire Heart, the phantoms around it will continue to live, but they will not keep spawning.\n\nON: When you disable a Spire Heart, the phantoms around it will take damage until they die.")
+			.define("phantomsdiewithoutheart", false);
 
 	// public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
 	// 		.comment("A magic number")

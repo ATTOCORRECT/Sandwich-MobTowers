@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "tag": "mobtowers:stonecutting/crafts_into_tempered_grimstone_all"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:tempered_grimstone_brick_slab",
+    "count": 2
+  }
+}

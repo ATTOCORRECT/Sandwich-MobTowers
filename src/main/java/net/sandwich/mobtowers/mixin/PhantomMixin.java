@@ -14,6 +14,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Phantom;
 
 import net.minecraft.world.level.Level;
+import net.sandwich.mobtowers.Config;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
 import net.sandwich.mobtowers.voronoi.Voronoi;
@@ -46,21 +47,26 @@ public abstract class PhantomMixin extends FlyingMob implements Enemy {
 		}
 
 		checkTick++;
-		if (checkTick > 100) {
-			checkTick = 0;
-			if (!this.level().isClientSide()) {
-				ServerLevel serverLevel = (ServerLevel)this.level();
-				if (!MobRegion.isMobRegionEnabled(this.chunkPosition(), serverLevel)) {
-					this.hurt(damageSources().dryOut(), 2);
 
-					checkTick = 80;
+		if (Config.PHANTOMS_DIE_WITHOUT_HEART.isTrue()) {
+			if (checkTick > 100) {
+				checkTick = 0;
+				if (!this.level().isClientSide()) {
+					ServerLevel serverLevel = (ServerLevel)this.level();
+					if (!MobRegion.isMobRegionEnabled(this.chunkPosition(), serverLevel)) {
+						this.hurt(damageSources().dryOut(), 2);
 
-					for (int p=0; p < serverLevel.players().size(); p++)
-						serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, this.getX(), this.getY(), this.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
+						checkTick = 80;
+
+						for (int p=0; p < serverLevel.players().size(); p++)
+							serverLevel.sendParticles(serverLevel.players().get(p), ModParticles.TOWER_FLAME.get(), true, this.getX(), this.getY(), this.getZ(), 15, 0.5f, 0.5f, 0.5f, 0.0f);
+					}
 				}
-			}
 
+			}
 		}
+
+
 
 
 		super.aiStep();

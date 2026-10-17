@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "tag": "mobtowers:stonecutting/crafts_into_pale_grimstone_all"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:pale_grimstone_brick_stairs",
+    "count": 1
+  }
+}

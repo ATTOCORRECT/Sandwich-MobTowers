@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "mobtowers:cobbled_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:cobbled_grimstone_stairs",
+    "count": 1
+  }
+}

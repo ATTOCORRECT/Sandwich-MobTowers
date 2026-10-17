@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mobtowers:block/pale_grimstone_pillar_top",
+    "side": "mobtowers:block/pale_grimstone_pillar"
+  }
+}

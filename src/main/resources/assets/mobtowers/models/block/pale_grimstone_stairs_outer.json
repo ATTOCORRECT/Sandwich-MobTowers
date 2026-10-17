@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "mobtowers:block/pale_grimstone",
+    "side": "mobtowers:block/pale_grimstone",
+    "top": "mobtowers:block/pale_grimstone"
+  }
+}

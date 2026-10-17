@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mobtowers:cobbled_grimstone"
+    }
+  },
+  "result": {
+    "id": "mobtowers:polished_grimstone",
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mobtowers:cobbled_pale_grimstone"
+    }
+  },
+  "result": {
+    "id": "mobtowers:cobbled_pale_grimstone_stairs",
+    "count": 4
+  }
+}

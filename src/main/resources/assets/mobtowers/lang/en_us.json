@@ -28,7 +28,7 @@
 
 
 	"block.mobtowers.tempered_grimstone_bricks": "Tempered Grimstone Bricks",
-	"block.mobtowers.tempered_indented_polished_grimstone": "Tempered Indented Polished Grimstone",
+	"block.mobtowers.tempered_indented_polished_grimstone": "Tempered Inset Polished Grimstone",
 	"block.mobtowers.tempered_polished_grimstone": "Tempered Polished Grimstone",
 	"block.mobtowers.tempered_chiseled_grimstone": "Tempered Chiseled Grimstone",
 	"block.mobtowers.tempered_grimstone_brick_stairs": "Tempered Grimstone Brick Stairs",
@@ -37,13 +37,13 @@
 	"block.mobtowers.tempered_polished_grimstone_stairs": "Tempered Polished Grimstone Stairs",
 	"block.mobtowers.tempered_grimstone_brick_slab": "Tempered Grimstone Brick Slab",
 	"block.mobtowers.tempered_polished_grimstone_slab": "Tempered Polished Grimstone Slab",
-	"block.mobtowers.tempered_cobbled_grimstone_stairs": "Tempered Cobbled Grimstone Stairs",
-	"block.mobtowers.tempered_cobbled_grimstone_slab": "Tempered Cobbled Grimstone Slab",
+	"block.mobtowers.cobbled_tempered_grimstone_stairs": "Cobbled Tempered Grimstone Stairs",
+	"block.mobtowers.cobbled_tempered_grimstone_slab": "Cobbled Tempered Grimstone Slab",
 	"block.mobtowers.tempered_grimstone_pillar": "Tempered Grimstone Pillar",
 
 
 	"block.mobtowers.pale_grimstone_bricks": "Pale Grimstone Bricks",
-	"block.mobtowers.pale_indented_polished_grimstone": "Pale Indented Polished Grimstone",
+	"block.mobtowers.pale_indented_polished_grimstone": "Pale Inset Polished Grimstone",
 	"block.mobtowers.pale_polished_grimstone": "Pale Polished Grimstone",
 	"block.mobtowers.pale_chiseled_grimstone": "Pale Chiseled Grimstone",
 	"block.mobtowers.pale_grimstone_brick_stairs": "Pale Grimstone Brick Stairs",
@@ -52,8 +52,8 @@
 	"block.mobtowers.pale_polished_grimstone_stairs": "Pale Polished Grimstone Stairs",
 	"block.mobtowers.pale_grimstone_brick_slab": "Pale Grimstone Brick Slab",
 	"block.mobtowers.pale_polished_grimstone_slab": "Pale Polished Grimstone Slab",
-	"block.mobtowers.pale_cobbled_grimstone_stairs": "Pale Cobbled Grimstone Stairs",
-	"block.mobtowers.pale_cobbled_grimstone_slab": "Pale Cobbled Grimstone Slab",
+	"block.mobtowers.cobbled_pale_grimstone_stairs": "Cobbled Pale Grimstone Stairs",
+	"block.mobtowers.cobbled_pale_grimstone_slab": "Cobbled Pale Grimstone Slab",
 	"block.mobtowers.pale_grimstone_pillar": "Pale Grimstone Pillar",
 
 
@@ -62,6 +62,7 @@
 	"commands.mobtowers.locate_failed_wrong_dimension": "Command was not run in Overworld, could not locate any Spire",
 
 
-	"mobtowers.configuration.applybedchanges": "Enable Bed Changes"
+	"mobtowers.configuration.applybedchanges": "Enable bed changes",
+	"mobtowers.configuration.phantomsdiewithoutheart": "Phantoms die without Spire"
 
 }

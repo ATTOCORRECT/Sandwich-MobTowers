@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "mobtowers:tempered_grimstone_brick_slab"
+    }
+  },
+  "result": {
+    "id": "mobtowers:tempered_chiseled_grimstone",
+    "count": 1
+  }
+}

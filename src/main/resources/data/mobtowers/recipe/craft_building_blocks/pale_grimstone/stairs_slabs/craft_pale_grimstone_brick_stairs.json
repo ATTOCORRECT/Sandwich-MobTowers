@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+	"#  ",
+	"## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mobtowers:pale_grimstone_bricks"
+    }
+  },
+  "result": {
+    "id": "mobtowers:pale_grimstone_brick_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "tag": "mobtowers:stonecutting/crafts_into_tempered_grimstone_all"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:tempered_chiseled_grimstone",
+    "count": 1
+  }
+}

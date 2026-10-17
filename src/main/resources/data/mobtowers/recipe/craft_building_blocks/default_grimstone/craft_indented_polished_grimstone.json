@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "mobtowers:polished_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:indented_polished_grimstone",
+    "count": 1
+  }
+}

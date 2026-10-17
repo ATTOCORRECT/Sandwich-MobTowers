@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mobtowers:tempered_polished_grimstone"
+    }
+  },
+  "result": {
+    "id": "mobtowers:tempered_polished_grimstone_slab",
+    "count": 6
+  }
+}

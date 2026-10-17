@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "mobtowers:pale_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:pale_grimstone_slab",
+    "count": 2
+  }
+}

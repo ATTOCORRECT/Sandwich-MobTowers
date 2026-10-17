@@ -103,6 +103,7 @@ public class ModBlocks {
 	));
 
 
+
 	public static final DeferredBlock<StairBlock> GRIMSTONE_STAIRS = registerBlock("grimstone_stairs",
 		() -> new StairBlock(GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
 			.ofFullCopy(GRIMSTONE.get())
@@ -161,6 +162,16 @@ public class ModBlocks {
 
 
 
+	public static final DeferredBlock<SlabBlock> COBBLED_PALE_GRIMSTONE_SLAB = registerBlock("cobbled_pale_grimstone_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<StairBlock> COBBLED_PALE_GRIMSTONE_STAIRS = registerBlock("cobbled_pale_grimstone_stairs",
+		() -> new StairBlock(COBBLED_GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
 	public static final DeferredBlock<StairBlock> PALE_GRIMSTONE_STAIRS = registerBlock("pale_grimstone_stairs",
 		() -> new StairBlock(GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
 			.ofFullCopy(GRIMSTONE.get())
@@ -212,6 +223,74 @@ public class ModBlocks {
 	));
 
 	public static final DeferredBlock<RotatedPillarBlock> PALE_GRIMSTONE_PILLAR = registerBlock("pale_grimstone_pillar",
+		() -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+
+
+
+	public static final DeferredBlock<SlabBlock> COBBLED_TEMPERED_GRIMSTONE_SLAB = registerBlock("cobbled_tempered_grimstone_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<StairBlock> COBBLED_TEMPERED_GRIMSTONE_STAIRS = registerBlock("cobbled_tempered_grimstone_stairs",
+		() -> new StairBlock(COBBLED_GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<StairBlock> TEMPERED_GRIMSTONE_STAIRS = registerBlock("tempered_grimstone_stairs",
+		() -> new StairBlock(GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<SlabBlock> TEMPERED_GRIMSTONE_SLAB = registerBlock("tempered_grimstone_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<Block> TEMPERED_GRIMSTONE_BRICKS = registerBlock("tempered_grimstone_bricks",
+		() -> new Block(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<StairBlock> TEMPERED_GRIMSTONE_BRICK_STAIRS = registerBlock("tempered_grimstone_brick_stairs",
+		() -> new StairBlock(GRIMSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<SlabBlock> TEMPERED_GRIMSTONE_BRICK_SLAB = registerBlock("tempered_grimstone_brick_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<Block> TEMPERED_POLISHED_GRIMSTONE = registerBlock("tempered_polished_grimstone",
+		() -> new Block(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<StairBlock> TEMPERED_POLISHED_GRIMSTONE_STAIRS = registerBlock("tempered_polished_grimstone_stairs",
+		() -> new StairBlock(POLISHED_GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<SlabBlock> TEMPERED_POLISHED_GRIMSTONE_SLAB = registerBlock("tempered_polished_grimstone_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<Block> TEMPERED_INDENTED_POLISHED_GRIMSTONE = registerBlock("tempered_indented_polished_grimstone",
+		() -> new Block(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<Block> TEMPERED_CHISELED_GRIMSTONE = registerBlock("tempered_chiseled_grimstone",
+		() -> new Block(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<RotatedPillarBlock> TEMPERED_GRIMSTONE_PILLAR = registerBlock("tempered_grimstone_pillar",
 		() -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
 			.ofFullCopy(GRIMSTONE.get())
 	));

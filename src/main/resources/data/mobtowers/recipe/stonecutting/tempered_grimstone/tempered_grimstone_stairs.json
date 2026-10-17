@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "mobtowers:tempered_grimstone"
+    }
+  ],
+  "result": {
+    "id": "mobtowers:tempered_grimstone_stairs",
+    "count": 1
+  }
+}
