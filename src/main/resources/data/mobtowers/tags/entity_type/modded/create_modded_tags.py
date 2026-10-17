@@ -121,9 +121,9 @@ java_template = java_template.replace("// TAG SUMMONING LOGIC GOES HERE", java_s
 
 
 
-confirm_overwrite = input("Do you want to overwrite the ModTags.java logic? You must do this any time you add a new mod. \n(Type yes to confirm)\n>")
+# confirm_overwrite = input("Do you want to overwrite the ModTags.java logic? You must do this any time you add a new mod. \n(Type yes to confirm)\n>")
 
-if confirm_overwrite.lower() == "yes":
-	with open(java_tag_overwrite_path, "w") as f:
-		f.write(java_template)
-	print("modified " + java_tag_overwrite_path)
+# if confirm_overwrite.lower() == "yes":
+# 	with open(java_tag_overwrite_path, "w") as f:
+# 		f.write(java_template)
+# 	print("modified " + java_tag_overwrite_path)
