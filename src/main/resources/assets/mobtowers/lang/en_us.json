@@ -56,6 +56,13 @@
 	"block.mobtowers.cobbled_pale_grimstone_slab": "Cobbled Pale Grimstone Slab",
 	"block.mobtowers.pale_grimstone_pillar": "Pale Grimstone Pillar",
 
+	"block.mobtowers.grimstone_brick_wall": "Grimstone Brick Wall",
+	"block.mobtowers.pale_grimstone_brick_wall": "Pale Grimstone Brick Wall",
+	"block.mobtowers.tempered_grimstone_brick_wall": "Tempered Grimstone Brick Wall",
+	"block.mobtowers.polished_grimstone_wall": "Polished Grimstone Wall",
+	"block.mobtowers.pale_polished_grimstone_wall": "Pale Polished Grimstone Wall",
+	"block.mobtowers.tempered_polished_grimstone_wall": "Tempered Polished Grimstone Wall",
+
 
 
 	"commands.mobtowers.located_tower": "Nearest Spire is at %s",

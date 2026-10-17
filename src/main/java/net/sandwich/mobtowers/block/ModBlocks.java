@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.SculkSensorBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
@@ -119,6 +120,11 @@ public class ModBlocks {
 			.ofFullCopy(GRIMSTONE.get())
 	));
 
+	public static final DeferredBlock<WallBlock> GRIMSTONE_BRICK_WALL = registerBlock("grimstone_brick_wall",
+		() -> new WallBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get()).forceSolidOn()
+	));
+
 	public static final DeferredBlock<StairBlock> GRIMSTONE_BRICK_STAIRS = registerBlock("grimstone_brick_stairs",
 		() -> new StairBlock(GRIMSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties
 			.ofFullCopy(GRIMSTONE.get())
@@ -187,6 +193,11 @@ public class ModBlocks {
 			.ofFullCopy(GRIMSTONE.get())
 	));
 
+	public static final DeferredBlock<WallBlock> PALE_GRIMSTONE_BRICK_WALL = registerBlock("pale_grimstone_brick_wall",
+		() -> new WallBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get()).forceSolidOn()
+	));
+
 	public static final DeferredBlock<StairBlock> PALE_GRIMSTONE_BRICK_STAIRS = registerBlock("pale_grimstone_brick_stairs",
 		() -> new StairBlock(GRIMSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties
 			.ofFullCopy(GRIMSTONE.get())
@@ -253,6 +264,11 @@ public class ModBlocks {
 	public static final DeferredBlock<Block> TEMPERED_GRIMSTONE_BRICKS = registerBlock("tempered_grimstone_bricks",
 		() -> new Block(BlockBehaviour.Properties
 			.ofFullCopy(GRIMSTONE.get())
+	));
+
+	public static final DeferredBlock<WallBlock> TEMPERED_GRIMSTONE_BRICK_WALL = registerBlock("tempered_grimstone_brick_wall",
+		() -> new WallBlock(BlockBehaviour.Properties
+			.ofFullCopy(GRIMSTONE.get()).forceSolidOn()
 	));
 
 	public static final DeferredBlock<StairBlock> TEMPERED_GRIMSTONE_BRICK_STAIRS = registerBlock("tempered_grimstone_brick_stairs",

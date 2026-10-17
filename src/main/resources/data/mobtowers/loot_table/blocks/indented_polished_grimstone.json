@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mobtowers:indented_polished_grimstone"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mobtowers:blocks/indented_polished_grimstone"
+}

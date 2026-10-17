@@ -6,8 +6,6 @@
 "mobtowers:tempered_grimstone",
 "mobtowers:cobbled_tempered_grimstone",
 "mobtowers:seeping_grimstone",
-
-
 "mobtowers:pale_grimstone_bricks",
 "mobtowers:pale_indented_polished_grimstone",
 "mobtowers:pale_polished_grimstone",
@@ -21,7 +19,6 @@
 "mobtowers:cobbled_pale_grimstone_stairs",
 "mobtowers:cobbled_pale_grimstone_slab",
 "mobtowers:pale_grimstone_pillar",
-
 "mobtowers:tempered_grimstone_bricks",
 "mobtowers:tempered_indented_polished_grimstone",
 "mobtowers:tempered_polished_grimstone",
@@ -35,8 +32,6 @@
 "mobtowers:cobbled_tempered_grimstone_stairs",
 "mobtowers:cobbled_tempered_grimstone_slab",
 "mobtowers:tempered_grimstone_pillar",
-
-
 "mobtowers:grimstone_bricks",
 "mobtowers:indented_polished_grimstone",
 "mobtowers:polished_grimstone",
@@ -49,5 +44,8 @@
 "mobtowers:polished_grimstone_slab",
 "mobtowers:cobbled_grimstone_stairs",
 "mobtowers:cobbled_grimstone_slab",
-"mobtowers:grimstone_pillar"
+"mobtowers:grimstone_pillar",
+"mobtowers:grimstone_brick_wall",
+"mobtowers:pale_grimstone_brick_wall",
+"mobtowers:tempered_grimstone_brick_wall"
 ]}

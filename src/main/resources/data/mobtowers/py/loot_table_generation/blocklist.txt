@@ -40,4 +40,9 @@ grimstone_brick_slab
 polished_grimstone_slab
 cobbled_grimstone_stairs
 cobbled_grimstone_slab
-grimstone_pillar"
+grimstone_pillar
+
+
+grimstone_brick_wall
+pale_grimstone_brick_wall
+tempered_grimstone_brick_wall
