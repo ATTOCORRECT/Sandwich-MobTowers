@@ -55,6 +55,7 @@ tundra=ocean
 wetland=ocean
 bog=ocean
 kelp_forest=ocean
+stream=ocean
 
 winter=arctic
 icy=arctic
