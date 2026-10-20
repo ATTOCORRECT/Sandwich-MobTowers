@@ -126,6 +126,7 @@ public class MobTowersMod {
 			event.accept(ModBlocks.POLISHED_GRIMSTONE);
 			event.accept(ModBlocks.POLISHED_GRIMSTONE_STAIRS);
 			event.accept(ModBlocks.POLISHED_GRIMSTONE_SLAB);
+			event.accept(ModBlocks.GRIMSTONE_PILLAR);
 
 			event.accept(ModBlocks.PALE_GRIMSTONE);
 			event.accept(ModBlocks.PALE_GRIMSTONE_STAIRS);
@@ -142,6 +143,7 @@ public class MobTowersMod {
 			event.accept(ModBlocks.PALE_POLISHED_GRIMSTONE);
 			event.accept(ModBlocks.PALE_POLISHED_GRIMSTONE_STAIRS);
 			event.accept(ModBlocks.PALE_POLISHED_GRIMSTONE_SLAB);
+			event.accept(ModBlocks.PALE_GRIMSTONE_PILLAR);
 
 			event.accept(ModBlocks.TEMPERED_GRIMSTONE);
 			event.accept(ModBlocks.TEMPERED_GRIMSTONE_STAIRS);
@@ -158,6 +160,7 @@ public class MobTowersMod {
 			event.accept(ModBlocks.TEMPERED_POLISHED_GRIMSTONE);
 			event.accept(ModBlocks.TEMPERED_POLISHED_GRIMSTONE_STAIRS);
 			event.accept(ModBlocks.TEMPERED_POLISHED_GRIMSTONE_SLAB);
+			event.accept(ModBlocks.TEMPERED_GRIMSTONE_PILLAR);
 		}
 	}
 

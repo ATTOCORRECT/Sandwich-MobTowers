@@ -28,6 +28,11 @@ public class Voronoi {
 		return (center.x == x && center.z == z);
 	}
 
+	public static long getVoronoiCellID(int x, int z, long levelSeed) {
+		CellCenter center = getVoronoiCellCenter(x, z, levelSeed);
+		return getVoronoiCellID(center);
+	}
+
 	public static long getVoronoiCellID(int x, int z) {
 		CellCenter center = getVoronoiCellCenter(x, z);
 		return getVoronoiCellID(center);

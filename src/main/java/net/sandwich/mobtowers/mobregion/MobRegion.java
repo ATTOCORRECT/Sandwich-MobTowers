@@ -77,7 +77,7 @@ public class MobRegion {
 	}
 
 	public static boolean isMobRegionEnabled(ChunkPos chunkPos, ServerLevel serverLevel) {
-		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z);
+		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z, serverLevel.getSeed());
 		return isMobRegionEnabled(cellID, serverLevel);
 	}
 
