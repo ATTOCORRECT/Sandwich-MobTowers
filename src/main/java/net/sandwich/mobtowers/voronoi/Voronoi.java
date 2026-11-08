@@ -33,10 +33,10 @@ public class Voronoi {
 		return getVoronoiCellID(center);
 	}
 
-	public static long getVoronoiCellID(int x, int z) {
-		CellCenter center = getVoronoiCellCenter(x, z);
-		return getVoronoiCellID(center);
-	}
+	// public static long getVoronoiCellID(int x, int z) {
+	// 	CellCenter center = getVoronoiCellCenter(x, z);
+	// 	return getVoronoiCellID(center);
+	// }
 	
 	public static long getVoronoiCellID(CellCenter center) {
 		return (long)center.x * 31234567L ^ (long)center.z * 11234567L;

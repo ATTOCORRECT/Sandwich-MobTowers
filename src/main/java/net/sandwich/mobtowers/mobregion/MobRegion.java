@@ -53,7 +53,7 @@ public class MobRegion {
 	}
 
 	public static void disableMobRegion(ChunkPos chunkPos, ServerLevel serverLevel) {
-		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z);
+		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z, serverLevel.getSeed());
 		disableMobRegion(cellID, serverLevel);
 	}
 
@@ -63,7 +63,7 @@ public class MobRegion {
 	}
 
 	public static void enableMobRegion(ChunkPos chunkPos, ServerLevel serverLevel) {
-		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z);
+		long cellID = Voronoi.getVoronoiCellID(chunkPos.x, chunkPos.z, serverLevel.getSeed());
 		enableMobRegion(cellID, serverLevel);
 	}
 

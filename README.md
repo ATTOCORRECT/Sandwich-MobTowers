@@ -1,25 +1,16 @@
 
-Installation information
+
+Spawn Spires
 =======
+(known internally as Mob Towers)
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+A Minecraft mod that addresses the game's spawning and nighttime issues
+Currently available for Minecraft version 1.21.1
+View the Modrinth page for more information
+https://modrinth.com/mod/spawn-spires
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+Made by:
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+[ATTOCORRECT](https://attocorrect.github.io) - Worldgen and animation code, design, structure building
+[Lezzlebit](https://jamiemakes.art) - Some gameplay and visuals code, sound effects, block and structure data
+[YakiYuki](https://bsky.app/profile/yakiyuki.bsky.social) - Pixel art, structure building, design
