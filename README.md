@@ -11,6 +11,6 @@ https://modrinth.com/mod/spawn-spires
 
 Made by:
 
-[ATTOCORRECT](https://attocorrect.github.io) - Worldgen and animation code, design, structure building
-[Lezzlebit](https://jamiemakes.art) - Some gameplay and visuals code, sound effects, block and structure data
-[YakiYuki](https://bsky.app/profile/yakiyuki.bsky.social) - Pixel art, structure building, design
+- [ATTOCORRECT](https://attocorrect.github.io) - Worldgen and animation code, design, structure building
+- [Lezzlebit](https://jamiemakes.art) - Some gameplay and visuals code, sound effects, block and structure data
+- [YakiYuki](https://bsky.app/profile/yakiyuki.bsky.social) - Pixel art, structure building, design
