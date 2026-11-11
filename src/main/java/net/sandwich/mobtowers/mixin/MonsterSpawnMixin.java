@@ -93,13 +93,12 @@ public abstract class MonsterSpawnMixin extends PathfinderMob {
 		return is_not_peaceful && (MobSpawnType.ignoresLightRequirements(spawnType) || is_dark_enough) && checkMobSpawnRules(type, level, spawnType, pos, random);
 	}
 
-
 	@Inject(method = "isDarkEnoughToSpawn", at = @At("HEAD"), cancellable = true)
 	private static void stopDarkSpawning(ServerLevelAccessor level, BlockPos pos, RandomSource random, CallbackInfoReturnable<Boolean> ci) {
 
 		boolean is_in_overworld = level.getLevel().dimension() == Level.OVERWORLD;
-		boolean is_above_zero = pos.getY() > 0;
-		if (is_in_overworld && is_above_zero && !MobRegion.isMobRegionEnabled(pos, level.getLevel())) {
+		boolean is_above_natural_spawn_depth = pos.getY() > Config.NATURAL_SPAWN_DEPTH.getAsInt();
+		if (is_in_overworld && is_above_natural_spawn_depth && !MobRegion.isMobRegionEnabled(pos, level.getLevel())) {
 			ci.setReturnValue(false);
 			ci.cancel();
 		}

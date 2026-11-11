@@ -1,15 +1,15 @@
 package net.sandwich.mobtowers;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+// import java.util.List;
+// import java.util.Set;
+// import java.util.stream.Collectors;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
+// import net.minecraft.world.item.Item;
+// import net.neoforged.bus.api.SubscribeEvent;
+// import net.neoforged.fml.common.EventBusSubscriber;
+// import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
@@ -29,9 +29,13 @@ public class Config {
 			.comment("§l§nOFF by default§r\n\nOFF: When you disable a Spire Heart, the phantoms around it will continue to live, but they will not keep spawning.\n\nON: When you disable a Spire Heart, the phantoms around it will take damage until they die.")
 			.define("phantomsdiewithoutheart", false);
 
-	// public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-	// 		.comment("A magic number")
-	// 		.defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
+	public static final ModConfigSpec.IntValue NATURAL_SPAWN_DEPTH = BUILDER
+			.comment("spawn height")
+			.defineInRange("naturalmonsterspawningdepth", 0, -64, 64);
+
+	public static final ModConfigSpec.IntValue REGION_SIZE = BUILDER
+			.comment("region size")
+			.defineInRange("regionsize", 256, 16, Integer.MAX_VALUE);
 
 	// public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
 	// 		.comment("What you want the introduction message to be for the magic number")

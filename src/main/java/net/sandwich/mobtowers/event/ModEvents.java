@@ -111,8 +111,8 @@ public class ModEvents {
 			if (!ModTags.IsTowerBlocked(event.getEntity().getType())) return; // exit early if it's not a tower spawn mob
 
 			boolean mobRegionEnabled = MobRegion.isMobRegionEnabled(blockPos, serverLevel);
-			boolean inDeepslateLayer = blockPos.getY() < 0;
-			boolean canSpawn = mobRegionEnabled || inDeepslateLayer;
+			boolean is_below_natural_spawn_depth = blockPos.getY() < Config.NATURAL_SPAWN_DEPTH.getAsInt();
+			boolean canSpawn = mobRegionEnabled || is_below_natural_spawn_depth;
 
 
 			if (!canSpawn) {
@@ -120,7 +120,7 @@ public class ModEvents {
 			} else {
 
 				
-				if (ModTags.IsTowerSummoned(event.getEntity().getType()) && !inDeepslateLayer) {
+				if (ModTags.IsTowerSummoned(event.getEntity().getType()) && !is_below_natural_spawn_depth) {
 
 					int skyLight = level.getBrightness(LightLayer.SKY, blockPos);
 					if (skyLight >= 12) 
