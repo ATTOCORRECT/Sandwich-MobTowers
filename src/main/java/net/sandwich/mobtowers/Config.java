@@ -33,9 +33,9 @@ public class Config {
 			.comment("§l§nDefault value: 0§r\n\nControls the depth in which monsters will spawn regardless of the state of the region's Spire.\n\nDefault is 0, which results in monsters spawning in the deepslate layer even if the Spire is inactive.")
 			.defineInRange("naturalmonsterspawningdepth", 0, -64, 64);
 
-	public static final ModConfigSpec.IntValue REGION_SIZE = BUILDER
-			.comment("§l§nDefault value: 256§r\n\nMeasured in chunks. Determines the size of the voronoi cells that the Spire regions are created from.\n\nThis value is applied when creating a new world or loading a world with this mod for the first time. A world's region size cannot be changed once it's applied.")
-			.defineInRange("regionsize", 256, 16, Integer.MAX_VALUE);
+	// public static final ModConfigSpec.IntValue REGION_SIZE = BUILDER
+	// 		.comment("§l§nDefault value: 256§r\n\nMeasured in chunks. Determines the size of the voronoi cells that the Spire regions are created from.\n\nThis value is applied when creating a new world or loading a world with this mod for the first time. A world's region size cannot be changed once it's applied.")
+	// 		.defineInRange("regionsize", 256, 16, Integer.MAX_VALUE);
 
 	// public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
 	// 		.comment("What you want the introduction message to be for the magic number")
