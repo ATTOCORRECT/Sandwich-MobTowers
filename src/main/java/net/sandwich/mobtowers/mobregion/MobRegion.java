@@ -87,15 +87,15 @@ public class MobRegion {
 		return !data.containsCellID(cellID);
 	}
 
-		public static CellCenter getMobRegionCell(BlockPos blockPos) {
+	public static CellCenter getMobRegionCell(BlockPos blockPos) { // client
 		return getMobRegionCell(new ChunkPos(blockPos));
 	}
 
-	public static CellCenter getMobRegionCell(ChunkPos chunkPos) {
+	public static CellCenter getMobRegionCell(ChunkPos chunkPos) { // client
 		return Voronoi.getVoronoiCellCenter(chunkPos.x, chunkPos.z);
 	}
 
-	public static CellCenter getMobRegionCell(ChunkPos chunkPos, long worldSeed) {
+	public static CellCenter getMobRegionCell(ChunkPos chunkPos, long worldSeed) { // server
 		return Voronoi.getVoronoiCellCenter(chunkPos.x, chunkPos.z, worldSeed);
 	}
 }
