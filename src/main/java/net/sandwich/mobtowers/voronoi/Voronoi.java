@@ -1,7 +1,8 @@
 package net.sandwich.mobtowers.voronoi;
 
 import net.minecraft.util.RandomSource;
-import net.sandwich.mobtowers.worldseed.ClientSeedCache;
+import net.sandwich.mobtowers.clientNetworking.ClientSeedCache;
+
 
 
 public class Voronoi {
@@ -17,37 +18,9 @@ public class Voronoi {
 
 		return normalizedDist;
 	}
-
-	public static boolean isVoronoiCellCenter(int x, int z, long seed) {
-		CellCenter center = getVoronoiCellCenter(x, z, seed);
-		return (center.x == x && center.z == z);
-	}
-
-	public static boolean isVoronoiCellCenter(int x, int z) {
-		CellCenter center = getVoronoiCellCenter(x, z);
-		return (center.x == x && center.z == z);
-	}
-
-	public static long getVoronoiCellID(int x, int z, long levelSeed) {
-		CellCenter center = getVoronoiCellCenter(x, z, levelSeed);
-		return getVoronoiCellID(center);
-	}
-
-	// public static long getVoronoiCellID(int x, int z) {
-	// 	CellCenter center = getVoronoiCellCenter(x, z);
-	// 	return getVoronoiCellID(center);
-	// }
 	
 	public static long getVoronoiCellID(CellCenter center) {
 		return (long)center.x * 31234567L ^ (long)center.z * 11234567L;
-	}
-
-	public static CellCenter getVoronoiCellCenter(int x, int z) {
-		return getVoronoiCellCenter(x, z, ClientSeedCache.getSeed());
-	}
-
-	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed) {
-		return getVoronoiCellCenter(x, z, levelSeed, 128, true, 0.1f);
 	}
 
 	public static CellCenter getVoronoiCellCenter(int x, int z, long levelSeed, int cellSize, boolean isManhattan, float padding) {

@@ -15,6 +15,13 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
 public class Config {
+
+	private static int configMessageRegionSize = 12;
+
+	public static void setConfigMessageRegionSize(int regionSize){
+		configMessageRegionSize = regionSize;
+	}
+
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
 	public static final ModConfigSpec.BooleanValue APPLY_BED_CHANGES = BUILDER
@@ -32,6 +39,7 @@ public class Config {
 	public static final ModConfigSpec.IntValue NATURAL_SPAWN_DEPTH = BUILDER
 			.comment("§l§nDefault value: 0§r\n\nControls the depth in which monsters will spawn regardless of the state of the region's Spire.\n\nDefault is 0, which results in monsters spawning in the deepslate layer even if the Spire is inactive.")
 			.defineInRange("naturalmonsterspawningdepth", 0, -64, 64);
+
 
 	public static final ModConfigSpec.IntValue REGION_SIZE = BUILDER
 			.comment("§l§nDefault value: 256§r\n\nMeasured in chunks. Determines the size of the voronoi cells that the Spire regions are created from.\n\nThis value is applied when creating a new world or loading a world with this mod for the first time. A world's region size cannot be changed once it's applied.")

@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -25,6 +26,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -37,12 +39,14 @@ import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
+import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
 import net.sandwich.mobtowers.sound.ModSounds;
 import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.voronoi.CellCenter;
 import net.sandwich.mobtowers.voronoi.Voronoi;
-import net.sandwich.mobtowers.worldseed.ClientSeedCache;
-import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
+import net.sandwich.mobtowers.clientNetworking.ClientSeedCache;
+import net.sandwich.mobtowers.clientNetworking.RegionSizePayload;
+import net.sandwich.mobtowers.clientNetworking.WorldSeedPayload;
 
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID)
 public class ModEvents {
@@ -61,15 +65,14 @@ public class ModEvents {
 		} else {
 			if (sleepingRule.get() > 100) sleepingRule.set(100, gameServer);
 		}
-		
-		
 
-		
+		MobRegionSavedData data = MobRegionSavedData.getData(gameServer.overworld().getDataStorage());
+		data.trySetRegionSize();
 	}
 
 
 	@SubscribeEvent // on the game event bus
-	public static void registerCommands(RegisterCommandsEvent event) {
+	public static void registerCommands(RegisterCommandsEvent event) { // Client?
 		
 		event.getDispatcher().register(
 			Commands.literal("locatespire")
@@ -85,7 +88,8 @@ public class ModEvents {
 				}
 
 				Vec3 originPosition = source.getPosition();
-				CellCenter cellCenter = Voronoi.getVoronoiCellCenter((int)(originPosition.x / 16.0), (int)(originPosition.z / 16.0));
+				BlockPos blockPosition = new BlockPos((int)originPosition.x, 0, (int)originPosition.z);
+				CellCenter cellCenter = MobRegion.getMobRegionCell(blockPosition);
 				Vec3 cellCenterPosition = new Vec3(cellCenter.x * 16.0, 0.0, cellCenter.z * 16.0);
 				
 
@@ -181,9 +185,13 @@ public class ModEvents {
 		if (event.getEntity() instanceof ServerPlayer serverPlayer) {
 			// Get seed
 			long worldSeed = serverPlayer.getServer().getWorldData().worldGenOptions().seed();
-			
+		
 			// Send seed to client
 			PacketDistributor.sendToPlayer(serverPlayer, new WorldSeedPayload(worldSeed));
+			
+			// Get saved data
+			MobRegionSavedData data = MobRegionSavedData.getData(serverPlayer.getServer().overworld().getDataStorage());
+			PacketDistributor.sendToPlayer(serverPlayer, new RegionSizePayload(data.getRegionSize()));
 		}
 	}
 }

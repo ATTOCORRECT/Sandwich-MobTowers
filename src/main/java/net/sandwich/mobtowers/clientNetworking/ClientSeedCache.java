@@ -1,4 +1,4 @@
-package net.sandwich.mobtowers.worldseed;
+package net.sandwich.mobtowers.clientNetworking;
 
 public class ClientSeedCache {
 	private static long currentWorldSeed = 0L;

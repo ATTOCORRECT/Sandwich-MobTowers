@@ -7,15 +7,23 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
+import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.sandwich.mobtowers.Config;
 
 public class MobRegionSavedData extends SavedData {
 	public static final String ID = "mob_region_data";
-	private static final String KEY = "SavedCellIDs";
+	private static final String CELL_ID_KEY = "SavedCellIDs";
+	private static final String REGION_SIZE_KEY = "SavedRegionSize";
 	
 	private final List<Long> disabledRegionCellIDs = new ArrayList<>();
+	private int RegionSize;
 
 	public static MobRegionSavedData getData(ServerLevel serverLevel) {
-		return serverLevel.getServer().overworld().getDataStorage().computeIfAbsent(new Factory<>(MobRegionSavedData::create, MobRegionSavedData::load), ID);
+		return getData(serverLevel.getServer().overworld().getDataStorage());
+	}
+
+	public static MobRegionSavedData getData(DimensionDataStorage dataStorage) {
+		return dataStorage.computeIfAbsent(new Factory<>(MobRegionSavedData::create, MobRegionSavedData::load), ID);
 	}
 
 	public List<Long> getCellIDs() {
@@ -40,6 +48,24 @@ public class MobRegionSavedData extends SavedData {
 		return this.disabledRegionCellIDs.contains(cellID);
 	}
 
+	public int getRegionSize() {
+		if (this.RegionSize == 0) {
+			setRegionSize();
+		}
+		return this.RegionSize;
+	}
+
+	public void trySetRegionSize(){
+		if (this.RegionSize == 0) {
+			setRegionSize();
+		}
+	}
+
+	private void setRegionSize() {
+		this.RegionSize = Config.REGION_SIZE.getAsInt();
+		this.setDirty();
+	}
+
 	// Create new instance of saved data
 	public static MobRegionSavedData create() {
 		return new MobRegionSavedData();
@@ -49,12 +75,15 @@ public class MobRegionSavedData extends SavedData {
 	public static MobRegionSavedData load(CompoundTag tag, HolderLookup.Provider lookupProvider) {
 		MobRegionSavedData data = MobRegionSavedData.create();
 
-		if (tag.contains(KEY, 12)) { // 12 is the official NBT ID for Long Arrays
-			long[] array = tag.getLongArray(KEY);
+		if (tag.contains(CELL_ID_KEY, 12)) { // 12 is the NBT ID for Long Arrays
+			long[] array = tag.getLongArray(CELL_ID_KEY);
 			for (long cellID : array) {
 				data.disabledRegionCellIDs.add(cellID);
 			}
 		}
+
+		data.RegionSize = tag.getInt(REGION_SIZE_KEY);
+
 		return data;
 	}
 
@@ -64,7 +93,10 @@ public class MobRegionSavedData extends SavedData {
 		for (int i = 0; i < this.disabledRegionCellIDs.size(); i++) {
 			array[i] = this.disabledRegionCellIDs.get(i);
 		}
-		tag.putLongArray(KEY, array);
+		tag.putLongArray(CELL_ID_KEY, array);
+
+		tag.putInt(REGION_SIZE_KEY, RegionSize);
+
 		return tag;
 	}
 }

@@ -71,9 +71,7 @@ public class VoronoiStructurePlacement extends RandomSpreadStructurePlacement {
 	@Override
 	protected boolean isPlacementChunk(ChunkGeneratorStructureState chunkGeneratorStructureState, int x, int z) {
 
-		
-		long seed = chunkGeneratorStructureState.getLevelSeed();
-		CellCenter c = MobRegion.getMobRegionCell(new ChunkPos(x,z), seed);
+		CellCenter c = MobRegion.getMobRegionCell(new ChunkPos(x,z), chunkGeneratorStructureState);
 		boolean isChunk = c.x == x && c.z == z;
 		if (isChunk) {
 			System.out.println("Center is " + c.x + ", " + c.z);
