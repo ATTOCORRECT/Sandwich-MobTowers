@@ -68,6 +68,13 @@
 	"commands.mobtowers.located_tower": "Nearest Spire is at %s",
 	"commands.mobtowers.locate_failed_wrong_dimension": "Command was not run in Overworld, could not locate any Spire",
 
+	"commands.mobtowers.say_region_size": "Region size for this world is %s",
+	"commands.mobtowers.warn_reset_region_size_confirmation": "This action is dangerous and may cause generation problems. Are you sure you want to do this? ",
+	"commands.mobtowers.confirm_reset_region_size": "Confirm Reset Region Size",
+	"commands.mobtowers.region_size_reset_complete": "Reset Region Size to current Config",
+
+	"commands.mobtowers.region_size_reset_value_complete": "Region Size reset to %s",
+
 
 	"mobtowers.configuration.applybedchanges": "Enable bed changes",
 	"mobtowers.configuration.spirespawnsphantoms": "Spire Heart spawns phantoms",

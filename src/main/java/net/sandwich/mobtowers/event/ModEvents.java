@@ -105,7 +105,7 @@ public class ModEvents {
 					int regionSize = ModAttachments.getRegionSize(server);
 
 					context.getSource().sendSuccess(
-						() -> Component.literal("Region Size for this World is: " + regionSize),
+						() -> Component.translatable("commands.mobtowers.say_region_size", new Object[]{regionSize}),
 						false);
 					return Command.SINGLE_SUCCESS;
 
@@ -118,10 +118,10 @@ public class ModEvents {
 					MinecraftServer server = context.getSource().getServer();
 					int regionSize = ModAttachments.getRegionSize(server);
 
-					MutableComponent message = Component.literal("This action is dangerous and may cause generation problems. Are you sure you want to do this? ")
+					MutableComponent message = Component.translatable("commands.mobtowers.warn_reset_region_size_confirmation")
 						.withStyle(ChatFormatting.RED);
 
-					Component clickableMessage = ComponentUtils.wrapInSquareBrackets(Component.literal("Reset Region Size"))
+					Component clickableMessage = ComponentUtils.wrapInSquareBrackets(Component.translatable("commands.mobtowers.confirm_reset_region_size"))
 						.withStyle(style -> style
 							.withColor(ChatFormatting.YELLOW)
 							.withUnderlined(true)
@@ -131,7 +131,7 @@ public class ModEvents {
 							))
 							.withHoverEvent(new HoverEvent(
 								HoverEvent.Action.SHOW_TEXT,
-								Component.literal("Reset Region Size to current Config")
+								Component.translatable("commands.mobtowers.region_size_reset_complete")
 							))
 						);
 
@@ -155,7 +155,7 @@ public class ModEvents {
 						syncForPlayer(context.getSource().getPlayer());
 
 						context.getSource().sendSuccess(
-							() -> Component.literal("Region Size reset to: " + configRegionSize), 
+							() -> Component.translatable("commands.mobtowers.region_size_reset_value_complete", new Object[]{configRegionSize}), 
 							false);
 
 						return Command.SINGLE_SUCCESS;
