@@ -14,6 +14,7 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.sandwich.mobtowers.voronoi.CellCenter;
 import net.sandwich.mobtowers.Utils;
 import net.sandwich.mobtowers.mobregion.MobRegion;
@@ -29,21 +30,22 @@ public class MonsterSpawnFlameParticle extends TextureSheetParticle {
 	private final CellCenter c;
 
 	protected MonsterSpawnFlameParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double xSpeed, double ySpeed, double zSpeed) {
+		
 		super(level, x, y, z);
-
+		
 		this.xd = xSpeed;
 		this.yd = ySpeed;
 		this.zd = zSpeed;
-
+		
 		this.xStart = this.x;
 		this.yStart = this.y;
 		this.zStart = this.z;
-	
+		
+
 		BlockPos originPos = new BlockPos((int)xStart, (int)yStart, (int)zStart);
 		c = MobRegion.getMobRegionCell(originPos);
 		yAdd = Mth.lerp(Math.random(), 15, 35);
 
-		
 		
 		Color particleColor = Utils.intToColor(MobRegion.getMobRegionColor(originPos));
 
