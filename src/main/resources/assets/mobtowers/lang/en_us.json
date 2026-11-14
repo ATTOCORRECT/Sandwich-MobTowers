@@ -73,6 +73,6 @@
 	"mobtowers.configuration.spirespawnsphantoms": "Spire Heart spawns phantoms",
 	"mobtowers.configuration.phantomsdiewithoutheart": "Phantoms die without Spire",
 	"mobtowers.configuration.regionsize": "Spire Region Size",
-	"naturalmonsterspawningdepth": "Natural Monster Spawning Depth"
+	"mobtowers.configuration.naturalmonsterspawningdepth": "Natural Monster Spawning Depth"
 
 }
