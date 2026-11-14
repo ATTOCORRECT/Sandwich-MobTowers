@@ -1,4 +1,4 @@
-package net.sandwich.mobtowers.clientNetworking;
+package net.sandwich.mobtowers.worldseed;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

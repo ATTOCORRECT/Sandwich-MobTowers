@@ -5,10 +5,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
-import net.sandwich.mobtowers.clientNetworking.ClientRegionSizeCache;
-import net.sandwich.mobtowers.clientNetworking.ClientSeedCache;
+import net.sandwich.mobtowers.Config;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
+import net.sandwich.mobtowers.saveddata.ModAttachments;
 import net.sandwich.mobtowers.voronoi.Voronoi;
+import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 import net.sandwich.mobtowers.voronoi.CellCenter;
 
 public class MobRegion {
@@ -111,24 +112,18 @@ public class MobRegion {
 
 	public static CellCenter getMobRegionCell(ChunkPos chunkPos) { // Client Chunk Pos
 		long seed = ClientSeedCache.getSeed();
-		int regionSize = ClientRegionSizeCache.getRegionSize();
+		int regionSize = ModAttachments.getClientRegionSize();
 		return getMobRegionCell(chunkPos, seed, regionSize);
 	}
 
 	public static CellCenter getMobRegionCell(ChunkPos chunkPos, ServerLevel serverLevel) { // Server Chunk Pos
 		long seed = serverLevel.getSeed();
-		MobRegionSavedData data = MobRegionSavedData.getData(serverLevel);
-		int regionSize = data.getRegionSize();
-		return getMobRegionCell(chunkPos, seed, regionSize);
-	}
-
-	public static CellCenter getMobRegionCell(ChunkPos chunkPos, ChunkGeneratorStructureState chunkGeneratorStructureState ) { // Structure Generator [AAAAAH!]
-		long seed = chunkGeneratorStructureState.getLevelSeed();
-		int regionSize = 128; // Praying
+		int regionSize = ModAttachments.getRegionSize(serverLevel.getServer());
 		return getMobRegionCell(chunkPos, seed, regionSize);
 	}
 
 	public static CellCenter getMobRegionCell(ChunkPos chunkPos, long seed, int regionSize) { // Base
+		if (regionSize == -1) regionSize = Config.REGION_SIZE.getAsInt();
 		return Voronoi.getVoronoiCellCenter(chunkPos.x, chunkPos.z, seed, regionSize, true, 0.1f);
 	}
 }

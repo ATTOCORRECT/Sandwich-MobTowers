@@ -3,9 +3,14 @@ package net.sandwich.mobtowers.structureplacement;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
+import net.sandwich.mobtowers.Config;
 import net.sandwich.mobtowers.MobTowerStructurePlacement;
 import net.sandwich.mobtowers.mobregion.MobRegion;
+import net.sandwich.mobtowers.saveddata.ModAttachments;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Vec3i;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
@@ -13,6 +18,7 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStruct
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.sandwich.mobtowers.voronoi.CellCenter;
 
 import java.util.Optional;
@@ -70,8 +76,12 @@ public class VoronoiStructurePlacement extends RandomSpreadStructurePlacement {
 	// When this returns true, the structure's type class will be called to see if the structure layout can be made.
 	@Override
 	protected boolean isPlacementChunk(ChunkGeneratorStructureState chunkGeneratorStructureState, int x, int z) {
+		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
 
-		CellCenter c = MobRegion.getMobRegionCell(new ChunkPos(x,z), chunkGeneratorStructureState);
+		long seed = chunkGeneratorStructureState.getLevelSeed();
+		int regionSize = ModAttachments.getRegionSize(server);
+		
+		CellCenter c = MobRegion.getMobRegionCell(new ChunkPos(x,z), seed, regionSize);
 		boolean isChunk = c.x == x && c.z == z;
 		if (isChunk) {
 			System.out.println("Center is " + c.x + ", " + c.z);

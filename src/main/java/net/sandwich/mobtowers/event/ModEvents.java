@@ -1,6 +1,5 @@
 package net.sandwich.mobtowers.event;
 
-import com.ibm.icu.impl.units.MeasureUnitImpl.CompoundPart;
 import com.mojang.brigadier.Command;
 
 import net.minecraft.ChatFormatting;
@@ -11,6 +10,7 @@ import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.ClickEvent.Action;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -26,12 +26,10 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.sandwich.mobtowers.Config;
@@ -39,14 +37,12 @@ import net.sandwich.mobtowers.MobTowersMod;
 import net.sandwich.mobtowers.block.ModBlocks;
 import net.sandwich.mobtowers.mobregion.MobRegion;
 import net.sandwich.mobtowers.particle.ModParticles;
-import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
+import net.sandwich.mobtowers.saveddata.ModAttachments;
 import net.sandwich.mobtowers.sound.ModSounds;
 import net.sandwich.mobtowers.tags.ModTags;
 import net.sandwich.mobtowers.voronoi.CellCenter;
-import net.sandwich.mobtowers.voronoi.Voronoi;
-import net.sandwich.mobtowers.clientNetworking.ClientSeedCache;
-import net.sandwich.mobtowers.clientNetworking.RegionSizePayload;
-import net.sandwich.mobtowers.clientNetworking.WorldSeedPayload;
+import net.sandwich.mobtowers.worldseed.ClientSeedCache;
+import net.sandwich.mobtowers.worldseed.WorldSeedPayload;
 
 @EventBusSubscriber(modid = MobTowersMod.MOD_ID)
 public class ModEvents {
@@ -66,8 +62,8 @@ public class ModEvents {
 			if (sleepingRule.get() > 100) sleepingRule.set(100, gameServer);
 		}
 
-		MobRegionSavedData data = MobRegionSavedData.getData(gameServer.overworld().getDataStorage());
-		data.trySetRegionSize();
+		// MobRegionSavedData data = MobRegionSavedData.getData(gameServer.overworld().getDataStorage());
+		// data.trySetRegionSize();
 	}
 
 
@@ -89,7 +85,9 @@ public class ModEvents {
 
 				Vec3 originPosition = source.getPosition();
 				BlockPos blockPosition = new BlockPos((int)originPosition.x, 0, (int)originPosition.z);
-				CellCenter cellCenter = MobRegion.getMobRegionCell(blockPosition);
+				MinecraftServer server = context.getSource().getServer();
+				int regionSize = ModAttachments.getRegionSize(server);
+				CellCenter cellCenter = MobRegion.getMobRegionCell(new ChunkPos(blockPosition), level.getSeed(), regionSize);
 				Vec3 cellCenterPosition = new Vec3(cellCenter.x * 16.0, 0.0, cellCenter.z * 16.0);
 				
 
@@ -99,6 +97,72 @@ public class ModEvents {
 				return Command.SINGLE_SUCCESS;
 			})
 		);
+
+		event.getDispatcher().register(
+			Commands.literal("regionsize")
+				.executes(context -> {
+					MinecraftServer server = context.getSource().getServer();
+					int regionSize = ModAttachments.getRegionSize(server);
+
+					context.getSource().sendSuccess(
+						() -> Component.literal("Region Size for this World is: " + regionSize),
+						false);
+					return Command.SINGLE_SUCCESS;
+
+				})
+		);
+
+		event.getDispatcher().register(
+			Commands.literal("resetregionsize")
+				.executes(context -> {
+					MinecraftServer server = context.getSource().getServer();
+					int regionSize = ModAttachments.getRegionSize(server);
+
+					MutableComponent message = Component.literal("This action is dangerous and may cause generation problems. Are you sure you want to do this? ")
+						.withStyle(ChatFormatting.RED);
+
+					Component clickableMessage = ComponentUtils.wrapInSquareBrackets(Component.literal("Reset Region Size"))
+						.withStyle(style -> style
+							.withColor(ChatFormatting.YELLOW)
+							.withUnderlined(true)
+							.withClickEvent(new ClickEvent(
+								ClickEvent.Action.RUN_COMMAND,
+								"/resetregionsize trigger"
+							))
+							.withHoverEvent(new HoverEvent(
+								HoverEvent.Action.SHOW_TEXT,
+								Component.literal("Reset Region Size to current Config")
+							))
+						);
+
+					message.append(clickableMessage);
+
+					context.getSource().sendSuccess(
+						() -> message, 
+						false);
+
+					return Command.SINGLE_SUCCESS;
+
+				})
+
+				.then(Commands.literal("trigger")
+					.executes(context -> {
+
+						MinecraftServer server = context.getSource().getServer();
+						int configRegionSize = Config.REGION_SIZE.getAsInt();
+						ModAttachments.setRegionSize(server, configRegionSize);
+
+						syncForPlayer(context.getSource().getPlayer());
+
+						context.getSource().sendSuccess(
+							() -> Component.literal("Region Size reset to: " + configRegionSize), 
+							false);
+
+						return Command.SINGLE_SUCCESS;
+					})
+				)
+		);
+
 	}
 
 	@SubscribeEvent
@@ -180,18 +244,37 @@ public class ModEvents {
 		);
 	}
 
-	@SubscribeEvent
-	public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-		if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-			// Get seed
-			long worldSeed = serverPlayer.getServer().getWorldData().worldGenOptions().seed();
+	// @SubscribeEvent
+	// public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+	// 	if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+	// 		// Get seed
+	// 		long worldSeed = serverPlayer.getServer().getWorldData().worldGenOptions().seed();
 		
-			// Send seed to client
-			PacketDistributor.sendToPlayer(serverPlayer, new WorldSeedPayload(worldSeed));
+	// 		// Send seed to client
+	// 		PacketDistributor.sendToPlayer(serverPlayer, new WorldSeedPayload(worldSeed));
 			
-			// Get saved data
-			MobRegionSavedData data = MobRegionSavedData.getData(serverPlayer.getServer().overworld().getDataStorage());
-			PacketDistributor.sendToPlayer(serverPlayer, new RegionSizePayload(data.getRegionSize()));
+	// 		syncForPlayer(event.getEntity());
+	// 	}
+	// }
+
+	private static void syncForPlayer(Player player) {
+		if (player instanceof ServerPlayer serverPlayer) {
+			MinecraftServer server = serverPlayer.server;
+			int overworldValue = ModAttachments.getRegionSize(server);
+			serverPlayer.serverLevel().setData(ModAttachments.REGION_SIZE, overworldValue);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLevelLoad(LevelEvent.Load event) {
+		if (event.getLevel() instanceof ServerLevel serverLevel) {
+			if (serverLevel.dimension() == Level.OVERWORLD) {
+				MinecraftServer server = serverLevel.getServer();
+
+				if(ModAttachments.getRegionSize(server) == -1) {
+					ModAttachments.setRegionSize(server, Config.REGION_SIZE.getAsInt());
+				} 
+			}
 		}
 	}
 }

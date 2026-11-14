@@ -1,9 +1,5 @@
 package net.sandwich.mobtowers;
 
-// import java.util.List;
-// import java.util.Set;
-// import java.util.stream.Collectors;
-
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 // import net.minecraft.world.item.Item;
@@ -12,8 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 // import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Neo's config APIs
 public class Config {
 
 	private static int configMessageRegionSize = 12;
@@ -42,8 +36,8 @@ public class Config {
 
 
 	public static final ModConfigSpec.IntValue REGION_SIZE = BUILDER
-			.comment("§l§nDefault value: 256§r\n\nMeasured in chunks. Determines the size of the voronoi cells that the Spire regions are created from.\n\nThis value is applied when creating a new world or loading a world with this mod for the first time. A world's region size cannot be changed once it's applied.")
-			.defineInRange("regionsize", 256, 16, Integer.MAX_VALUE);
+			.comment("§l§nDefault value: 256§r\n\nMeasured in chunks. Determines the size of the voronoi cells that the Spire regions are created from.\n\nThis value is applied when creating a new world or loading a world with this mod for the first time. A world's region size can be changed with /setregionsize")
+			.defineInRange("regionsize", 128, 16, Integer.MAX_VALUE);
 
 	// public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
 	// 		.comment("What you want the introduction message to be for the magic number")

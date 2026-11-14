@@ -1,7 +1,7 @@
 package net.sandwich.mobtowers.voronoi;
 
 import net.minecraft.util.RandomSource;
-import net.sandwich.mobtowers.clientNetworking.ClientSeedCache;
+import net.sandwich.mobtowers.worldseed.ClientSeedCache;
 
 
 
