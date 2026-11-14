@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.sandwich.mobtowers.Config;
 import net.sandwich.mobtowers.saveddata.MobRegionSavedData;
 import net.sandwich.mobtowers.saveddata.ModAttachments;
