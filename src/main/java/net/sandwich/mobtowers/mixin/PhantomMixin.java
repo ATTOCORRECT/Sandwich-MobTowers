@@ -31,7 +31,7 @@ public abstract class PhantomMixin extends FlyingMob implements Enemy {
 
 	@Unique private int dryOutTick;
 
-    @WrapOperation(
+	@WrapOperation(
 		method = "aiStep",
 		at = @At(
 			value = "INVOKE",
@@ -40,7 +40,7 @@ public abstract class PhantomMixin extends FlyingMob implements Enemy {
 	)
 	private boolean ignoreBurning(Phantom instance, Operation<Boolean> original) {
 		return false;
-    }
+	}
 
 	@Inject(method = "aiStep", at = @At("TAIL"))
 	public void afterAiStep(CallbackInfo ci) {

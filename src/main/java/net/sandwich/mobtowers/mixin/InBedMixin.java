@@ -22,12 +22,12 @@ public abstract class InBedMixin extends ChatScreen {
 	@Shadow private void sendWakeUp() {}
 
 	@Redirect(
-        method = "init",
-        at = @At(
-            value = "FIELD",
-            target = "Lnet/minecraft/client/gui/screens/InBedChatScreen;leaveBedButton:Lnet/minecraft/client/gui/components/Button;",
-            opcode = Opcodes.PUTFIELD
-        )
+		method = "init",
+		at = @At(
+			value = "FIELD",
+			target = "Lnet/minecraft/client/gui/screens/InBedChatScreen;leaveBedButton:Lnet/minecraft/client/gui/components/Button;",
+			opcode = Opcodes.PUTFIELD
+		)
 	)
 	private void replaceLeaveBedButton(InBedChatScreen instance, Button value) {
 		this.leaveBedButton = Button.builder(Component.translatable("multiplayer.stopSleeping"), (p_96074_) -> this.sendWakeUp()).bounds(this.width / 2 - 50, this.height - 60, 100, 20).build();

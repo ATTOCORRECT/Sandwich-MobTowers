@@ -12,15 +12,14 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
 
-    @ModifyVariable(method = "startSleepInBed", at = @At("STORE"))
-    private Either<Player.BedSleepingProblem, Unit> ignoreNormalSleepingConditions(Either<Player.BedSleepingProblem, Unit> original) {
-        if (!Config.APPLY_BED_CHANGES.isTrue()) return original;
-        if (original.left().isEmpty()) return original;
+	@ModifyVariable(method = "startSleepInBed", at = @At("STORE"))
+	private Either<Player.BedSleepingProblem, Unit> ignoreNormalSleepingConditions(Either<Player.BedSleepingProblem, Unit> original) {
+		if (!Config.APPLY_BED_CHANGES.isTrue()) return original;
+		if (original.left().isEmpty()) return original;
 
-        return switch (original.left().get()) {
-            case NOT_POSSIBLE_NOW, NOT_SAFE -> Either.right(Unit.INSTANCE);
-            default -> original;
-        };
-    }
-
+		return switch (original.left().get()) {
+			case NOT_POSSIBLE_NOW, NOT_SAFE -> Either.right(Unit.INSTANCE);
+			default -> original;
+		};
+	}
 }
