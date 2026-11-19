@@ -1,5 +1,6 @@
 package net.sandwich.mobtowers.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Unit;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,5 +22,22 @@ public class ServerPlayerMixin {
 			case NOT_POSSIBLE_NOW, NOT_SAFE -> Either.right(Unit.INSTANCE);
 			default -> original;
 		};
+	}
+
+	@ModifyExpressionValue(
+		method = "startSleepInBed",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/server/level/ServerLevel;canSleepThroughNights()Z"
+		)
+	)
+	private boolean onlyMessageAtNight(boolean originalCanSleep) {
+		ServerPlayer player = (ServerPlayer) (Object) this;
+		boolean isNight = player.level().isNight();
+
+		// Vanilla checks for !originalCanSleep IE Cant sleep through night,
+		// I want Cant sleep Throught Night && Is Night
+		// !(!originalCanSleep && isNight) == (originalCanSleep || !isNight).
+		return originalCanSleep || !isNight;
 	}
 }
