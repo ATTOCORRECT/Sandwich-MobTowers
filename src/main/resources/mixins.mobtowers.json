@@ -6,7 +6,7 @@
 	"mixins": [
 		"SpawnerParticleMixin",
 		"SpawnerSpawnParticleMixin",
-		"BedMixin",
+		"ServerPlayerMixin",
 		"EventHooksMixin",
 		"InBedMixin",
 		"PlayerMixin",
