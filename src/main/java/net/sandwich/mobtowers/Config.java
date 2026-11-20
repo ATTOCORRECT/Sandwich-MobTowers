@@ -10,12 +10,6 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class Config {
 
-	private static int configMessageRegionSize = 12;
-
-	public static void setConfigMessageRegionSize(int regionSize){
-		configMessageRegionSize = regionSize;
-	}
-
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
 	public static final ModConfigSpec.BooleanValue APPLY_BED_CHANGES = BUILDER
